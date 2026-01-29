@@ -3,10 +3,14 @@ package stratostrike.Domain;
 public class Position {
     private int x;
     private int y;
+    private int z;
+    private StratoShip ship;
 
-    public Position(int x, int y) {
+    public Position(int x, int y, int z, StratoShip ship) {
         this.x = x;
         this.y = y;
+        this.z = z;
+        this.ship = ship;
     }
 
     public int getX() {
@@ -15,6 +19,30 @@ public class Position {
 
     public int getY() {
         return y;
+    }
+
+    public int getZ() {
+        return z;
+    }
+
+    public StratoShip getShip() {
+        return ship;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public void setZ(int z) {
+        this.z = z;
+    }
+
+    public void setShip(StratoShip ship) {
+        this.ship = ship;
     }
 
     public boolean equals(Position other) {

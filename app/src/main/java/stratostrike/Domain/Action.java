@@ -1,5 +1,5 @@
-package stratostrike;
+package stratostrike.Domain;
 
-public abstract class Action {
+public interface Action {
     
 }

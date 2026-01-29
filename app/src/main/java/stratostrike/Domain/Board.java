@@ -1,4 +1,4 @@
-package stratostrike;
+package stratostrike.Domain;
 
 import java.util.ArrayList;
 import java.util.List;
