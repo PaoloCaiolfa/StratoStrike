@@ -31,10 +31,4 @@ public class StratoCraftGame {
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
-
-
-
-
-
-
 }

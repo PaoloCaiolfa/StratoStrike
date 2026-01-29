@@ -1,3 +1,4 @@
+package stratostrike.Controller;
 
 public class makeTurn {
     private StratoCraftGame game;
