@@ -41,4 +41,5 @@ public class Player {
     public void setArmy(Army army) {
         this.army = army;
     }
+
 }

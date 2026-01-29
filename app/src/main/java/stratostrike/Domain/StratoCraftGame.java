@@ -7,12 +7,12 @@ public class StratoCraftGame {
     private Player currentPlayer;
     private StratoShip selectedShip;
 
-    public StratoCraftGame(String player1Name, String player2Name) {
+    public StratoCraftGame(Player player1, Player player2) {
         this.board = new Board(stratostrike.Settings.BoardLengthStandard,
                                stratostrike.Settings.BoardWidthStandard,
                                stratostrike.Settings.BoardLevelsStandard);
-        this.player1 = new Player(player1Name);
-        this.player2 = new Player(player2Name);
+        this.player1 = player1;
+        this.player2 = player2;
         this.currentPlayer = player1;
     }
 
@@ -31,4 +31,19 @@ public class StratoCraftGame {
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
+    public void setSelectedShip(StratoShip ship) {
+        this.selectedShip = ship;
+    }
+    public StratoShip getSelectedShip() {
+        return selectedShip;
+    }   
+    public void setCurrentPlayer(Player player) {
+        this.currentPlayer = player;
+    }
+
+
+
+ 
+
+
 }

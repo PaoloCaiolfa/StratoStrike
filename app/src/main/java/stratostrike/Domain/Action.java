@@ -1,5 +1,6 @@
 package stratostrike.Domain;
 
 public interface Action {
-    void doAction(StratoShip target);
+    String getName();
+    void doAction(Board board, StratoShip target, StratoShip actor);
 }

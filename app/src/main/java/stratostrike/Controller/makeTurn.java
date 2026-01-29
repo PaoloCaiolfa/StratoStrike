@@ -1,28 +1,55 @@
 package stratostrike.Controller;
 
-public class makeTurn {
+import java.util.ArrayList;
+ 
+import stratostrike.Domain.*;
+import stratostrike.View.*;
+import stratostrike.Input.*;
+
+
+public class MakeTurn {
+
     private StratoCraftGame game;
 
-    public makeTurn(StratoCraftGame game) {
+
+    public MakeTurn(StratoCraftGame game) {
         this.game = game;
+       
     }
+
+
 
 
     public void playTurn() {
-        Player current = this.game.getCurrentPlayer();
+      
+        Player current = game.getCurrentPlayer();
 
-        ArrayList<StratoShip> ships = current.getArmy();
+        ArrayList<StratoShip> army = current.getArmy().getShips();
 
-        BoardView.showArmy(ships);
-
-        this.selectedShip = ships.get(InputView.selectShip());
-
-        ArrayList<Action> allActions = this.selectedShip.getActions();
-
-        StratoShipView.showActions(allActions);
-  
-        Action selectedAction=allActions.get(InputView.selectAction());
-
+        BoardView.printArmy(army);
 
     }
+
+    public void selectShip() {
+
+        Player current = game.getCurrentPlayer();
+    
+        int selectedIndex = InputView.getShipSelection(current.getArmy());
+
+      
+        StratoShip selectedShip = current.getArmy().get(selectedIndex);
+
+       
+        game.setSelectedShip(selectedShip);
+    }
+
+    public void showActions() {
+        StratoShip selectedShip = game.getSelectedShip();
+
+        ArrayList<Action> actions = selectedShip.showActions();
+
+        ActionView.showActions(actions);
+    }
+
+///
 }

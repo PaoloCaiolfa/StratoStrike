@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public abstract class StratoShip {
     private String name;
     private int hp;
-    protected List<Action> actions;
+    protected ArrayList<Action> actions;
     
 
     public StratoShip(String name, int hp) {
@@ -38,11 +38,13 @@ public abstract class StratoShip {
             this.hp = 0;
     }
 
-    public List<Action> showAction() {
+    public ArrayList<Action> showActions() {
         return actions;
     }
 
-    public void performAction(Action selAction, StratoShip targetShip) {
-        selAction.doAction(targetShip);
+    public void addAction(Action action) {
+        actions.add(action);
     }
+
+
 }

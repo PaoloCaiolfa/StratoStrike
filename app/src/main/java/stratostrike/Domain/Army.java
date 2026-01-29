@@ -6,7 +6,7 @@ import java.util.List;
 public class Army {
     protected int capacity;
     private String name;
-    protected List<StratoShip> ships;
+    protected ArrayList<StratoShip> ships;
 
     public Army() {
         this.ships = new ArrayList<>();
@@ -20,17 +20,12 @@ public class Army {
         ships.remove(ship);
     }
 
-    public List<StratoShip> getArmy() {
+    public ArrayList<StratoShip> getShips() {
         return ships;
     }
 
-    public StratoShip getShip(StratoShip ship){
-        for (StratoShip s : ships) {
-            if (s.equals(ship)) {
-                return s;
-            }
-        }
-        return null;
+    public StratoShip get(int index) {
+        return ships.get(index);
     }
 
     public String getName() {
