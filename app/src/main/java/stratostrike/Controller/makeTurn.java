@@ -49,6 +49,17 @@ public class MakeTurn {
         ArrayList<Action> actions = selectedShip.showActions();
 
         ActionView.showActions(actions);
+        
+    }
+
+    public void showAreaEffect() {
+        /*
+        Action selectedAction = InputView.selectAction();
+        game.setSelectedAction(selectedAction);
+        Board board = game.getBoard();
+
+        BoardView.showAreaEffect(affectedPositions, board);
+        */  
     }
 
 ///

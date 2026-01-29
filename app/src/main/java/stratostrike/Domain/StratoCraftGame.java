@@ -6,6 +6,7 @@ public class StratoCraftGame {
     private Player player2;
     private Player currentPlayer;
     private StratoShip selectedShip;
+    private Action selectedAction;
 
     public StratoCraftGame(Player player1, Player player2) {
         this.board = new Board(stratostrike.Settings.BoardLengthStandard,
@@ -39,6 +40,12 @@ public class StratoCraftGame {
     }   
     public void setCurrentPlayer(Player player) {
         this.currentPlayer = player;
+    }
+    public void setSelectedAction(Action action) {
+        this.selectedAction = action;
+    }
+    public Action getSelectedAction() {
+        return selectedAction;  
     }
 
 

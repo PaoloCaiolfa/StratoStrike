@@ -21,11 +21,16 @@ public class App {
 
     fighter.addAction(pointAttack);
     player1.getArmy().addShip(fighter);
+    Board board= new Board(10,10,2);
      StratoCraftGame game = new StratoCraftGame(player1, player2);  
     System.out.println("Welcome to " + game.getPlayer1().getUsername() + " vs " + game.getPlayer2().getUsername() + " Stratostrike Game!");
     MakeTurn turn = new MakeTurn(game);
+    /*
     turn.playTurn();
     turn.selectShip();
     turn.showActions();
+    */
+    BoardView boardView = new BoardView();
+    boardView.printBoard(board);
     }
 }

@@ -18,7 +18,7 @@ public class Board {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < length; y++) {
                 for (int z = 0; z < levels; z++) {
-                    positions[x][y][z] = new Position(x, y, z, null);
+                    positions[x][y][z] = new Position(x, y, z);
                 }
             }
         }

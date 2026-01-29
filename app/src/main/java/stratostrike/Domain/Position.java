@@ -5,12 +5,13 @@ public class Position {
     private int y;
     private int z;
     private StratoShip ship;
+  
 
-    public Position(int x, int y, int z, StratoShip ship) {
+    public Position(int x, int y, int z) {
         this.x = x;
         this.y = y;
         this.z = z;
-        this.ship = ship;
+        this.ship = null;
     }
 
     public int getX() {
