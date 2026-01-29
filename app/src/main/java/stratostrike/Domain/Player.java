@@ -1,4 +1,4 @@
-package stratostrike;
+package stratostrike.Domain;
 
 public class Player {
     private String username;

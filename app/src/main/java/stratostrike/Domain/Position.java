@@ -1,4 +1,4 @@
-package stratostrike;
+package stratostrike.Domain;
 
 public class Position {
     private int x;
