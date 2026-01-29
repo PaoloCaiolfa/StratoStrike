@@ -31,7 +31,18 @@ public abstract class StratoShip {
         this.hp = hp;
     }
 
+    public void changeStatus(int damage) {
+        if (damage > 0 && damage <= this.hp)
+            this.hp = (this.hp - damage);
+        else if (damage > this.hp)
+            this.hp = 0;
+    }
+
     public List<Action> showAction() {
         return actions;
+    }
+
+    public void performAction(Action selAction, StratoShip targetShip) {
+        selAction.doAction(targetShip);
     }
 }
