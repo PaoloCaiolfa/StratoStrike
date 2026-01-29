@@ -6,12 +6,12 @@ import java.util.List;
 public class Board {
     private final int width;
     private final int height;
-    private final List<StratoShip> ships;
+    private final List<Position> positions;
 
     public Board(int width, int height) {
         this.width = width;
         this.height = height;
-        this.ships = new ArrayList<>();
+        this.positions = new ArrayList<>();
     }
 
     public void placeShip(StratoShip ship, Position position) {
@@ -23,8 +23,8 @@ public class Board {
         return true; // Placeholder return value
     }
 
-    public List<StratoShip> getShips() {
-        return ships;
+    public List<Position> getPositions() {
+        return positions;
     }
 
     public int getWidth() {
