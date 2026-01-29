@@ -34,22 +34,7 @@ public class StratoCraftGame {
 
 
 
-    public void playTurn() {
-        Player current = game.getCurrentPlayer();
 
-        ArrayList<StratoShip> ships = current.getArmy();
-
-        BoardView.showArmy(ships);
-
-        StratoShip selectedShip = ships.get(InputView.selectShip());
-
-        ArrayList<Action> allActions = selectedShip.getActions();
-        StratoShipView.showActions(allActions);
-  
-        Action selectedAction=allActions.get(InputView.selectAction());
-
-
-    }
 
 
 }
