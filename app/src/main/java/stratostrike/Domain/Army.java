@@ -20,7 +20,7 @@ public class Army {
         ships.remove(ship);
     }
 
-    public List<StratoShip> getShips() {
+    public List<StratoShip> getArmy() {
         return ships;
     }
 

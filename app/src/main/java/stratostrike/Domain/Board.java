@@ -6,32 +6,25 @@ import java.util.List;
 public class Board {
     private final int width;
     private final int height;
-    private final List<Position> positions;
+    private final int levels;
+    private final Position[][][] positions;
 
-    public Board(int width, int height) {
+    public Board(int width, int height, int levels) {
         this.width = width;
         this.height = height;
-        this.positions = new ArrayList<>();
+        this.levels = levels;
+        this.positions = new Position[width][height][levels];
+
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                for (int z = 0; z < levels; z++) {
+                    positions[x][y][z] = new Position(x, y, z, null);
+                }
+            }
+        }
     }
 
-    public void placeShip(StratoShip ship, Position position) {
-        // Logic to place the ship on the board at the specified position
-    }
-
-    public boolean checkPosition(Position position) {
-        // Logic to check if the position is valid and available
-        return true; // Placeholder return value
-    }
-
-    public List<Position> getPositions() {
-        return positions;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
+    public Position getPosition(int x, int y, int z) {
+        return positions[x][y][z];
     }
 }
