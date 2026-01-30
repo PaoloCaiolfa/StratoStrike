@@ -8,5 +8,6 @@ public class Settings {
     public static final List<String> BoardLevelsStandard = List.of(new String[] {
         "CIELO",
         "SPAZIO"
+
     });
 }

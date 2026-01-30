@@ -74,4 +74,43 @@ public class BoardView {
         System.out.println("-----------------------------------");
     }
 
+
+    public static void showAreaEffect(ArrayList<Position> areaEffect,Board board) {
+         for (int z = 0; z < board.getLevels(); z++) {
+       
+        System.out.println("\n--- LIVELLO " + z + ": " + board.getLevelName(z) + " ---");
+            
+            // Intestazione larghezza (X)
+            System.out.print("    "); // Spazio extra per allineare con le righe
+            for (int j = 0; j < board.getWidth(); j++) {
+            if (j < 10) System.out.print(j+ "  "); // Allineamento numeri colonna
+            else{
+                System.out.print(j + " ");
+                }
+            }
+            System.out.println();
+            
+            // Ciclo altezza (Y)
+            for (int i = 0; i < board.getLength(); i++) {
+                // Allineamento numeri riga
+                if (i < 10) System.out.print(" ");
+                System.out.print(i + " |");  
+                
+                for (int j = 0; j < board.getWidth(); j++) {
+
+                    Position pos = board.getPosition(i, j, z);
+                    
+                    if (areaEffect.contains(pos)) {
+                        System.out.print("+ ");
+                    } else {    
+                    System.out.print(".  "); 
+                    }
+                }
+                System.out.println("|");
+            }
+            System.out.println("    " + "-".repeat(board.getWidth()*3));
+        }
+    
+    }
+
 }

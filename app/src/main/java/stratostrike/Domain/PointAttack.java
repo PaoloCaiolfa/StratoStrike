@@ -9,8 +9,8 @@ public class PointAttack extends Capability {
     }
 
     @Override
-    public void doAction(Board board, StratoShip actor, StratoShip target) {
-       System.out.println(actor.getName() + " attacks " + target.getName() + " for " + damage + " damage.");
+    public void doAction(Board board, StratoShip actor, Position target) {
+       
     }
     
 }

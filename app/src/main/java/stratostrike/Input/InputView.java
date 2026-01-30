@@ -2,7 +2,7 @@
 package stratostrike.Input;
 
 import java.util.Scanner;
-import stratostrike.Domain.Army;
+import stratostrike.Domain.*;
 //import stratostrike.Domain.StratoShip;
 
 public class InputView {
@@ -19,6 +19,28 @@ public class InputView {
 
         while (selection < 0 || selection > maxIndex) {
             System.out.print("\nInserisci l'ID della nave da selezionare (0-" + maxIndex + "): ");
+            
+            if (scanner.hasNextInt()) {
+                selection = scanner.nextInt();
+                
+                if (selection < 0 || selection > maxIndex) {
+                    System.out.println("Errore: ID non valido. Riprova.");
+                }
+            } else {
+                System.out.println("Errore: Inserisci un numero intero.");
+                scanner.next(); // Pulisce il buffer dello scanner
+            }
+        }
+        return selection;
+    }
+
+
+    public static int getActionSelection(StratoShip ship) {
+        int selection = -1;
+        int maxIndex = ship.showActions().size() - 1;
+
+        while (selection < 0 || selection > maxIndex) {
+            System.out.print("\nInserisci l'ID dell'azione da selezionare (0-" + maxIndex + "): ");
             
             if (scanner.hasNextInt()) {
                 selection = scanner.nextInt();

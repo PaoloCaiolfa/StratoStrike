@@ -45,6 +45,7 @@ public class App {
         turn.playTurn();
         turn.selectShip();
         turn.showActions();
+        turn.selectAction();
          
         
         

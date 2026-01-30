@@ -54,14 +54,23 @@ public class MakeTurn {
         
     }
 
-    public void showAreaEffect() {
-        /*
-        Action selectedAction = InputView.selectAction();
-        game.setSelectedAction(selectedAction);
-        Board board = game.getBoard();
+    public void selectAction() {
+        StratoShip selectedShip = game.getSelectedShip();
 
-        BoardView.showAreaEffect(affectedPositions, board);
-        */  
+        int selectedIndex = InputView.getActionSelection(selectedShip);
+
+        Action selectedAction = selectedShip.showActions().get(selectedIndex);
+
+        game.setSelectedAction(selectedAction);
+    }
+
+    public void showAreaEffect() {
+        
+        Position target=InputView.getPositionTarget();
+        ArrayList<Position> affectedPositions=game.selectAction.getShape().getCoveredCordinates(target);
+
+        BoardView.showAreaEffect(affectedPositions, game.getBoard());
+          
     }
 
 ///
