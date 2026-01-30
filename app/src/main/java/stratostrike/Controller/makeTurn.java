@@ -1,7 +1,7 @@
 package stratostrike.Controller;
 
 import java.util.ArrayList;
- 
+import java.util.List;
 import stratostrike.Domain.*;
 import stratostrike.View.*;
 import stratostrike.Input.*;
@@ -66,10 +66,11 @@ public class MakeTurn {
 
     public void showAreaEffect() {
         
-        Position target=InputView.getPositionTarget();
-        ArrayList<Position> affectedPositions=game.selectAction.getShape().getCoveredCordinates(target);
-
-        BoardView.showAreaEffect(affectedPositions, game.getBoard());
+        List<Integer> target=InputView.getPositionTarget(game.getBoard());
+        Position positionTarget = game.getBoard().getPosition(target.get(0), target.get(1), target.get(2));
+        ArrayList<Position> affectedPositions=game.getSelectedAction().getShape().getCoveredCordinates(positionTarget);
+        ArrayList<StratoShip> army = game.getCurrentPlayer().getArmy().getShips();
+        BoardView.showAreaEffect(affectedPositions, game.getBoard(),army);
           
     }
 

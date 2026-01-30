@@ -47,7 +47,7 @@ public class Position {
     }
 
     public boolean equals(Position other) {
-        return this.x == other.x && this.y == other.y;
+        return this.x == other.x && this.y == other.y && this.z == other.z;
     }
 
     @Override
@@ -58,4 +58,19 @@ public class Position {
                 ", level=" + (z == 0 ? "CIELO" : "SPAZIO") +
                 ')';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Position)) return false;
+        Position position = (Position) o;
+        return x == position.getX() && y == position.getY() && z == position.getZ();
+    }
+
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(x, y, z);
+    }
+
+
 }

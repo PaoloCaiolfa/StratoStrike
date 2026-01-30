@@ -9,8 +9,12 @@ public class AreaShield extends Capability {
     }
 
     @Override
-    public void doAction(Board board, StratoShip actor, StratoShip target) {
-       System.out.println(actor.getName() + " uses AreaShield " + target.getName() + " for " + protection + " protection.");
+    public void doAction(Board board, Position target,StratoShip actor) {
+       
+    }
+    @Override
+    public Shape getShape() {
+        return shape;   
     }
     
 }

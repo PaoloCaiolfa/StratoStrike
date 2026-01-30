@@ -18,9 +18,10 @@ public abstract class Capability implements Action {
         return description;
     }
     @Override
-    public void doAction(Board board, StratoShip actor, StratoShip target) {
+    public void doAction(Board board,Position target, StratoShip actor) {
         // Default implementation (can be overridden by subclasses)
     }
+    @Override
     public Shape getShape() {
         return shape;
     }

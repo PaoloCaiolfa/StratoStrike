@@ -9,8 +9,9 @@ public class PointAttack extends Capability {
     }
 
     @Override
-    public void doAction(Board board, StratoShip actor, Position target) {
+    public void doAction(Board board,Position target, StratoShip actor) {
        
     }
+   
     
 }

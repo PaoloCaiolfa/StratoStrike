@@ -20,6 +20,8 @@ public class App {
 
 
         PointAttack pointAttack = new PointAttack("Cannon", "attack one zone ", 25);
+        Shape circ = new Circle(1);
+        pointAttack.setShape(circ);
 
         
         //creazione partita
@@ -46,6 +48,8 @@ public class App {
         turn.selectShip();
         turn.showActions();
         turn.selectAction();
+        turn.showAreaEffect();
+
          
         
         
