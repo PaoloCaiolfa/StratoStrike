@@ -2,12 +2,10 @@ package stratostrike.Domain;
 
 public class PointAttack extends Capability {
     private int damage;
-    protected Shape shape;
 
     public PointAttack(String name, String description, int damage) {
         super(name, description);
-        this.damage = damage;
-        
+        this.damage = damage;        
     }
 
     @Override
