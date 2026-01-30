@@ -4,7 +4,7 @@
 package stratostrike;
 
 import stratostrike.Domain.*;
-//import stratostrike.Controller.MakeTurn;
+import stratostrike.Controller.MakeTurn;
 import stratostrike.View.BoardView;
 
 public class App {
@@ -13,26 +13,41 @@ public class App {
     }
 
     public static void main(String[] args) {
-        Player player1 = new Player("Player1");
-        Player player2 = new Player("Player2");
 
-        Fighter fighter = new Fighter();
+        //insitnziazione giocatori e navi e attacchi
+        Player player1 = new Player("Player1",1);
+        Player player2 = new Player("Player2",2);
+
+
 
         PointAttack pointAttack = new PointAttack("Cannon", "attack one zone ", 25);
 
-        fighter.addAction(pointAttack);
-        player1.getArmy().addShip(fighter);
-        Board board = new Board(10, 10, 2);
+        
+        //creazione partita
         StratoCraftGame game = new StratoCraftGame(player1, player2);
         System.out.println("Welcome to " + game.getPlayer1().getUsername() + " vs " + game.getPlayer2().getUsername()
                 + " Stratostrike Game!");
-        // MakeTurn turn = new MakeTurn(game);
-        /*
-         * turn.playTurn();
-         * turn.selectShip();
-         * turn.showActions();
-         */
-        BoardView boardView = new BoardView();
-        boardView.printBoard(board);
+
+        //aggiunta navi all'armata
+        Fighter fighter = new Fighter();
+        
+        Fighter fighter2 = new Fighter();
+        
+        fighter.addAction(pointAttack);
+        fighter2.addAction(pointAttack);
+        player1.getArmy().addShip(fighter2);
+        player1.getArmy().addShip(fighter);
+       //settaggio navi sulla board      
+        game.getBoard().placeShip(fighter2,2,2,0);   
+        game.getBoard().placeShip(fighter,4,4,0);
+        //inzio del turno
+        MakeTurn turn = new MakeTurn(game);
+        
+        turn.playTurn();
+        turn.selectShip();
+        turn.showActions();
+         
+        
+        
     }
 }

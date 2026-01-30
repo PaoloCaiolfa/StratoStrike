@@ -6,14 +6,16 @@ public abstract class StratoShip {
     private String name;
     private int hp;
     protected ArrayList<Action> actions;
+    private int idArmy;
     
 
     public StratoShip(String name, int hp) {
         this.name = name;
         this.hp = hp;
         this.actions = new ArrayList<>();
+        this.idArmy = -1;
+    
     }
-
     public String getName() {
         return name;
     }
@@ -45,5 +47,13 @@ public abstract class StratoShip {
         actions.add(action);
     }
 
+    public void setIdArmy(int idArmy) {
+        this.idArmy = idArmy;
+    }
+    public int getIdArmy() {
+        return idArmy;
+    }
+
+  
 
 }

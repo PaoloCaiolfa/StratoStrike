@@ -6,13 +6,16 @@ public class Army {
     protected int capacity;
     private String name;
     protected ArrayList<StratoShip> ships;
+    protected int idArmy;
 
-    public Army() {
+    public Army(int idArmy) {
         this.ships = new ArrayList<>();
+        this.idArmy = idArmy;
     }
 
     public void addShip(StratoShip ship) {
         ships.add(ship);
+        ship.setIdArmy(this.idArmy);
     }
 
     public void removeShip(StratoShip ship) {
@@ -33,5 +36,9 @@ public class Army {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getIdArmy() {
+        return idArmy;
     }
 }

@@ -28,4 +28,9 @@ public class Board {
     public int getLength() { return this.length; }
     public int getWidth() { return this.width; }
     public int getLevels() { return this.levels; }
+
+
+    public void placeShip(StratoShip ship,int x, int y, int z) {
+        positions[x][y][z].setShip(ship);
+    }
 }

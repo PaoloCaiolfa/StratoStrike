@@ -23,9 +23,11 @@ public class MakeTurn {
     public void playTurn() {
       
         Player current = game.getCurrentPlayer();
+        BoardView.printActualPlayer(current);
 
         ArrayList<StratoShip> army = current.getArmy().getShips();
 
+        BoardView.printBoard(game.getBoard());
         BoardView.printArmy(army);
 
     }

@@ -4,10 +4,12 @@ public class Player {
     private String username;
     private String mail;
     private String password;
-    private Army army = new Army();
+    private int idPlayer;
+    private Army army = new Army(idPlayer);
 
-    public Player(String username) {
+    public Player(String username, int idPlayer) {
         this.username = username;
+        this.idPlayer = idPlayer;
     }
 
     public String getUsername() {
