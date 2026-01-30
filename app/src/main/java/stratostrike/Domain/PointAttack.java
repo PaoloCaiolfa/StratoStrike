@@ -1,6 +1,6 @@
 package stratostrike.Domain;
 
-public class PointAttack extends Capability implements Action {
+public class PointAttack extends Capability {
     private int damage;
     protected Shape shape;
 

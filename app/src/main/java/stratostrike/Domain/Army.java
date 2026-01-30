@@ -1,7 +1,6 @@
 package stratostrike.Domain;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Army {
     protected int capacity;

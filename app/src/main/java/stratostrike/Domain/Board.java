@@ -1,8 +1,5 @@
 package stratostrike.Domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Board {
     private final int width;
     private final int length;

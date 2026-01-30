@@ -3,7 +3,7 @@ package stratostrike.Input;
 
 import java.util.Scanner;
 import stratostrike.Domain.Army;
-import stratostrike.Domain.StratoShip;
+//import stratostrike.Domain.StratoShip;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
