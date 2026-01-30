@@ -5,7 +5,6 @@ package stratostrike;
 
 import stratostrike.Domain.*;
 import stratostrike.Controller.MakeTurn;
-import stratostrike.View.BoardView;
 
 public class App {
     public String getGreeting() {
