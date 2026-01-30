@@ -10,10 +10,9 @@ public class BoardView {
     public static final String RESET = "\u001B[0m";    // Torna al bianco
 
     public static void printBoard(Board board) {
-        String[] levelNames = {"--- LIVELLO 0: CIELO ---", "--- LIVELLO 1: SPAZIO ---"};
-        
-        for (int z = 0; z < board.getLevels(); z++) {
-            System.out.println("\n" + levelNames[z]);
+       for (int z = 0; z < board.getLevels(); z++) {
+       
+        System.out.println("\n--- LIVELLO " + z + ": " + board.getLevelName(z) + " ---");
             
             // Intestazione larghezza (X)
             System.out.print("    "); // Spazio extra per allineare con le righe
