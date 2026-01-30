@@ -33,4 +33,17 @@ public class Board {
     public void placeShip(StratoShip ship,int x, int y, int z) {
         positions[x][y][z].setShip(ship);
     }
+
+    public Position getShipPosition(StratoShip ship) {
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < length; y++) {
+                for (int z = 0; z < levels; z++) {
+                    if (positions[x][y][z].getShip() == ship) {
+                        return positions[x][y][z];
+                    }
+                }
+            }
+        }
+        return null;
+    }
 }

@@ -28,7 +28,7 @@ public class MakeTurn {
         ArrayList<StratoShip> army = current.getArmy().getShips();
 
         BoardView.printBoard(game.getBoard());
-        BoardView.printArmy(army);
+        BoardView.printArmy(army,game.getBoard());
 
     }
 

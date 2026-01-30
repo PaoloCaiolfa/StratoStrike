@@ -55,12 +55,14 @@ public class BoardView {
     }
 
 
-    public static void printArmy(ArrayList<StratoShip> army) {
+    public static void printArmy(ArrayList<StratoShip> army,Board board) {
         System.out.println("Navi nell'armata:");
+        System.out.println("le tue navi sono blu, quelle avversarie rosse.");
         for (int i = 0; i < army.size(); i++) {
             StratoShip ship = army.get(i);
 
-            System.out.println(i + ": " + ship.getName() + " (HP: " + ship.getHealth() + ")");
+            System.out.println(i + ": " + ship.getName() + " (HP: " + ship.getHealth() + ")"+ board.getShipPosition(ship).toString() );
+           
         }
     }
 
