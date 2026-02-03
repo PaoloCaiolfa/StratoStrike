@@ -60,7 +60,7 @@ public class BoardView {
         for (int i = 0; i < army.size(); i++) {
             StratoShip ship = army.get(i);
 
-            System.out.println(i + ": " + ship.getName() + " (HP: " + ship.getHealth() + ")"+ board.getShipPosition(ship).toString() );
+            System.out.println(i + ": " + ship.getName() + " (HP: " + ship.getHp() + ")"+ board.getShipPosition(ship).toString() );
            
         }
     }

@@ -1,0 +1,95 @@
+{
+    "HUMAN": [
+        {
+            "cielo": {
+                "type": "Fighter",
+                "name": "F-35",
+                "hp": 100,
+                "actions": [
+                    {
+                        "type": "Capability",
+                        "subType": "PointAttack",
+                        "name": "Cannon",
+                        "description": "attack one zone",
+                        "damage": 25,
+                        "shape": {
+                            "type": "Circle",
+                            "radius": 1
+                        }
+                    },
+                    {
+                        "type": "Movement",
+                        "name": "Standard Flight",
+                        "speed": 5
+                    },
+                    {
+                        "type": "SpecialAbility",
+                        "name": "Evasive Maneuvers",
+                        "cooldown": 3
+                    }
+                ]
+            },
+            "spazio": {
+                "type": "Satellite",
+                "name": "Sat-22",
+                "hp": 500,
+                "actions": [
+                    {
+                        "type": "Capability",
+                        "subType": "AreaShield",
+                        "name": "Shield",
+                        "description": "shield one zone",
+                        "protection": 80,
+                        "shape": {
+                            "type": "Circle",
+                            "radius": 2
+                        }
+                    },
+                    {
+                        "type": "Movement",
+                        "name": "Orbiting",
+                        "speed": 2
+                    }
+                ]
+            }
+        }
+    ],
+    "CYBERNETIC": [
+        {
+            "cielo": {
+                "type": "Fighter",
+                "name": "F-40",
+                "hp": 180,
+                "actions": [
+                    {
+                        "type": "Capability",
+                        "subType": "PointAttack",
+                        "name": "Heavy Cannon",
+                        "damage": 30,
+                        "shape": {
+                            "type": "Circle",
+                            "radius": 1
+                        }
+                    }
+                ]
+            },
+            "spazio": {
+                "type": "Satellite",
+                "name": "Sat-11",
+                "hp": 1000,
+                "actions": [
+                    {
+                        "type": "Capability",
+                        "subType": "AreaShield",
+                        "name": "Cyber Shield",
+                        "protection": 120,
+                        "shape": {
+                            "type": "Circle",
+                            "radius": 3
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

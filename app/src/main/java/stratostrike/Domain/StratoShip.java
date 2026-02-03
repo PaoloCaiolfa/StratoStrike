@@ -1,13 +1,24 @@
 package stratostrike.Domain;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import java.util.ArrayList;
 
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = Fighter.class, name = "Fighter"),
+    @JsonSubTypes.Type(value = Satellite.class, name = "Satellite")
+})
+
 public abstract class StratoShip {
-    private String name;
-    private int hp;
+    protected String name;
+    protected int hp;
     protected ArrayList<Action> actions;
-    private int idArmy;
+    protected int idArmy;
     
+    public StratoShip() {
+        this.actions = new ArrayList<>();
+    }
 
     public StratoShip(String name, int hp) {
         this.name = name;
@@ -24,11 +35,11 @@ public abstract class StratoShip {
         this.name = name;
     }
 
-    public int getHealth() {
+    public int getHp() {
         return hp;
     }
 
-    public void setHealth(int hp) {
+    public void setHp(int hp) {
         this.hp = hp;
     }
 

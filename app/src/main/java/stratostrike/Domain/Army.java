@@ -4,9 +4,13 @@ import java.util.ArrayList;
 
 public class Army {
     protected int capacity;
-    private String name;
+    protected String name;
     protected ArrayList<StratoShip> ships;
     protected int idArmy;
+
+    public Army() {
+        this.ships = new ArrayList<>();
+    }
 
     public Army(int idArmy) {
         this.ships = new ArrayList<>();
@@ -26,6 +30,10 @@ public class Army {
         return ships;
     }
 
+    public void setShips(ArrayList<StratoShip> ships) {
+        this.ships = ships;
+    }
+
     public StratoShip get(int index) {
         return ships.get(index);
     }
@@ -40,5 +48,17 @@ public class Army {
 
     public int getIdArmy() {
         return idArmy;
+    }
+
+    public void setIdArmy(int idArmy) {
+        this.idArmy = idArmy;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 }

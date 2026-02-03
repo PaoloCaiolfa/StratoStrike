@@ -1,10 +1,7 @@
 package stratostrike.Domain;
 public class Fighter extends SkyShip {
-   
 
     public Fighter() {
-        super("Fighter", 100);
-        
+        super("Fighter", 100);   
     }
-
 }
