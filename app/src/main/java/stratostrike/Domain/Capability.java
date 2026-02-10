@@ -2,25 +2,22 @@ package stratostrike.Domain;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.EXISTING_PROPERTY,
-    property = "subType",
-    visible = true
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "subType" // Il discriminatore
+                                                                                                   // di secondo livello
+                                                                                                   // nel JSON
 )
 @JsonSubTypes({
         @JsonSubTypes.Type(value = PointAttack.class, name = "PointAttack"),
         @JsonSubTypes.Type(value = AreaShield.class, name = "AreaShield")
 })
+
 public abstract class Capability implements Action {
     protected String name;
     protected String description;
     protected Shape shape;
 
-    protected Capability() {}
+    public Capability() {}
 
     public Capability(String name, String description) {
         this.name = name;
@@ -57,16 +54,5 @@ public abstract class Capability implements Action {
 
     public void setShape(Shape shape) {
         this.shape = shape;
-    }
-
-    @Override
-    public String getDetails() {
-        StringBuilder details = new StringBuilder();
-        details.append("         Descrizione: ").append(description).append("\n");
-        if (shape != null && shape instanceof Circle) {
-            Circle circle = (Circle) shape;
-            details.append("         Raggio: ").append(circle.getRadius());
-        }
-        return details.toString();
     }
 }

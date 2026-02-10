@@ -1,7 +1,5 @@
 package stratostrike.Domain;
-
 import java.util.ArrayList;
-
 public class Circle implements Shape{
     
     private int radius;

@@ -2,21 +2,14 @@ package stratostrike.Domain;
 
 public class AreaShield extends Capability {
     private int protection; //quantità di protezione
-
-    public AreaShield() {super();}
+    
+    public AreaShield() {
+        super("","");
+    }
 
     public AreaShield(String name, String description, int protection) {
         super(name, description);
         this.protection = protection;
-    }
-
-    @Override
-    public Action cloneAction() {
-        AreaShield clone = new AreaShield(this.name, this.description, this.protection);
-        if (this.shape != null) {
-            clone.setShape(new Circle(((Circle)this.shape).getRadius()));
-        }
-        return clone;
     }
 
     @Override
@@ -40,17 +33,5 @@ public class AreaShield extends Capability {
 
     public void setProtection(int protection) {
         this.protection = protection;
-    }
-
-    @Override
-    public String getDetails() {
-        StringBuilder details = new StringBuilder();
-        details.append("         Descrizione: ").append(description).append("\n");
-        details.append("         Protezione: ").append(protection).append("\n");
-        if (shape != null && shape instanceof Circle) {
-            Circle circle = (Circle) shape;
-            details.append("         Raggio: ").append(circle.getRadius());
-        }
-        return details.toString();
     }
 }

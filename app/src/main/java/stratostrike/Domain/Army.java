@@ -5,14 +5,16 @@ import java.util.ArrayList;
 public class Army {
     protected int capacity;
     protected String name;
-    protected ArrayList<StratoShip> ships = new ArrayList<>();
+    protected ArrayList<StratoShip> ships;
     protected int idArmy;
 
-    public Army() {}
+    public Army() {
+        this.ships = new ArrayList<>();
+    }
 
-    public Army(String name,int idArmy) {
+    public Army(int idArmy) {
+        this.ships = new ArrayList<>();
         this.idArmy = idArmy;
-        this.name = name;
     }
 
     public void addShip(StratoShip ship) {
