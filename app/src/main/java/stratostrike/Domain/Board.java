@@ -3,7 +3,6 @@ import java.util.List;
 public class Board {
     private final int width;
     private final int length;
-    
     private final int levels;
     private final List<String> levelNames; // Dinamico!
     private final Position[][][] positions;

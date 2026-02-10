@@ -5,7 +5,7 @@ public class Player {
     private String mail;
     private String password;
     private int idPlayer;
-    private Army army = new Army(idPlayer);
+    private Army army = new Army(null,idPlayer);
 
     public Player(String username, int idPlayer) {
         this.username = username;

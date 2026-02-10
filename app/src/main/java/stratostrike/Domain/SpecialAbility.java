@@ -1,8 +1,8 @@
 package stratostrike.Domain;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonTypeInfo(
@@ -12,17 +12,17 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
     visible = true
 )
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = PointAttack.class, name = "PointAttack"),
-        @JsonSubTypes.Type(value = AreaShield.class, name = "AreaShield")
+        @JsonSubTypes.Type(value = DoubleAttack.class, name = "DoubleAttack")
 })
-public abstract class Capability implements Action {
+
+public abstract class SpecialAbility implements Action {
     protected String name;
     protected String description;
     protected Shape shape;
 
-    protected Capability() {}
+    protected SpecialAbility() {}
 
-    public Capability(String name, String description) {
+    public SpecialAbility(String name, String description) {
         this.name = name;
         this.description = description;
         this.shape = null;
@@ -35,7 +35,7 @@ public abstract class Capability implements Action {
 
     public void setName(String name) {
         this.name = name;
-    }   
+    }
 
     public String getDescription() {
         return description;

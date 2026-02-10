@@ -10,4 +10,11 @@ public class Settings {
         "SPAZIO"
 
     });
+
+    public static final List<String> ArmyTipology = List.of(new String[] {
+        "HUMAN",
+        "CYBER"
+       
+
+    });
 }

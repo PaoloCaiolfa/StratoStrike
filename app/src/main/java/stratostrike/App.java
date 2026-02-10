@@ -3,8 +3,13 @@
  */
 package stratostrike;
 
-import stratostrike.Domain.*;
 import stratostrike.Controller.MakeTurn;
+import stratostrike.Domain.Army;
+import stratostrike.Domain.Player;
+import stratostrike.Domain.StratoCraftGame;
+import stratostrike.Factory.ArmyFactory;
+import stratostrike.Input.InputView;;
+
 
 public class App {
     public String getGreeting() {
@@ -12,23 +17,17 @@ public class App {
     }
 
     public static void main(String[] args) {
-
+        
         //insitnziazione giocatori e navi e attacchi
         Player player1 = new Player("Player1",1);
         Player player2 = new Player("Player2",2);
 
-
-
-        PointAttack pointAttack = new PointAttack("Cannon", "attack one zone ", 25);
-        Shape circ = new Circle(1);
-        pointAttack.setShape(circ);
-
-        
         //creazione partita
         StratoCraftGame game = new StratoCraftGame(player1, player2);
         System.out.println("Welcome to " + game.getPlayer1().getUsername() + " vs " + game.getPlayer2().getUsername()
                 + " Stratostrike Game!");
 
+        /*     
         //aggiunta navi all'armata
         Fighter fighter = new Fighter();
         
@@ -49,9 +48,27 @@ public class App {
         turn.showActions();
         turn.selectAction();
         turn.showAreaEffect();
+    */
 
-         
+        // CODICE PER TESTARE LE FACTORY
+
+        MakeTurn turn = new MakeTurn(game);
+        InputView view = new InputView();
+
+        // 2. Chiediamo la factory tramite la vista
+        ArmyFactory factory = view.scegliArmata();
+
+        // 3. Generiamo l'armata (Logica di business)
+        Army miaArmata = factory.createArmy();
+
+        // 4. Mostriamo i risultati tramite la vista
+        view.stampaStatoArmata(miaArmata);
+        // 5. Assegniamo l'armata al giocatore corrente
+        game.getCurrentPlayer().setArmy(miaArmata);
         
-        
+        turn.selectShip();
+        turn.selectAction();
+        // Passare armata alla board / gestione partita
+        // board.setup(miaArmata);
     }
 }
