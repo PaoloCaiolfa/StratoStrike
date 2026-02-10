@@ -12,8 +12,9 @@ public class Army {
         this.ships = new ArrayList<>();
     }
 
-    public Army(int idArmy) {
+    public Army(String name, int idArmy) {
         this.ships = new ArrayList<>();
+        this.name = name;
         this.idArmy = idArmy;
     }
 
