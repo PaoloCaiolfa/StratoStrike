@@ -4,10 +4,10 @@
 package stratostrike;
 
 import stratostrike.Controller.MakeTurn;
-import stratostrike.Domain.Army;
-import stratostrike.Domain.Player;
-import stratostrike.Domain.StratoCraftGame;
-import stratostrike.Factory.ArmyFactory;
+import stratostrike.Domain.Model.Player;
+import stratostrike.Domain.Model.StratoCraftGame;
+import stratostrike.Domain.Model.Army.Army;
+import stratostrike.Domain.Model.Army.Factory.ArmyFactory;
 import stratostrike.Input.InputView;;
 
 
@@ -65,6 +65,8 @@ public class App {
         view.stampaStatoArmata(miaArmata);
         // 5. Assegniamo l'armata al giocatore corrente
         game.getCurrentPlayer().setArmy(miaArmata);
+
+        turn.playTurn();
         
         turn.selectShip();
         turn.selectAction();

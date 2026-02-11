@@ -6,11 +6,10 @@ import java.util.List;
 import java.util.Scanner;
 import stratostrike.Settings;
 import stratostrike.Controller.ArmyManager;
-import stratostrike.Domain.Army;
-import stratostrike.Domain.Board;
-import stratostrike.Domain.StratoShip;
-import stratostrike.Factory.ArmyFactory;
-//import stratostrike.Domain.StratoShip;
+import stratostrike.Domain.Model.Board;
+import stratostrike.Domain.Model.Army.Army;
+import stratostrike.Domain.Model.Army.StratoShip;
+import stratostrike.Domain.Model.Army.Factory.ArmyFactory;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);

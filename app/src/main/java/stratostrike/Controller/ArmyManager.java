@@ -1,7 +1,7 @@
 package stratostrike.Controller;
 
-import stratostrike.Factory.*;
-import stratostrike.Domain.Army;
+import stratostrike.Domain.Model.Army.Army;
+import stratostrike.Domain.Model.Army.Factory.*;
 public class ArmyManager {
     public static ArmyFactory getFactory(String fazione) {
         try {

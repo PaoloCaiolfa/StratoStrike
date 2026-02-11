@@ -1,6 +1,11 @@
 package stratostrike.View;
 
 import stratostrike.Domain.*;
+import stratostrike.Domain.Model.Board;
+import stratostrike.Domain.Model.Player;
+import stratostrike.Domain.Model.Position;
+import stratostrike.Domain.Model.Army.*;
+
 import java.util.ArrayList;
 
 public class BoardView {

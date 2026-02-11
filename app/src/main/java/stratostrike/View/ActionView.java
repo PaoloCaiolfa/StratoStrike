@@ -2,7 +2,7 @@ package stratostrike.View;
 
 import java.util.ArrayList;
 
-import stratostrike.Domain.Action;  
+import stratostrike.Domain.Model.Action.Action;  
 public class ActionView {
 
     public static void showActions(ArrayList<Action> actions) {
