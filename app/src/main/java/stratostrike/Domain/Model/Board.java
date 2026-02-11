@@ -44,6 +44,18 @@ public class Board {
         positions[x][y][z].setShip(ship);
     }
 
+    public void setupRandomArmyPlacement(Army army) {
+        for (StratoShip ship : army.getShips()) {
+            int x, y, z;
+            do {
+                x = (int) (Math.random() * width);
+                y = (int) (Math.random() * length);
+                z = (int) (Math.random() * levels);
+            } while (positions[x][y][z].getShip() != null); // Assicuriamoci che la posizione sia libera
+            placeShip(ship, x, y, z);
+        }
+    }
+
     public boolean containsShip(StratoShip ship) {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < length; y++) {
