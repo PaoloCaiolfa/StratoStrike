@@ -108,9 +108,10 @@ public class MakeTurn {
         
         if (action.isValidTarget(game.getBoard(), targetPosition, actor)) {
             action.doAction(game.getBoard(), targetPosition, actor);
-            System.out.println("\n✓ Azione eseguita con successo!");
+            //System.out.println("\n✓ Azione eseguita con successo!");
         } else {
-            System.out.println("\n✗ Target non valido per questa azione!");
+            //System.out.println("\n✗ Target non valido per questa azione!");
+            executeAction(); // Chiedi di nuovo finché non viene selezionato un target valido
         }
     }
 }

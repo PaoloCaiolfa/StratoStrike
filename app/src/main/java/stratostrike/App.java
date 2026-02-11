@@ -8,6 +8,8 @@ import stratostrike.Domain.Model.Player;
 import stratostrike.Domain.Model.StratoCraftGame;
 import stratostrike.Domain.Model.Army.Army;
 import stratostrike.Domain.Model.Army.Factory.ArmyFactory;
+import stratostrike.Domain.Model.Army.Factory.ArmyManager;
+import stratostrike.Domain.Model.Army.Factory.CyberArmyFactory;
 import stratostrike.Input.InputView;;
 
 
@@ -67,8 +69,12 @@ public class App {
         // 5. Assegniamo l'armata al giocatore corrente
         game.getCurrentPlayer().setArmy(miaArmata);
 
-        // 6. Posizioniamo le navi sulla board (per test, posizioniamo solo le prime 2 navi)
+        // Posizioniamo le navi sulla board (per test, posizioniamo solo le prime 2 navi)
         game.getBoard().setupRandomArmyPlacement(miaArmata);
+
+        // Creo un'armata nemica e la metto sulla board per test
+        Army enemyArmy = ArmyManager.getFactory("Cyber").createArmy();
+        game.getBoard().setupRandomArmyPlacement(enemyArmy);
 
         turn.playTurn();
         
