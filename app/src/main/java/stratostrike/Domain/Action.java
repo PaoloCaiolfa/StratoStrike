@@ -8,16 +8,17 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
-    property = "type"
+    property = "subType",
+    visible = true
 )
 @JsonSubTypes({
         //@JsonSubTypes.Type(value = Capability.class, name = "Capability"),
         //@JsonSubTypes.Type(value = Movement.class, name = "Movement"),
         //@JsonSubTypes.Type(value = SpecialAbility.class, name = "SpecialAbility")
-        @JsonSubTypes.Type(value = PointAttack.class, name = "Capability"),
-        @JsonSubTypes.Type(value = AreaShield.class, name = "Capability"),
-        @JsonSubTypes.Type(value = OneZoneMove.class, name = "Movement"),
-        @JsonSubTypes.Type(value = DoubleAttack.class, name = "SpecialAbility")
+        @JsonSubTypes.Type(value = PointAttack.class, name = "PointAttack"),
+        @JsonSubTypes.Type(value = AreaShield.class, name = "AreaShield"),
+        @JsonSubTypes.Type(value = OneZoneMove.class, name = "OneZoneMove"),
+        @JsonSubTypes.Type(value = DoubleAttack.class, name = "DoubleAttack")
 })
 
 public interface Action {

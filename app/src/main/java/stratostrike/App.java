@@ -68,6 +68,7 @@ public class App {
         
         turn.selectShip();
         turn.selectAction();
+        turn.executeAction();
         // Passare armata alla board / gestione partita
         // board.setup(miaArmata);
     }

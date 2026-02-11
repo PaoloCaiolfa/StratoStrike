@@ -23,7 +23,8 @@ public class PointAttack extends Capability {
     @Override
     public boolean isValidTarget(Board board, Position target, StratoShip actor) {
         // Serve vedere se nella posizione c'è un veicolo nemico
-        return false;
+        System.out.println("Controllo validità del target per PointAttack...");
+        return true;
     }
 
     @Override

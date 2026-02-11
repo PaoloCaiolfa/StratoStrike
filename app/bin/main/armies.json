@@ -1,0 +1,158 @@
+{
+    "HUMAN": [
+        {
+            "cielo": [
+                {
+                    "type": "Fighter",
+                    "name": "F-35",
+                    "hp": 100,
+                    "actions": [
+                        {
+                            "type": "Capability",
+                            "subType": "PointAttack",
+                            "name": "PointAttack",
+                            "description": "attack one zone",
+                            "damage": 25,
+                            "shape": {
+                                "type": "Circle",
+                                "radius": 1
+                            }
+                        },
+                        {
+                            "type": "Movement",
+                            "subType": "OneZoneMove",
+                            "name": "OneZoneMove",
+                            "description": "move one zone",
+                            "shape": {
+                                "type": "Circle",
+                                "radius": 1
+                            }
+                        },
+                        {
+                            "type": "SpecialAbility",
+                            "subType": "DoubleAttack",
+                            "name": "DoubleAttack",
+                            "description": "attack two zones",
+                            "shape": {
+                                "type": "Circle",
+                                "radius": 1
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "Fighter",
+                    "name": "F-33",
+                    "hp": 500,
+                    "actions": [
+                        {
+                            "type": "Capability",
+                            "subType": "PointAttack",
+                            "name": "PointAttack",
+                            "description": "attack one zone",
+                            "damage": 46,
+                            "shape": {
+                                "type": "Circle",
+                                "radius": 1
+                            }
+                        },
+                        {
+                            "type": "Movement",
+                            "subType": "OneZoneMove",
+                            "name": "OneZoneMove",
+                            "description": "move one zone",
+                            "shape": {
+                                "type": "Circle",
+                                "radius": 1
+                            }
+                        },
+                        {
+                            "type": "SpecialAbility",
+                            "subType": "DoubleAttack",
+                            "name": "DoubleAttack",
+                            "description": "attack two zones",
+                            "shape": {
+                                "type": "Circle",
+                                "radius": 1
+                            }
+                        }
+                    ]
+                }
+            ],
+            "spazio": [
+                {
+                    "type": "Satellite",
+                    "name": "Sat-22",
+                    "hp": 500,
+                    "actions": [
+                        {
+                            "type": "Capability",
+                            "subType": "AreaShield",
+                            "name": "AreaShield",
+                            "description": "shield one zone",
+                            "protection": 80,
+                            "shape": {
+                                "type": "Circle",
+                                "radius": 2
+                            }
+                        },
+                        {
+                            "type": "Movement",
+                            "subType": "OneZoneMove",
+                            "name": "OneZoneMove",
+                            "description": "move one zone",
+                            "shape": {
+                                "type": "Circle",
+                                "radius": 1
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "CYBER": [
+        {
+            "cielo": [
+                {
+                    "type": "Fighter",
+                    "name": "F-40",
+                    "hp": 180,
+                    "actions": [
+                        {
+                            "type": "Capability",
+                            "subType": "PointAttack",
+                            "name": "PointAttack",
+                            "description": "attack one zone",
+                            "damage": 30,
+                            "shape": {
+                                "type": "Circle",
+                                "radius": 1
+                            }
+                        }
+                    ]
+                }
+            ],
+            "spazio": [
+                {
+                    "type": "Satellite",
+                    "name": "Sat-11",
+                    "hp": 1000,
+                    "actions": [
+                        {
+                            "type": "Capability",
+                            "subType": "AreaShield",
+                            "name": "AreaShield",
+                            "description": "shield one zone",
+                            "protection": 120,
+                            "shape": {
+                                "type": "Circle",
+                                "radius": 3
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
