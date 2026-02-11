@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import stratostrike.Settings;
-import stratostrike.Controller.ArmyManager;
 import stratostrike.Domain.Model.Board;
 import stratostrike.Domain.Model.Army.Army;
 import stratostrike.Domain.Model.Army.StratoShip;
 import stratostrike.Domain.Model.Army.Factory.ArmyFactory;
+import stratostrike.Domain.Model.Army.Factory.ArmyManager;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
