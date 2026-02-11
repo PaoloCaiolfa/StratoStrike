@@ -43,6 +43,10 @@ public abstract class StratoShip {
         this.name = name;
     }
 
+    public boolean isDestroyed() {
+        return this.hp <= 0;
+    }
+
     public int getHp() {
         return hp;
     }

@@ -83,7 +83,7 @@
                 {
                     "type": "Satellite",
                     "name": "Sat-22",
-                    "hp": 500,
+                    "hp": 10,
                     "actions": [
                         {
                             "type": "Capability",
@@ -137,7 +137,7 @@
                 {
                     "type": "Satellite",
                     "name": "Sat-11",
-                    "hp": 1000,
+                    "hp": 10,
                     "actions": [
                         {
                             "type": "Capability",

@@ -41,6 +41,9 @@ public class BoardView {
                     
                     if (pos.getShip() != null) {
                         char shipIcon = pos.getShip().getName().charAt(0);
+                        if (pos.getShip().isDestroyed()) {
+                            shipIcon = 'X'; // Simbolo per nave distrutta
+                        }
                         
                         // Applichiamo il colore in base all'ID dell'armata
                         if (pos.getShip().getIdArmy() == 0) {

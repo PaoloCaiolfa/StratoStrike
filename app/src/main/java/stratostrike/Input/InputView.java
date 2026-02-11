@@ -22,7 +22,7 @@ public class InputView {
      */
     public static int getShipSelection(Army army) {
         int selection = -1;
-        int maxIndex = army.getShips().size() - 1;
+        int maxIndex = army.getAliveShips().size() - 1;
 
         while (selection < 0 || selection > maxIndex) {
             System.out.print("\nInserisci l'ID della nave da selezionare (0-" + maxIndex + "): ");

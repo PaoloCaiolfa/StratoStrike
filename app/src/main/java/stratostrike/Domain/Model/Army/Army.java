@@ -1,5 +1,6 @@
 package stratostrike.Domain.Model.Army;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Army {
@@ -29,6 +30,16 @@ public class Army {
 
     public ArrayList<StratoShip> getShips() {
         return ships;
+    }
+
+    public ArrayList<StratoShip> getAliveShips() {
+        ArrayList<StratoShip> aliveShips = new ArrayList<>();
+        for (StratoShip ship : ships) {
+            if (ship.getHp() > 0) {
+                aliveShips.add(ship);
+            }
+        }
+        return aliveShips;
     }
 
     public void setShips(ArrayList<StratoShip> ships) {
