@@ -4,7 +4,7 @@ public class ArmyManager {
     public static ArmyFactory getFactory(String fazione) {
         try {
             String fazioneNormalizzata = fazione.substring(0, 1).toUpperCase() + fazione.substring(1).toLowerCase();
-            String className = "stratostrike.Factory." + fazioneNormalizzata + "ArmyFactory";
+            String className = "stratostrike.Domain.Model.Army.Factory." + fazioneNormalizzata + "ArmyFactory";
             
             Class<?> clazz = Class.forName(className);
 

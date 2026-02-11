@@ -107,7 +107,7 @@ public class MakeTurn {
         Position targetPosition = game.getBoard().getPosition(target.get(0), target.get(1), target.get(2));
         
         if (action.isValidTarget(game.getBoard(), targetPosition, actor)) {
-            //action.doAction(game.getBoard(), targetPosition, actor);
+            action.doAction(game.getBoard(), targetPosition, actor);
             System.out.println("\n✓ Azione eseguita con successo!");
         } else {
             System.out.println("\n✗ Target non valido per questa azione!");

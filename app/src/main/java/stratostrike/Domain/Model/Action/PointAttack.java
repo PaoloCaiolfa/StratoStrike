@@ -34,7 +34,13 @@ public class PointAttack extends Capability {
 
     @Override
     public void doAction(Board board, Position target, StratoShip actor) {
-
+        if (target.getShip() != null) {
+            System.out.println("Attacco riuscito! Danno inflitto: " + damage);
+            target.getShip().changeStatus(damage);
+            System.out.println("HP rimanenti della nave " + target.getShip().getName() + ": " + target.getShip().getHp());
+        } else {
+            System.out.println("Sembra che non ci sia nessuna nave in quella posizione. ");
+        }
     }
 
     public int getDamage() {

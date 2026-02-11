@@ -63,8 +63,15 @@ public class App {
 
         // 4. Mostriamo i risultati tramite la vista
         view.stampaStatoArmata(miaArmata);
+
         // 5. Assegniamo l'armata al giocatore corrente
         game.getCurrentPlayer().setArmy(miaArmata);
+
+        // 6. Posizioniamo le navi sulla board (per test, posizioniamo solo le prime 2 navi)
+        game.getBoard().placeShip(miaArmata.getShips().get(0), 0, 0, 0); 
+        game.getBoard().placeShip(miaArmata.getShips().get(1), 3, 3, 0); 
+        game.getBoard().placeShip(miaArmata.getShips().get(2), 5, 5, 1); 
+
 
         turn.playTurn();
         

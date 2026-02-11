@@ -42,6 +42,7 @@ public class AreaShield extends Capability {
     public void doAction(Board board, Position target,StratoShip actor) {
 
     }
+    
     @Override
     public Shape getShape() {
         return shape;
