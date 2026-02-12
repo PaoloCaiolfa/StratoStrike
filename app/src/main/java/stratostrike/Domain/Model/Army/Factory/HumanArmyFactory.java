@@ -45,7 +45,6 @@ public class HumanArmyFactory implements ArmyFactory{
     public Army createArmy() {
         Army humanArmy = new Army("HUMAN",0);
         for (StratoShip p : prototipi) {
-            // Cloniamo ogni prototipo per creare istanze reali
             humanArmy.addShip(p.cloneShip());
         }
         return humanArmy;

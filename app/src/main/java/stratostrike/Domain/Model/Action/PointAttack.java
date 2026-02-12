@@ -19,7 +19,6 @@ public class PointAttack extends Capability {
     public Action cloneAction() {
         PointAttack clone = new PointAttack(this.name, this.description, this.damage);
         if (this.shape != null) {
-            // Clone the shape - you'll need to implement this
             clone.setShape(new Circle(((Circle)this.shape).getRadius()));
         }
         return clone;
@@ -27,9 +26,8 @@ public class PointAttack extends Capability {
 
     @Override
     public boolean isValidTarget(Board board, Position target, StratoShip actor) {
-        // Serve vedere se nella posizione c'è un veicolo nemico
         if (target.getShip() != null) {
-            if (target.getShip().isDestroyed()) {
+            if (target.getShip().isDestroyed()) { // se la nave è già distrutta, non è un bersaglio valido
                 System.out.println("La nave in quella posizione è già distrutta, non è un bersaglio valido.");
                 return false;
             }

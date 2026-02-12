@@ -9,10 +9,7 @@ import stratostrike.Domain.Model.Army.StratoShip;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "subType" // Il discriminatore
-                                                                                                   // di secondo livello
-                                                                                                   // nel JSON
-)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "subType" )
 @JsonSubTypes({
         @JsonSubTypes.Type(value = PointAttack.class, name = "PointAttack"),
         @JsonSubTypes.Type(value = AreaShield.class, name = "AreaShield")
@@ -50,7 +47,6 @@ public abstract class Capability implements Action {
 
     @Override
     public void doAction(Board board, Position target, StratoShip actor) {
-        // Default implementation (can be overridden by subclasses)
     }
 
     @Override

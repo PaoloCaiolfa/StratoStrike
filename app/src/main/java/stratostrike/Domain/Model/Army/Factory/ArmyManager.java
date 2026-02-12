@@ -8,10 +8,8 @@ public class ArmyManager {
             
             Class<?> clazz = Class.forName(className);
 
-            // Cerchiamo il METODO statico getInstance invece del costruttore
             java.lang.reflect.Method method = clazz.getMethod("getInstance");
 
-            // Lo invochiamo. Essendo statico, il primo parametro di invoke è 'null'
             return (ArmyFactory) method.invoke(null);
 
         } catch (Exception e) {

@@ -1,6 +1,5 @@
 package stratostrike.Domain.Model.Army;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Army {

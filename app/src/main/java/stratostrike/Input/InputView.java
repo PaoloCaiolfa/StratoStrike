@@ -12,14 +12,9 @@ import stratostrike.Domain.Model.Army.Factory.ArmyFactory;
 import stratostrike.Domain.Model.Army.Factory.ArmyManager;
 
 public class InputView {
+
     private static final Scanner scanner = new Scanner(System.in);
 
-    /**
-     * Chiede all'utente di selezionare una nave tramite l'indice dell'ArrayList.
-     * 
-     * @param army L'armata del giocatore corrente.
-     * @return L'indice (ID) valido della nave selezionata.
-     */
     public static int getShipSelection(Army army) {
         int selection = -1;
         int maxIndex = army.getAliveShips().size() - 1;
@@ -35,7 +30,7 @@ public class InputView {
                 }
             } else {
                 System.out.println("Errore: Inserisci un numero intero.");
-                scanner.next(); // Pulisce il buffer dello scanner
+                scanner.next();
             }
         }
         return selection;
@@ -56,7 +51,7 @@ public class InputView {
                 }
             } else {
                 System.out.println("Errore: Inserisci un numero intero.");
-                scanner.next(); // Pulisce il buffer dello scanner
+                scanner.next(); 
             }
         }
         return selection;
@@ -66,14 +61,12 @@ public class InputView {
         List<Integer> coordinates = new ArrayList<>();
         int x = -1, y = -1, z = -1;
 
-        // Coordinata X
         System.out.print("\nInserisci la coordinata X del bersaglio (0-" + (board.getWidth() - 1) + "): ");
         x = readValidInt(0, board.getWidth() - 1);
 
-        // Coordinata Y
         System.out.print("Inserisci la coordinata Y del bersaglio (0-" + (board.getLength() - 1) + "): ");
         y = readValidInt(0, board.getLength() - 1);
-        // Coordinata Z
+
         System.out.println("Livelli disponibili:");
         for (int i = 0; i < board.getLevels(); i++) {
             System.out.println(i + ": " + board.getLevelName(i));
@@ -94,10 +87,10 @@ public class InputView {
             if (scanner.hasNextInt()) {
                 int val = scanner.nextInt();
                 if (val >= min && val <= max) {
-                    return val; // Input valido, usciamo dal ciclo
+                    return val; 
                 }
             } else {
-                scanner.next(); // Pulisce l'input non numerico
+                scanner.next();
             }
             System.out.print("Errore! Inserisci un numero tra " + min + " e " + max + ": ");
         }
@@ -114,7 +107,7 @@ public class InputView {
         }
 
         int scelta = scanner.nextInt();
-        scanner.nextLine(); // Pulisce il buffer
+        scanner.nextLine(); 
         if (scelta >= 0 && scelta < Settings.ArmyTipology.size()) {
             String fazione = Settings.ArmyTipology.get(scelta);
             System.out.println("Hai scelto: " + fazione);
@@ -122,7 +115,7 @@ public class InputView {
             
         } else {
             System.out.println("Scelta non valida. Riprova.");
-            return scegliArmata(); // Richiama ricorsivamente in caso di scelta errata
+            return scegliArmata(); 
         }
     }
 

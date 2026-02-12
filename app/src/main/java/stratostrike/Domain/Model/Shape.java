@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
-    property = "type" // Cerca il campo "type" dentro l'oggetto shape
+    property = "type" 
 )
 @JsonSubTypes({
     @JsonSubTypes.Type(value = Circle.class, name = "Circle")

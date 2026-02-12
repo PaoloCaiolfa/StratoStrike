@@ -31,7 +31,7 @@ public class CyberArmyFactory implements ArmyFactory {
             JsonNode cyber = root.get("CYBER");
 
             // Deserializziamo i veicoli cielo (SkyShip) e spazio (SpaceShip)
-            // Jackson userà i tag @JsonSubTypes che hai messo in StratoShip
+            // Jackson userà i tag @JsonSubTypes che ci sono in StratoShip
             if (cyber != null && cyber.isArray()) {
             JsonNode firstElement = cyber.get(0);
 
@@ -53,7 +53,6 @@ public class CyberArmyFactory implements ArmyFactory {
     public Army createArmy() {
         Army cyberArmy = new Army("CYBER",1);
         for (StratoShip p : prototipi) {
-            // Cloniamo ogni prototipo per creare istanze reali
             cyberArmy.addShip(p.cloneShip());
         }
         return cyberArmy;

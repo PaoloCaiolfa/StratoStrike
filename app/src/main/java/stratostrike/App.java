@@ -9,7 +9,6 @@ import stratostrike.Domain.Model.StratoCraftGame;
 import stratostrike.Domain.Model.Army.Army;
 import stratostrike.Domain.Model.Army.Factory.ArmyFactory;
 import stratostrike.Domain.Model.Army.Factory.ArmyManager;
-import stratostrike.Domain.Model.Army.Factory.CyberArmyFactory;
 import stratostrike.Input.InputView;;
 
 
@@ -29,7 +28,8 @@ public class App {
         System.out.println("Welcome to " + game.getPlayer1().getUsername() + " vs " + game.getPlayer2().getUsername()
                 + " Stratostrike Game!");
 
-        /*     
+                
+        /*     CODICE PER TESTARE IL TURNO
         //aggiunta navi all'armata
         Fighter fighter = new Fighter();
         
@@ -50,46 +50,36 @@ public class App {
         turn.showActions();
         turn.selectAction();
         turn.showAreaEffect();
-    */
+        */
 
         // CODICE PER TESTARE LE FACTORY
 
         MakeTurn turn = new MakeTurn(game);
         InputView view = new InputView();
 
-        // 2. Chiediamo la factory tramite la vista
         ArmyFactory factory = view.scegliArmata();
-
-        // 3. Generiamo l'armata (Logica di business)
         Army miaArmata = factory.createArmy();
 
-        // 4. Mostriamo i risultati tramite la vista
         view.stampaStatoArmata(miaArmata);
-
-        // 5. Assegniamo l'armata al giocatore corrente
         game.getCurrentPlayer().setArmy(miaArmata);
-
-        // Posizioniamo le navi sulla board (per test, posizioniamo solo le prime 2 navi)
         game.getBoard().setupRandomArmyPlacement(miaArmata);
 
         // Creo un'armata nemica e la metto sulla board per test
         Army enemyArmy = ArmyManager.getFactory("Cyber").createArmy();
         game.getBoard().setupRandomArmyPlacement(enemyArmy);
 
+        // turno
         turn.playTurn();
         
         turn.selectShip();
         turn.selectAction();
         turn.executeAction();
 
-        System.out.flush();
-
+        //turno
         turn.playTurn();
         
         turn.selectShip();
         turn.selectAction();
         turn.executeAction();
-        // Passare armata alla board / gestione partita
-        // board.setup(miaArmata);
     }
 }

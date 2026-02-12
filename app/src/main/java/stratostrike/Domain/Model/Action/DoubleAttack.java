@@ -24,7 +24,6 @@ public class DoubleAttack extends SpecialAbility {
 
     @Override
     public boolean isValidTarget(Board board, Position target, StratoShip actor) {
-        // Serve vedere se nella posizione c'è un veicolo nemico
         return false;
     }
 

@@ -27,8 +27,6 @@ public class AreaShield extends Capability {
 
     @Override
     public boolean isValidTarget(Board board, Position target, StratoShip actor) {
-        // Check of the validation of the target for AreaShield:
-        // 1. The target must be a ship (not empty space) and it must be an ally (not an enemy)
         StratoShip targetShip = target.getShip();
 
         if (targetShip != null && board.containsShip(targetShip)) {

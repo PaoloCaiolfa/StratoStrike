@@ -51,7 +51,7 @@ public class Board {
                 x = (int) (Math.random() * width);
                 y = (int) (Math.random() * length);
                 z = (int) (Math.random() * levels);
-            } while (positions[x][y][z].getShip() != null); // Assicuriamoci che la posizione sia libera
+            } while (positions[x][y][z].getShip() != null); // Assicuriamoci che la posizione non sia già occupata
             placeShip(ship, x, y, z);
         }
     }

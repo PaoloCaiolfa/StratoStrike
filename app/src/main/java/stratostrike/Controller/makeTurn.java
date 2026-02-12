@@ -7,7 +7,6 @@ import stratostrike.Domain.Model.Player;
 import stratostrike.Domain.Model.Position;
 import stratostrike.Domain.Model.StratoCraftGame;
 import stratostrike.Domain.Model.Action.*;
-import stratostrike.Domain.*;
 import stratostrike.View.*;
 import stratostrike.Input.*;
 
@@ -38,13 +37,11 @@ public class MakeTurn {
     public void selectShip() {
         Player current = game.getCurrentPlayer();
         
-        // Usa il metodo esistente che già gestisce tutto
         int selectedIndex = InputView.getShipSelection(current.getArmy());
         
         StratoShip selectedShip = current.getArmy().get(selectedIndex);
         game.setSelectedShip(selectedShip);
         
-        // Mostra info sulla nave selezionata
         System.out.println("\n" + "=".repeat(60));
         System.out.println("NAVE SELEZIONATA: " + selectedShip.getName());
         System.out.println("=".repeat(60));
@@ -68,10 +65,8 @@ public class MakeTurn {
     public void selectAction() {
         StratoShip selectedShip = game.getSelectedShip();
         
-        // Mostra le azioni con dettagli
         ActionView.showActionsWithDetails(selectedShip.getActions());
         
-        // Usa il metodo esistente che già gestisce la validazione
         int selectedIndex = InputView.getActionSelection(selectedShip);
         
         Action selectedAction = selectedShip.getActions().get(selectedIndex);
@@ -108,9 +103,7 @@ public class MakeTurn {
         
         if (action.isValidTarget(game.getBoard(), targetPosition, actor)) {
             action.doAction(game.getBoard(), targetPosition, actor);
-            //System.out.println("\n✓ Azione eseguita con successo!");
         } else {
-            //System.out.println("\n✗ Target non valido per questa azione!");
             executeAction(); // Chiedi di nuovo finché non viene selezionato un target valido
         }
     }

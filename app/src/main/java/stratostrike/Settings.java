@@ -11,10 +11,16 @@ public class Settings {
 
     });
 
+    // Selection of the types of armies available in the game
     public static final List<String> ArmyTipology = List.of(new String[] {
         "HUMAN",
         "CYBER"
        
 
     });
+
+    // Settings for the color of the ships on the board
+    public static final String OPPONENT = "\u001B[31m"; // Rosso
+    public static final String MINE = "\u001B[34m";     // Blu
+    public static final String RESET = "\u001B[0m";    // Bianco
 }

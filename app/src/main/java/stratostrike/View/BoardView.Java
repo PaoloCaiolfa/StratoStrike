@@ -1,67 +1,63 @@
 package stratostrike.View;
 
-import stratostrike.Domain.*;
 import stratostrike.Domain.Model.Board;
 import stratostrike.Domain.Model.Player;
 import stratostrike.Domain.Model.Position;
 import stratostrike.Domain.Model.Army.*;
+import stratostrike.Settings;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set; 
 
 public class BoardView {
-    // 1. Le costanti vanno dichiarate QUI, fuori dai metodi
-    public static final String OPPONENT = "\u001B[31m"; // Rosso
-    public static final String MINE = "\u001B[34m";     // Blu
-    public static final String RESET = "\u001B[0m";    // Torna al bianco
 
+    /**
+     * Metodo per stampare il tabellone di gioco con le navi posizionate
+     */
     public static void printBoard(Board board) {
        for (int z = 0; z < board.getLevels(); z++) {
        
         System.out.println("\n--- LIVELLO " + z + ": " + board.getLevelName(z) + " ---");
             
-            // Intestazione larghezza (X)
-            System.out.print("    "); // Spazio extra per allineare con le righe
-            for (int j = 0; j < board.getWidth(); j++) {
-            if (j < 10) System.out.print(j+ "  "); // Allineamento numeri colonna
-            else{
-                System.out.print(j + " ");
-                }
-            }
-            System.out.println();
-            
-            // Ciclo altezza (Y)
-            for (int i = 0; i < board.getLength(); i++) {
-                // Allineamento numeri riga
-                if (i < 10) System.out.print(" ");
-                System.out.print(i + " |");  
-                
-                for (int j = 0; j < board.getWidth(); j++) {
+        System.out.print("    "); 
+        for (int j = 0; j < board.getWidth(); j++) {
+            if (j < 10) System.out.print(j+ "  "); 
+            else{ System.out.print(j + " "); }
+        }
+        System.out.println();
 
-                    Position pos = board.getPosition(i, j, z);
-                    
-                    if (pos.getShip() != null) {
-                        char shipIcon = pos.getShip().getName().charAt(0);
-                        if (pos.getShip().isDestroyed()) {
-                            shipIcon = 'X'; // Simbolo per nave distrutta
-                        }
-                        
-                        // Applichiamo il colore in base all'ID dell'armata
-                        if (pos.getShip().getIdArmy() == 0) {
-                            System.out.print(MINE + shipIcon + RESET + "  ");
-                        } else {
-                            System.out.print(OPPONENT + shipIcon + RESET + "  ");
-                        }   
-                    } else {
-                        System.out.print(".  "); 
+        for (int i = 0; i < board.getLength(); i++) {
+            if (i < 10) System.out.print(" ");
+            System.out.print(i + " |");  
+                
+            for (int j = 0; j < board.getWidth(); j++) {
+                Position pos = board.getPosition(i, j, z);
+                
+                if (pos.getShip() != null) {
+                    char shipIcon = pos.getShip().getName().charAt(0);
+                    if (pos.getShip().isDestroyed()) {
+                        shipIcon = 'X';
                     }
+                    
+                    if (pos.getShip().getIdArmy() == 0) {
+                        System.out.print(Settings.MINE + shipIcon + Settings.RESET + "  ");
+                    } else {
+                        System.out.print(Settings.OPPONENT + shipIcon + Settings.RESET + "  ");
+                    }   
+                } else {
+                    System.out.print(".  "); 
                 }
-                System.out.println("|");
             }
-            System.out.println("    " + "-".repeat(board.getWidth()*3));
+            System.out.println("|");
+        }
+        System.out.println("    " + "-".repeat(board.getWidth()*3));
         }
     }
 
-
+    /**
+     * Metodo per stampare le navi dell'armata con le loro posizioni
+     */
     public static void printArmy(ArrayList<StratoShip> army,Board board) {
         System.out.println("Navi nell'armata:");
         System.out.println("le tue navi sono blu, quelle avversarie rosse.");
@@ -73,7 +69,9 @@ public class BoardView {
         }
     }
 
-
+    /**
+     * Metodo per stampare il giocatore attivo
+     */
     public static void printActualPlayer(Player player) {
         System.out.println("-----------------------------------");
         System.out.println("Turno di: " + player.getUsername());
@@ -82,10 +80,11 @@ public class BoardView {
         System.out.println("-----------------------------------");
     }
 
-
+    /**
+     * Metodo per stampare un'anteprima dell'area di effetto di un'azione
+     */
     public static void showAreaEffect(ArrayList<Position> areaEffect, Board board, ArrayList<StratoShip> army) {
-        // Usiamo HashSet per performance O(1)
-        java.util.Set<Position> areaSet = new java.util.HashSet<>(areaEffect);
+        Set<Position> areaSet = new HashSet<>(areaEffect);
 
         for (int z = 0; z < board.getLevels(); z++) {
             System.out.println("\n--- ANTEPRIMA AREA EFFETTO - LIVELLO " + z + " (" + board.getLevelName(z) + ") ---");
@@ -106,20 +105,17 @@ public class BoardView {
                     String charToPrint = ".";
                     String color = "";
 
-                    // 1. Decidiamo il carattere (Nave o Area?)
                     if (areaSet.contains(pos)) {
                         charToPrint = "+";
                     } else if (pos.getShip() != null) {
                         charToPrint = String.valueOf(pos.getShip().getName().charAt(0));
                     }
 
-                    // 2. Decidiamo il colore (Solo se c'è una nave o un effetto)
                     if (pos.getShip() != null) {
-                        color = (pos.getShip().getIdArmy() == 0) ? MINE : OPPONENT;
+                        color = (pos.getShip().getIdArmy() == 0) ? Settings.MINE : Settings.OPPONENT;
                     }
 
-                    // 3. Stampiamo (Colore + Carattere + Reset + Spazi)
-                    System.out.print(color + charToPrint + RESET + "  ");
+                    System.out.print(color + charToPrint + Settings.RESET + "  ");
                 }
                 System.out.println("|");
             }
