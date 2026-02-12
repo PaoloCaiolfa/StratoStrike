@@ -11,6 +11,7 @@ public class PointAttack extends Capability {
     public PointAttack(String name, String description, int damage, Shape shape) {
         super(name, description, shape);
         this.damage = damage;
+    
     }
 
     @Override

@@ -36,9 +36,9 @@ public class InputView {
         return selection;
     }
 
-    public static int getActionSelection(StratoShip ship) {
+    public static int getActionSelection(int size) {
         int selection = -1;
-        int maxIndex = ship.getActions().size() - 1;
+        int maxIndex = size - 1;
 
         while (selection < 0 || selection > maxIndex) {
             System.out.print("\nInserisci l'ID dell'azione da selezionare (0-" + maxIndex + "): ");
@@ -57,23 +57,24 @@ public class InputView {
         return selection;
     }
 
-    public static List<Integer> getPositionTarget(Board board) {
+    public static List<Integer> getPositionTarget() {
         List<Integer> coordinates = new ArrayList<>();
         int x = -1, y = -1, z = -1;
 
-        System.out.print("\nInserisci la coordinata X del bersaglio (0-" + (board.getWidth() - 1) + "): ");
-        x = readValidInt(0, board.getWidth() - 1);
+        int length = Settings.BoardLengthStandard;
+        int width = Settings.BoardWidthStandard;
+        System.out.print("\nInserisci la coordinata X del bersaglio (0-" + (width- 1) + "): ");
+        x = readValidInt(0, width - 1);
 
-        System.out.print("Inserisci la coordinata Y del bersaglio (0-" + (board.getLength() - 1) + "): ");
-        y = readValidInt(0, board.getLength() - 1);
+        System.out.print("Inserisci la coordinata Y del bersaglio (0-" + (length - 1) + "): ");
+        y = readValidInt(0, length - 1);
 
         System.out.println("Livelli disponibili:");
-        for (int i = 0; i < board.getLevels(); i++) {
-            System.out.println(i + ": " + board.getLevelName(i));
+        for (int i = 0; i < Settings.BoardLevelsStandard.size(); i++) {
+            System.out.println(i + ": " + Settings.BoardLevelsStandard.get(i));
         }
         System.out.print("Inserisci l'indice del livello Z: ");
-        z = readValidInt(0, board.getLevels() - 1);
-
+        z = readValidInt(0, Settings.BoardLevelsStandard.size() - 1);
         coordinates.add(x);
         coordinates.add(y);
         coordinates.add(z);

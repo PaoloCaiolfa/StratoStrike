@@ -53,7 +53,7 @@ public class App {
         */
 
         // CODICE PER TESTARE LE FACTORY
-
+        /*
         MakeTurn turn = new MakeTurn(game);
         InputView view = new InputView();
 
@@ -83,5 +83,31 @@ public class App {
         turn.selectAction();
         turn.showAreaEffect();
         turn.executeAction();
+        
+
+        */
+
+
+        //CODICE PER TESTARE LA VIEW
+        BoardView boardView = new BoardView(game);
+
+
+        ArmyFactory factory = view.scegliArmata();
+        Army miaArmata = factory.createArmy();
+
+        view.stampaStatoArmata(miaArmata);
+        game.getCurrentPlayer().setArmy(miaArmata);
+        game.getBoard().setupRandomArmyPlacement(miaArmata);
+
+        // Creo un'armata nemica e la metto sulla board per test
+        Army enemyArmy = ArmyManager.getFactory("Cyber").createArmy();
+        game.getBoard().setupRandomArmyPlacement(enemyArmy);
+
+        boardView.printBoard();
+        SelectionView selectionView = new SelectionView(game);
+        selectionView.showActions();
+        selectionView.selectAction();
     }
+
+
 }

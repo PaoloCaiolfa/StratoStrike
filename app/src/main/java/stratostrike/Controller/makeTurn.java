@@ -9,86 +9,82 @@ import stratostrike.Domain.Model.StratoCraftGame;
 import stratostrike.Domain.Model.Action.*;
 import stratostrike.View.*;
 import stratostrike.Input.*;
+import stratostrike.Domain.Model.*;
 
 public class MakeTurn {
 
     private StratoCraftGame game;
-
+   
     public MakeTurn(StratoCraftGame game) {
-        this.game = game;
+        this.game = game;    
+     
+    }
+
+    public Board getBoard() {
+        return game.getBoard();
     }
 
     /**
      * Gestisce l'intero turno del giocatore corrente
      */
-    public void playTurn() {
-        Player current = game.getCurrentPlayer();
-        BoardView.printActualPlayer(current);
+    public PlayerInfo getPlayerInfo() {
+        
 
+        Player current = game.getContext().getCurrentPlayer();
         ArrayList<StratoShip> army = current.getArmy().getShips();
+        return new PlayerInfo(current,army); 
 
-        BoardView.printBoard(game.getBoard());
-        BoardView.printArmy(army, game.getBoard());
     }
+
+
+
 
     /**
      * Permette al giocatore di selezionare una nave dalla sua armata
      */
-    public void selectShip() {
+    public void selectShip(int selectedIndex) {
+
         Player current = game.getCurrentPlayer();
+        //int selectedIndex = InputView.getShipSelection(current.getArmy());
+        game.getContext().setSelectedShip(current.getArmy().get(selectedIndex));
+       
         
-        int selectedIndex = InputView.getShipSelection(current.getArmy());
-        
-        StratoShip selectedShip = current.getArmy().get(selectedIndex);
-        game.setSelectedShip(selectedShip);
-        
-        System.out.println("\n" + "=".repeat(60));
-        System.out.println("NAVE SELEZIONATA: " + selectedShip.getName());
-        System.out.println("=".repeat(60));
-        System.out.println("Tipo: " + selectedShip.getClass().getSimpleName());
-        System.out.println("HP: " + selectedShip.getHp());
-        System.out.println("Azioni disponibili: " + selectedShip.getActions().size());
-        System.out.println("=".repeat(60));
+     
     }
 
     /**
      * Mostra le azioni disponibili per la nave selezionata
      */
-    public void showActions() {
+    public void getActions() {
         StratoShip selectedShip = game.getSelectedShip();
-        ActionView.showActions(selectedShip.getActions());
+        ArrayList<Action> actions = selectedShip.getActions();
+       
     }
 
     /**
      * Permette al giocatore di selezionare un'azione
      */
-    public void selectAction() {
-        StratoShip selectedShip = game.getSelectedShip();
-        
-        ActionView.showActionsWithDetails(selectedShip.getActions());
-        
-        int selectedIndex = InputView.getActionSelection(selectedShip);
-        
+    public void selectAction(int selectedIndex) {
+
+        StratoShip selectedShip = game.getContext().getSelectedShip();  
         Action selectedAction = selectedShip.getActions().get(selectedIndex);
-        game.setSelectedAction(selectedAction);
+        game.getContext().setSelectedAction(selectedAction);
+  
         
-        // Mostra info sull'azione selezionata
-        System.out.println("\n" + "=".repeat(60));
-        System.out.println("AZIONE SELEZIONATA: " + selectedAction.getName());
-        System.out.println("=".repeat(60));
-        System.out.print(selectedAction.getDetails());
-        System.out.println("=".repeat(60));
     }
 
     /**
      * Mostra l'area di effetto dell'azione selezionata
      */
-    public void showAreaEffect() {
-        List<Integer> target = InputView.getPositionTarget(game.getBoard());
+    public AffectedPositionsAndArmy showAreaEffect(ArrayList<Integer> target) {
+        //List<Integer> target = InputView.getPositionTarget(game.getBoard());
+
         Position positionTarget = game.getBoard().getPosition(target.get(0), target.get(1), target.get(2));
+        game.getContext().setTargetPosition(positionTarget);
         ArrayList<Position> affectedPositions = game.getSelectedAction().getShape().getCoveredCordinates(positionTarget);
         ArrayList<StratoShip> army = game.getCurrentPlayer().getArmy().getShips();
-        BoardView.showAreaEffect(affectedPositions, game.getBoard(), army);
+        //BoardView.showAreaEffect(affectedPositions, game.getBoard(), army);
+        return new AffectedPositionsAndArmy(affectedPositions, army);
     }
 
     /**

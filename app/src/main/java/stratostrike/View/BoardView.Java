@@ -4,6 +4,8 @@ import stratostrike.Domain.Model.Board;
 import stratostrike.Domain.Model.Player;
 import stratostrike.Domain.Model.Position;
 import stratostrike.Domain.Model.Army.*;
+import stratostrike.Domain.Model.Action.*;
+import stratostrike.Controller.MakeTurn;
 import stratostrike.Settings;
 
 import java.util.ArrayList;
@@ -12,10 +14,19 @@ import java.util.Set;
 
 public class BoardView {
 
+private MakeTurn makeTurn;
+
+
+    public BoardView(MakeTurn makeTurn) {
+        this.makeTurn = makeTurn;
+        
+
+    }
     /**
      * Metodo per stampare il tabellone di gioco con le navi posizionate
      */
-    public static void printBoard(Board board) {
+    public void printBoard() {
+        Board board = makeTurn.getBoard();
        for (int z = 0; z < board.getLevels(); z++) {
        
         System.out.println("\n--- LIVELLO " + z + ": " + board.getLevelName(z) + " ---");
@@ -55,24 +66,36 @@ public class BoardView {
         }
     }
 
+ 
+
+
+
     /**
      * Metodo per stampare le navi dell'armata con le loro posizioni
      */
-    public static void printArmy(ArrayList<StratoShip> army,Board board) {
+    public void printArmy() {
+        PlayerInfo currentInfo = makeTurn.getPlayerInfo();
+        ArrayList<StratoShip> armyList = currentInfo.army();
+        Board board = makeTurn.getBoard();
+        
         System.out.println("Navi nell'armata:");
         System.out.println("le tue navi sono blu, quelle avversarie rosse.");
-        for (int i = 0; i < army.size(); i++) {
-            StratoShip ship = army.get(i);
+        for (int i = 0; i < armyList.size(); i++) {
+            StratoShip ship = armyList.get(i);
 
             System.out.println(i + ": " + ship.getName() + " (HP: " + ship.getHp() + ")"+ board.getShipPosition(ship).toString() );
            
         }
     }
 
+
+
     /**
      * Metodo per stampare il giocatore attivo
      */
-    public static void printActualPlayer(Player player) {
+    public void printActualPlayer() {
+        PlayerInfo currentInfo = makeTurn.getPlayerInfo();
+        Player player = currentInfo.player();
         System.out.println("-----------------------------------");
         System.out.println("Turno di: " + player.getUsername());
         System.out.println();
@@ -80,48 +103,7 @@ public class BoardView {
         System.out.println("-----------------------------------");
     }
 
-    /**
-     * Metodo per stampare un'anteprima dell'area di effetto di un'azione
-     */
-    public static void showAreaEffect(ArrayList<Position> areaEffect, Board board, ArrayList<StratoShip> army) {
-        Set<Position> areaSet = new HashSet<>(areaEffect);
 
-        for (int z = 0; z < board.getLevels(); z++) {
-            System.out.println("\n--- ANTEPRIMA AREA EFFETTO - LIVELLO " + z + " (" + board.getLevelName(z) + ") ---");
-            
-            // Intestazione X
-            System.out.print("    ");
-            for (int j = 0; j < board.getWidth(); j++) {
-                System.out.print(j + (j < 10 ? "  " : " "));
-            }
-            System.out.println();
-
-            for (int i = 0; i < board.getLength(); i++) {
-                // Coordinata Y
-                System.out.print((i < 10 ? " " : "") + i + " |");
-                
-                for (int j = 0; j < board.getWidth(); j++) {
-                    Position pos = board.getPosition(i, j, z);
-                    String charToPrint = ".";
-                    String color = "";
-
-                    if (areaSet.contains(pos)) {
-                        charToPrint = "+";
-                    } else if (pos.getShip() != null) {
-                        charToPrint = String.valueOf(pos.getShip().getName().charAt(0));
-                    }
-
-                    if (pos.getShip() != null) {
-                        color = (pos.getShip().getIdArmy() == 0) ? Settings.MINE : Settings.OPPONENT;
-                    }
-
-                    System.out.print(color + charToPrint + Settings.RESET + "  ");
-                }
-                System.out.println("|");
-            }
-            System.out.println("    " + "-".repeat(board.getWidth() * 3));
-        }
-    }
 }
 
 

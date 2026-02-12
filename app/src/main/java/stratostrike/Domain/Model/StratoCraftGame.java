@@ -7,9 +7,9 @@ public class StratoCraftGame {
     private Board board;
     private Player player1;
     private Player player2;
-    private Player currentPlayer;
-    private StratoShip selectedShip;
-    private Action selectedAction;
+    
+
+    private Context context;
 
     public StratoCraftGame(Player player1, Player player2) {
         this.board = new Board(stratostrike.Settings.BoardLengthStandard,
@@ -17,7 +17,9 @@ public class StratoCraftGame {
                                stratostrike.Settings.BoardLevelsStandard);
         this.player1 = player1;
         this.player2 = player2;
-        this.currentPlayer = player1;
+        this.context = new Context();
+        this.context.setCurrentPlayer(player1); // Il giocatore 1 inizia per primo
+        
     }
 
     public Board getBoard() {
@@ -51,5 +53,12 @@ public class StratoCraftGame {
         return selectedAction;  
     }
 
+    public Context getContext() {
+        return context;
+    }   
+
+
+
+   
 
 }
