@@ -22,10 +22,10 @@ public abstract class Capability implements Action {
 
     public Capability() {}
 
-    public Capability(String name, String description) {
+    public Capability(String name, String description, Shape shape) {
         this.name = name;
         this.description = description;
-        this.shape = null;
+        this.shape = shape;
     }
 
     @Override

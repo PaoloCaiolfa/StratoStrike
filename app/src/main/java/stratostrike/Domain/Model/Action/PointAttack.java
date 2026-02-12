@@ -1,26 +1,21 @@
 package stratostrike.Domain.Model.Action;
 
-import stratostrike.Domain.Model.Board;
-import stratostrike.Domain.Model.Circle;
-import stratostrike.Domain.Model.Position;
-import stratostrike.Domain.Model.Army.StratoShip;
+import stratostrike.Domain.Model.*;
+import stratostrike.Domain.Model.Army.*;
 
 public class PointAttack extends Capability {
     private int damage;
 
     public PointAttack() {super();}
 
-    public PointAttack(String name, String description, int damage) {
-        super(name, description);
+    public PointAttack(String name, String description, int damage, Shape shape) {
+        super(name, description, shape);
         this.damage = damage;
     }
 
     @Override
     public Action cloneAction() {
-        PointAttack clone = new PointAttack(this.name, this.description, this.damage);
-        if (this.shape != null) {
-            clone.setShape(new Circle(((Circle)this.shape).getRadius()));
-        }
+        PointAttack clone = new PointAttack(this.name, this.description, this.damage, this.shape);
         return clone;
     }
 

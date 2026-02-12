@@ -73,6 +73,7 @@ public class App {
         
         turn.selectShip();
         turn.selectAction();
+        turn.showAreaEffect();
         turn.executeAction();
 
         //turno
@@ -80,6 +81,7 @@ public class App {
         
         turn.selectShip();
         turn.selectAction();
+        turn.showAreaEffect();
         turn.executeAction();
     }
 }
