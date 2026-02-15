@@ -1,16 +1,11 @@
 package stratostrike.View;
 
-import stratostrike.Domain.Model.Board;
-import stratostrike.Domain.Model.Player;
-import stratostrike.Domain.Model.Position;
+import stratostrike.Domain.Model.*;
 import stratostrike.Domain.Model.Army.*;
-import stratostrike.Domain.Model.Action.*;
-import stratostrike.Controller.MakeTurn;
+import stratostrike.ViewModel.MakeTurn;
 import stratostrike.Settings;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set; 
 
 public class BoardView {
 
@@ -19,8 +14,6 @@ private MakeTurn makeTurn;
 
     public BoardView(MakeTurn makeTurn) {
         this.makeTurn = makeTurn;
-        
-
     }
     /**
      * Metodo per stampare il tabellone di gioco con le navi posizionate

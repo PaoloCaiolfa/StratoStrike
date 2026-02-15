@@ -3,13 +3,14 @@
  */
 package stratostrike;
 
-import stratostrike.Controller.MakeTurn;
 import stratostrike.Domain.Model.Player;
 import stratostrike.Domain.Model.StratoCraftGame;
 import stratostrike.Domain.Model.Army.Army;
 import stratostrike.Domain.Model.Army.Factory.ArmyFactory;
 import stratostrike.Domain.Model.Army.Factory.ArmyManager;
-import stratostrike.Input.InputView;;
+import stratostrike.Input.InputView;
+import stratostrike.View.*;
+import stratostrike.ViewModel.MakeTurn;
 
 
 public class App {
@@ -89,9 +90,6 @@ public class App {
 
 
         //CODICE PER TESTARE LA VIEW
-        BoardView boardView = new BoardView(game);
-
-
         ArmyFactory factory = view.scegliArmata();
         Army miaArmata = factory.createArmy();
 

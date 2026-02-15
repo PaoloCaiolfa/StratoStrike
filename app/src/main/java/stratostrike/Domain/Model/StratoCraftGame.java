@@ -1,8 +1,5 @@
 package stratostrike.Domain.Model;
 
-import stratostrike.Domain.Model.Action.Action;
-import stratostrike.Domain.Model.Army.StratoShip;
-
 public class StratoCraftGame {
     private Board board;
     private Player player1;
@@ -22,6 +19,10 @@ public class StratoCraftGame {
         
     }
 
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
     public Board getBoard() {
         return board;
     }
@@ -34,31 +35,8 @@ public class StratoCraftGame {
         return player2;
     }
 
-    public Player getCurrentPlayer() {
-        return currentPlayer;
-    }
-    public void setSelectedShip(StratoShip ship) {
-        this.selectedShip = ship;
-    }
-    public StratoShip getSelectedShip() {
-        return selectedShip;
-    }   
-    public void setCurrentPlayer(Player player) {
-        this.currentPlayer = player;
-    }
-    public void setSelectedAction(Action action) {
-        this.selectedAction = action;
-    }
-    public Action getSelectedAction() {
-        return selectedAction;  
-    }
-
     public Context getContext() {
         return context;
     }   
-
-
-
-   
 
 }

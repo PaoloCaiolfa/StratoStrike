@@ -2,9 +2,9 @@ package stratostrike.View;
 
 import stratostrike.Domain.Model.Action.*;
 import stratostrike.Domain.Model.Army.*;
+import stratostrike.ViewModel.MakeTurn;
 import stratostrike.Domain.Model.Position;
 import stratostrike.Domain.Model.*;
-import stratostrike.Controller.MakeTurn;
 import stratostrike.Settings;
 
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ private MakeTurn makeTurn;
     public void showActions() {
    
         ArrayList<Action> actions = makeTurn.showActions();
-        println("\nAzioni disponibili per la nave " + game.getSelectedShip().getName() + ":");
+        println("\nAzioni disponibili per la nave " + makeTurn.getContext().getSelectedShip().getName() + ":");
         for (int i = 0; i < actions.size(); i++) {
             System.out.println(i + ": " + actions.get(i).getName());
 
@@ -51,8 +51,6 @@ private MakeTurn makeTurn;
         ArrayList<Integer> targetValue = InputView.getPositionTarget();
         AffectedPositionsAndArmy areaEffectRecord = makeTurn.showAreaEffect(targetValue);
         BoardView.showAreaEffect(areaEffectRecord, makeTurn.getBoard());
-
-
 
     }
 
