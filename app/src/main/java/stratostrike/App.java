@@ -8,7 +8,6 @@ import stratostrike.Domain.Model.StratoCraftGame;
 import stratostrike.Domain.Model.Army.Army;
 import stratostrike.Domain.Model.Army.Factory.ArmyFactory;
 import stratostrike.Domain.Model.Army.Factory.ArmyManager;
-import stratostrike.Input.InputView;
 import stratostrike.View.*;
 import stratostrike.ViewModel.MakeTurn;
 

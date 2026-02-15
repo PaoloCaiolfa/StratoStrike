@@ -29,14 +29,10 @@ private MakeTurn makeTurn;
     public void showActions() {
    
         ArrayList<Action> actions = makeTurn.showActions();
-        println("\nAzioni disponibili per la nave " + makeTurn.getContext().getSelectedShip().getName() + ":");
+        System.out.println("\nAzioni disponibili per la nave ");
         for (int i = 0; i < actions.size(); i++) {
             System.out.println(i + ": " + actions.get(i).getName());
-
-        
-
         }
-
     }
 
     /**
@@ -50,7 +46,7 @@ private MakeTurn makeTurn;
         makeTurn.selectAction(selectedIndex);
         ArrayList<Integer> targetValue = InputView.getPositionTarget();
         AffectedPositionsAndArmy areaEffectRecord = makeTurn.showAreaEffect(targetValue);
-        BoardView.showAreaEffect(areaEffectRecord, makeTurn.getBoard());
+        //BoardView.showAreaEffect(areaEffectRecord, makeTurn.getBoard());
 
     }
 

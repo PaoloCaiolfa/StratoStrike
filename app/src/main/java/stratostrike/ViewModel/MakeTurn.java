@@ -1,4 +1,4 @@
-package stratostrike.Controller;
+package stratostrike.ViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,6 @@ import stratostrike.Domain.Model.Position;
 import stratostrike.Domain.Model.StratoCraftGame;
 import stratostrike.Domain.Model.Action.*;
 import stratostrike.View.*;
-import stratostrike.Input.*;
 import stratostrike.Domain.Model.*;
 
 public class MakeTurn {
@@ -44,7 +43,7 @@ public class MakeTurn {
      */
     public void selectShip(int selectedIndex) {
 
-        Player current = game.getCurrentPlayer();
+        Player current = game.getContext().getCurrentPlayer();
         //int selectedIndex = InputView.getShipSelection(current.getArmy());
         game.getContext().setSelectedShip(current.getArmy().get(selectedIndex));
        
@@ -55,10 +54,9 @@ public class MakeTurn {
     /**
      * Mostra le azioni disponibili per la nave selezionata
      */
-    public void getActions() {
-        StratoShip selectedShip = game.getSelectedShip();
-        ArrayList<Action> actions = selectedShip.getActions();
-       
+    public ArrayList<Action> showActions() {
+        StratoShip selectedShip = game.getContext().getSelectedShip();
+        return selectedShip.getActions();
     }
 
     /**
@@ -81,8 +79,8 @@ public class MakeTurn {
 
         Position positionTarget = game.getBoard().getPosition(target.get(0), target.get(1), target.get(2));
         game.getContext().setTargetPosition(positionTarget);
-        ArrayList<Position> affectedPositions = game.getSelectedAction().getShape().getCoveredCordinates(positionTarget);
-        ArrayList<StratoShip> army = game.getCurrentPlayer().getArmy().getShips();
+        ArrayList<Position> affectedPositions = game.getContext().getSelectedAction().getShape().getCoveredCordinates(positionTarget);
+        ArrayList<StratoShip> army = game.getContext().getCurrentPlayer().getArmy().getShips();
         //BoardView.showAreaEffect(affectedPositions, game.getBoard(), army);
         return new AffectedPositionsAndArmy(affectedPositions, army);
     }
@@ -91,10 +89,10 @@ public class MakeTurn {
      * Esegue l'azione selezionata
      */
     public void executeAction() {
-        StratoShip actor = game.getSelectedShip();
-        Action action = game.getSelectedAction();
+        StratoShip actor = game.getContext().getSelectedShip();
+        Action action = game.getContext().getSelectedAction();
         
-        List<Integer> target = InputView.getPositionTarget(game.getBoard());
+        ArrayList<Integer> target = InputView.getPositionTarget();
         Position targetPosition = game.getBoard().getPosition(target.get(0), target.get(1), target.get(2));
         
         if (action.isValidTarget(game.getBoard(), targetPosition, actor)) {
