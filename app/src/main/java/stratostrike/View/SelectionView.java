@@ -2,10 +2,10 @@ package stratostrike.View;
 
 import stratostrike.Domain.Model.Action.*;
 import stratostrike.Domain.Model.Army.*;
-import stratostrike.ViewModel.MakeTurn;
 import stratostrike.Domain.Model.Position;
 import stratostrike.Domain.Model.*;
 import stratostrike.Settings;
+import stratostrike.Controller.MakeTurn;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -19,11 +19,9 @@ private MakeTurn makeTurn;
 
     public SelectionView(MakeTurn makeTurn) {
         this.makeTurn = makeTurn;
-      
-
     }
 
-       /** 
+    /** 
      * Metodo per mostrare le azioni disponibili per la nave selezionata e chiedere un input al giocatore per selezionare un'azione
      */
     public void showActions() {
@@ -96,10 +94,4 @@ private MakeTurn makeTurn;
             System.out.println("    " + "-".repeat(board.getWidth() * 3));
         }
     }
-
-    
-
-
-
-
 }

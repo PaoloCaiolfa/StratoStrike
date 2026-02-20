@@ -1,4 +1,4 @@
-package stratostrike.ViewModel;
+package stratostrike.Controller;
 
 import java.util.ArrayList;
 import java.util.List;

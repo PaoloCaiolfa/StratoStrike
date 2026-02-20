@@ -2,8 +2,8 @@ package stratostrike.View;
 
 import stratostrike.Domain.Model.*;
 import stratostrike.Domain.Model.Army.*;
-import stratostrike.ViewModel.MakeTurn;
 import stratostrike.Settings;
+import stratostrike.Controller.MakeTurn;
 
 import java.util.ArrayList;
 

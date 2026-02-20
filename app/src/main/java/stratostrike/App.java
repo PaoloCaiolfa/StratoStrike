@@ -3,13 +3,13 @@
  */
 package stratostrike;
 
+import stratostrike.Controller.MakeTurn;
 import stratostrike.Domain.Model.Player;
 import stratostrike.Domain.Model.StratoCraftGame;
 import stratostrike.Domain.Model.Army.Army;
 import stratostrike.Domain.Model.Army.Factory.ArmyFactory;
 import stratostrike.Domain.Model.Army.Factory.ArmyManager;
 import stratostrike.View.*;
-import stratostrike.ViewModel.MakeTurn;
 
 
 public class App {
@@ -89,22 +89,22 @@ public class App {
 
 
         //CODICE PER TESTARE LA VIEW
+        InputView view = new InputView();
         ArmyFactory factory = view.scegliArmata();
         Army miaArmata = factory.createArmy();
 
         view.stampaStatoArmata(miaArmata);
-        game.getCurrentPlayer().setArmy(miaArmata);
+        game.getContext().getCurrentPlayer().setArmy(miaArmata);
         game.getBoard().setupRandomArmyPlacement(miaArmata);
 
         // Creo un'armata nemica e la metto sulla board per test
         Army enemyArmy = ArmyManager.getFactory("Cyber").createArmy();
         game.getBoard().setupRandomArmyPlacement(enemyArmy);
 
+        BoardView boardView = new BoardView(new MakeTurn(game));
         boardView.printBoard();
-        SelectionView selectionView = new SelectionView(game);
+        SelectionView selectionView = new SelectionView(new MakeTurn(game));
         selectionView.showActions();
         selectionView.selectAction();
     }
-
-
 }
