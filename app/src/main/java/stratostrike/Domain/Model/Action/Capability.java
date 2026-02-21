@@ -57,4 +57,9 @@ public abstract class Capability implements Action {
     public void setShape(Shape shape) {
         this.shape = shape;
     }
+
+    @Override
+    public String toString() {
+        return name + ": " + description;
+    }
 }

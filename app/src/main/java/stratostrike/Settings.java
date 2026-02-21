@@ -15,8 +15,6 @@ public class Settings {
     public static final List<String> ArmyTipology = List.of(new String[] {
         "HUMAN",
         "CYBER"
-       
-
     });
 
     // Settings for the color of the ships on the board

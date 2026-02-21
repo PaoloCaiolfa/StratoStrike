@@ -80,4 +80,8 @@ public abstract class StratoShip {
     public int getIdArmy() {
         return idArmy;
     }
+
+    public String toString() {
+        return name + " (HP: " + hp + ", Azioni: " + actions.size() + ")";
+    }
 }

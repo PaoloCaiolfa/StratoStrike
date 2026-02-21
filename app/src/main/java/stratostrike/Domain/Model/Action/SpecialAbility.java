@@ -75,4 +75,9 @@ public abstract class SpecialAbility implements Action {
         }
         return details.toString();
     }
+
+    @Override
+    public String toString() {
+        return name + ": " + description;
+    }
 }

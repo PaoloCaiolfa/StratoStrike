@@ -37,4 +37,6 @@ public interface Action {
     Action cloneAction();
 
     String getDetails();
+
+    String toString();
 }
