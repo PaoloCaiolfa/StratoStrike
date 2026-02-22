@@ -15,9 +15,8 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static int getShipSelection(Army army) {
+    public static int getShipSelection(int maxIndex) {
         int selection = -1;
-        int maxIndex = army.getAliveShips().size() - 1;
 
         while (selection < 0 || selection > maxIndex) {
             System.out.print("\nInserisci l'ID della nave da selezionare (0-" + maxIndex + "): ");

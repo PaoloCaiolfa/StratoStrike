@@ -11,51 +11,49 @@ public class BoardView {
 
 private MakeTurn makeTurn;
 
-
     public BoardView(MakeTurn makeTurn) {
         this.makeTurn = makeTurn;
     }
     /**
      * Metodo per stampare il tabellone di gioco con le navi posizionate
      */
-    public void printBoard() {
-        Board board = makeTurn.getBoard();
-       for (int z = 0; z < board.getLevels(); z++) {
+    public void printBoard(Board board) {
+        for (int z = 0; z < board.getLevels(); z++) {
        
-        System.out.println("\n--- LIVELLO " + z + ": " + board.getLevelName(z) + " ---");
-            
-        System.out.print("    "); 
-        for (int j = 0; j < board.getWidth(); j++) {
-            if (j < 10) System.out.print(j+ "  "); 
-            else{ System.out.print(j + " "); }
-        }
-        System.out.println();
+            System.out.println("\n--- LIVELLO " + z + ": " + board.getLevelName(z) + " ---");
 
-        for (int i = 0; i < board.getLength(); i++) {
-            if (i < 10) System.out.print(" ");
-            System.out.print(i + " |");  
-                
+            System.out.print("    "); 
             for (int j = 0; j < board.getWidth(); j++) {
-                Position pos = board.getPosition(i, j, z);
-                
-                if (pos.getShip() != null) {
-                    char shipIcon = pos.getShip().getName().charAt(0);
-                    if (pos.getShip().isDestroyed()) {
-                        shipIcon = 'X';
-                    }
-                    
-                    if (pos.getShip().getIdArmy() == 0) {
-                        System.out.print(Settings.MINE + shipIcon + Settings.RESET + "  ");
-                    } else {
-                        System.out.print(Settings.OPPONENT + shipIcon + Settings.RESET + "  ");
-                    }   
-                } else {
-                    System.out.print(".  "); 
-                }
+                if (j < 10) System.out.print(j+ "  "); 
+                else{ System.out.print(j + " "); }
             }
-            System.out.println("|");
-        }
-        System.out.println("    " + "-".repeat(board.getWidth()*3));
+            System.out.println();
+
+            for (int i = 0; i < board.getLength(); i++) {
+                if (i < 10) System.out.print(" ");
+                System.out.print(i + " |");  
+
+                for (int j = 0; j < board.getWidth(); j++) {
+                    Position pos = board.getPosition(i, j, z);
+
+                    if (pos.getShip() != null) {
+                        char shipIcon = pos.getShip().getName().charAt(0);
+                        if (pos.getShip().isDestroyed()) {
+                            shipIcon = 'X';
+                        }
+
+                        if (pos.getShip().getIdArmy() == 0) {
+                            System.out.print(Settings.MINE + shipIcon + Settings.RESET + "  ");
+                        } else {
+                            System.out.print(Settings.OPPONENT + shipIcon + Settings.RESET + "  ");
+                        }   
+                    } else {
+                        System.out.print(".  "); 
+                    }
+                }
+                System.out.println("|");
+            }
+            System.out.println("    " + "-".repeat(board.getWidth()*3));
         }
     }
 
@@ -69,7 +67,7 @@ private MakeTurn makeTurn;
     public void printArmy() {
         PlayerInfo currentInfo = makeTurn.getPlayerInfo();
         ArrayList<StratoShip> armyList = currentInfo.army();
-        Board board = makeTurn.getBoard();
+        Board board = makeTurn.getViewData().getBoard();
         
         System.out.println("Navi nell'armata:");
         System.out.println("le tue navi sono blu, quelle avversarie rosse.");

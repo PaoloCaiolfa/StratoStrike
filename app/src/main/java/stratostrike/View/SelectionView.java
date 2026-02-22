@@ -49,6 +49,22 @@ private MakeTurn makeTurn;
     }
 
 
+    /**
+     * Method to ask the player to select a ship from their army and set it as the selected ship in the game context
+     * @param army
+     */
+    public void askForShip(ArrayList<StratoShip> army) {
+        System.out.println("\nSeleziona una nave dalla tua armata:");
+        for (int i = 0; i < army.size(); i++) {
+            StratoShip ship = army.get(i);
+            System.out.println(i + ": " + ship.getName() + " (HP: " + ship.getHp() + ")");
+        }
+
+        int selectedIndex = InputView.getShipSelection(army.size());
+        makeTurn.selectShip(selectedIndex);
+    }
+
+
 
         /**
      * Metodo per stampare un'anteprima dell'area di effetto di un'azione

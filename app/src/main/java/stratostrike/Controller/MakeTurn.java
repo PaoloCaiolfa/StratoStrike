@@ -13,14 +13,40 @@ import stratostrike.Domain.Model.*;
 public class MakeTurn {
 
     private StratoCraftGame game;
+    private ViewData viewData;
+
+    private List<Observer> observers = new ArrayList<>();
    
     public MakeTurn(StratoCraftGame game) {
         this.game = game;    
-     
+        this.viewData = new ViewData();
     }
 
     public Board getBoard() {
         return game.getBoard();
+    }
+
+    public void updateViewData() {
+        viewData.from(game);
+    }  
+
+    public ViewData getViewData() {
+        return viewData;
+    }
+
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    public void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update();
+        }
+    }
+
+    public void playTurn() {
+        updateViewData();
+        notifyObservers();
     }
 
     /**

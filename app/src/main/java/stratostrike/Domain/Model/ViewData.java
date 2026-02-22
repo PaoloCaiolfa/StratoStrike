@@ -1,19 +1,22 @@
 package stratostrike.Domain.Model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import stratostrike.MyStrings;
 
 public class ViewData {
 
     private String title;
     private Board board;
     private String message;
-    private ArrayList<Object> data;
+    private HashMap<String, Object> data;
 
     public ViewData() {
         this.title = "title null";
         this.board = null;
         this.message = "message null";
-        this.data = new ArrayList<>();
+        this.data = new HashMap<>();
     }
 
 
@@ -41,17 +44,18 @@ public class ViewData {
         this.message = message;
     }
 
-    public ArrayList<Object> getData() {
+    public HashMap<String, Object> getData() {
         return data;
     }
 
-    public void setData(ArrayList<Object> data) {
+    public void setData(HashMap<String, Object> data) {
         this.data = data;
     }
 
     public void from(StratoCraftGame game) {
         this.board = game.getBoard();
-        this.message = "Turno di " + game.getContext().getCurrentPlayer().getUsername();
-        this.data.addAll(game.getContext().getCurrentPlayer().getArmy().getShips());
+        this.title = "Turno di " + game.getContext().getCurrentPlayer().getUsername();
+        this.data.put("playerArmy", game.getContext().getCurrentPlayer().getArmy());
+        this.message = MyStrings.eventMessages.get(game.getCurrentEvent());
     }
 }

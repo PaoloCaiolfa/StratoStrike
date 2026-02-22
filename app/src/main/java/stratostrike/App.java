@@ -101,10 +101,9 @@ public class App {
         Army enemyArmy = ArmyManager.getFactory("Cyber").createArmy();
         game.getBoard().setupRandomArmyPlacement(enemyArmy);
 
-        BoardView boardView = new BoardView(new MakeTurn(game));
-        boardView.printBoard();
-        SelectionView selectionView = new SelectionView(new MakeTurn(game));
-        selectionView.showActions();
-        selectionView.selectAction();
+        MakeTurn turn = new MakeTurn(game);
+        OutputView outputView = new OutputView(turn);
+
+        turn.playTurn();
     }
 }
