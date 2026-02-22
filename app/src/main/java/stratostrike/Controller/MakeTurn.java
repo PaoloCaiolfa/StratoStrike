@@ -3,11 +3,9 @@ package stratostrike.Controller;
 import java.util.ArrayList;
 import java.util.List;
 import stratostrike.Domain.Model.Army.*;
-import stratostrike.Domain.Model.Player;
-import stratostrike.Domain.Model.Position;
-import stratostrike.Domain.Model.StratoCraftGame;
 import stratostrike.Domain.Model.Action.*;
 import stratostrike.View.*;
+import stratostrike.GameEvent;
 import stratostrike.Domain.Model.*;
 
 public class MakeTurn {
@@ -22,17 +20,7 @@ public class MakeTurn {
         this.viewData = new ViewData();
     }
 
-    public Board getBoard() {
-        return game.getBoard();
-    }
-
-    public void updateViewData() {
-        viewData.from(game);
-    }  
-
-    public ViewData getViewData() {
-        return viewData;
-    }
+    /** ========== SETUP =========== */
 
     public void addObserver(Observer observer) {
         observers.add(observer);
@@ -44,57 +32,64 @@ public class MakeTurn {
         }
     }
 
-    public void playTurn() {
+    public void updateViewData() {
+        viewData.from(game);
+    }  
+
+    public void refresh() {
         updateViewData();
         notifyObservers();
     }
 
-    /**
-     * Gestisce l'intero turno del giocatore corrente
-     */
-    public PlayerInfo getPlayerInfo() {
-        
+    public void playTurn() {
+        refresh();
+    }
 
+    /** ========== GETTERS ========== */
+
+    public Board getBoard() {
+        return game.getBoard();
+    }
+
+    public GameEvent getCurrentEvent() {
+        return game.getCurrentEvent();
+    }
+
+    public ViewData getViewData() {
+        return viewData;
+    }
+
+    public PlayerInfo getPlayerInfo() {
         Player current = game.getContext().getCurrentPlayer();
         ArrayList<StratoShip> army = current.getArmy().getShips();
         return new PlayerInfo(current,army); 
-
     }
 
 
-
+    /** ========== LOGIC ========== */
 
     /**
-     * Permette al giocatore di selezionare una nave dalla sua armata
+     * The logic for selecting a ship is handled in the game context, this method just updates the selected ship based on the index of the alive ships of the current player's army and then changes the current event to SELECT_ACTION
+     * @param selectedIndex
      */
     public void selectShip(int selectedIndex) {
-
         Player current = game.getContext().getCurrentPlayer();
-        //int selectedIndex = InputView.getShipSelection(current.getArmy());
         game.getContext().setSelectedShip(current.getArmy().get(selectedIndex));
-       
-        
-     
+        game.setCurrentEvent(GameEvent.SELECT_ACTION);
+
+        refresh();
     }
 
     /**
-     * Mostra le azioni disponibili per la nave selezionata
-     */
-    public ArrayList<Action> showActions() {
-        StratoShip selectedShip = game.getContext().getSelectedShip();
-        return selectedShip.getActions();
-    }
-
-    /**
-     * Permette al giocatore di selezionare un'azione
+     * The logic for selecting an action is handled in the game context, this method just updates the selected action based on the index of the available actions of the selected ship and then changes the current event to SELECT_POSITION
+     * @param selectedIndex
      */
     public void selectAction(int selectedIndex) {
-
         StratoShip selectedShip = game.getContext().getSelectedShip();  
-        Action selectedAction = selectedShip.getActions().get(selectedIndex);
-        game.getContext().setSelectedAction(selectedAction);
-  
-        
+        game.getContext().setSelectedAction(selectedShip.getActions().get(selectedIndex));
+        game.setCurrentEvent(GameEvent.SELECT_POSITION);
+
+        refresh();
     }
 
     /**

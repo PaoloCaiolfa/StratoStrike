@@ -26,11 +26,11 @@ private MakeTurn makeTurn;
      */
     public void showActions() {
    
-        ArrayList<Action> actions = makeTurn.showActions();
-        System.out.println("\nAzioni disponibili per la nave ");
-        for (int i = 0; i < actions.size(); i++) {
-            System.out.println(i + ": " + actions.get(i).getName());
-        }
+        //ArrayList<Action> actions = makeTurn.showActions();
+        //System.out.println("\nAzioni disponibili per la nave ");
+        //for (int i = 0; i < actions.size(); i++) {
+        //    System.out.println(i + ": " + actions.get(i).getName());
+        //}
     }
 
     /**
@@ -38,12 +38,12 @@ private MakeTurn makeTurn;
      */
     public void selectAction(){
         
-        ArrayList<Action> actions = makeTurn.showActions();
-        int selectedIndex = InputView.getActionSelection(actions.size());
-        
-        makeTurn.selectAction(selectedIndex);
-        ArrayList<Integer> targetValue = InputView.getPositionTarget();
-        AffectedPositionsAndArmy areaEffectRecord = makeTurn.showAreaEffect(targetValue);
+        //ArrayList<Action> actions = makeTurn.showActions();
+        //int selectedIndex = InputView.getActionSelection(actions.size());
+        //
+        //makeTurn.selectAction(selectedIndex);
+        //ArrayList<Integer> targetValue = InputView.getPositionTarget();
+        //AffectedPositionsAndArmy areaEffectRecord = makeTurn.showAreaEffect(targetValue);
         //BoardView.showAreaEffect(areaEffectRecord, makeTurn.getBoard());
 
     }
@@ -62,6 +62,22 @@ private MakeTurn makeTurn;
 
         int selectedIndex = InputView.getShipSelection(army.size());
         makeTurn.selectShip(selectedIndex);
+    }
+
+
+    /**
+     * Method to ask the player to select an action from the available actions of the selected ship and set it as the selected action in the game context
+     * @param actions
+     */
+    public void askForAction(ArrayList<Action> actions) {
+        System.out.println("\nSeleziona un'azione per la nave selezionata:");
+        for (int i = 0; i < actions.size(); i++) {
+            Action action = actions.get(i);
+            System.out.println(i + ": " + action.getName());
+        }
+
+        int selectedIndex = InputView.getActionSelection(actions.size());
+        makeTurn.selectAction(selectedIndex);
     }
 
 

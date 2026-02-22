@@ -3,7 +3,8 @@ package stratostrike;
 public enum GameEvent {
     TURN_STARTED,
     SELECT_SHIP,
-    SELECT_ACTION,  
+    SELECT_ACTION,
+    SELECT_POSITION,  
     SHIP_DESTROYED,
     SHIP_HIT,
     SHIP_MISSED,

@@ -1,7 +1,12 @@
 package stratostrike.View;
 
+import java.util.ArrayList;
+
+import stratostrike.GameEvent;
 import stratostrike.Controller.MakeTurn;
 import stratostrike.Domain.Model.Observer;
+import stratostrike.Domain.Model.Army.StratoShip;
+import stratostrike.Domain.Model.*;
 
 public class OutputView implements Observer {
 
@@ -27,6 +32,20 @@ public class OutputView implements Observer {
         boardView.printBoard(makeTurn.getViewData().getBoard());
 
         System.out.println(makeTurn.getViewData().getMessage());
+
+        switch (makeTurn.getCurrentEvent()) {
+            case GameEvent.SELECT_SHIP:
+                selectionView.askForShip(makeTurn.getViewData().getAlivePlayerArmy());
+                break;
+            case GameEvent.SELECT_ACTION:
+                selectionView.askForAction(makeTurn.getViewData().getAvailableActions());
+                break;
+            case GameEvent.SELECT_POSITION:
+                break;
+            default:
+                // Non fare nulla per altri eventi
+                break;
+        }
     }
     
 }
