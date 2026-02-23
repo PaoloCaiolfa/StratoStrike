@@ -57,7 +57,7 @@ private MakeTurn makeTurn;
         System.out.println("\nSeleziona una nave dalla tua armata:");
         for (int i = 0; i < army.size(); i++) {
             StratoShip ship = army.get(i);
-            System.out.println(i + ": " + ship.getName() + " (HP: " + ship.getHp() + ")");
+            System.out.println(i + ": " + ship.toString());
         }
 
         int selectedIndex = InputView.getShipSelection(army.size());
@@ -73,13 +73,18 @@ private MakeTurn makeTurn;
         System.out.println("\nSeleziona un'azione per la nave selezionata:");
         for (int i = 0; i < actions.size(); i++) {
             Action action = actions.get(i);
-            System.out.println(i + ": " + action.getName());
+            System.out.println(i + ": " + action.toString());
         }
 
         int selectedIndex = InputView.getActionSelection(actions.size());
         makeTurn.selectAction(selectedIndex);
     }
 
+
+    public void askForTarget() {
+        ArrayList<Integer> targetValue = InputView.getPositionTarget();
+        makeTurn.selectTarget(targetValue);
+    }
 
 
         /**

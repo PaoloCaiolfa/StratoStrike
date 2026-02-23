@@ -33,6 +33,8 @@ public class OutputView implements Observer {
 
         System.out.println(makeTurn.getViewData().getMessage());
 
+        // NOTA: questo switch è un po' brutto, ma per ora va bene così. In futuro potremmo voler creare dei metodi specifici per ogni evento e chiamarli qui
+        // In questo modo evitiamo di avere tutta la logica di visualizzazione sparsa nei vari metodi del controller e la centralizziamo in un unico punto, rendendo più facile la manutenzione e l'estensione del codice in futuro
         switch (makeTurn.getCurrentEvent()) {
             case GameEvent.SELECT_SHIP:
                 selectionView.askForShip(makeTurn.getViewData().getAlivePlayerArmy());
@@ -41,6 +43,7 @@ public class OutputView implements Observer {
                 selectionView.askForAction(makeTurn.getViewData().getAvailableActions());
                 break;
             case GameEvent.SELECT_POSITION:
+                selectionView.askForTarget();
                 break;
             default:
                 // Non fare nulla per altri eventi

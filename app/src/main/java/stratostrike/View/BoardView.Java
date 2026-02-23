@@ -17,7 +17,7 @@ private MakeTurn makeTurn;
     /**
      * Metodo per stampare il tabellone di gioco con le navi posizionate
      */
-    public void printBoard(Board board) {
+    public void printBoard(Board board, ArrayList<Position> areaEffect) {
         for (int z = 0; z < board.getLevels(); z++) {
        
             System.out.println("\n--- LIVELLO " + z + ": " + board.getLevelName(z) + " ---");
@@ -35,21 +35,21 @@ private MakeTurn makeTurn;
 
                 for (int j = 0; j < board.getWidth(); j++) {
                     Position pos = board.getPosition(i, j, z);
+                    String charToPrint = ".";
+                    String color = "";
+
+                    if (areaEffect.contains(pos)) {
+                        charToPrint = "+";
+                    } else if (pos.getShip() != null) {
+                        charToPrint = String.valueOf(pos.getShip().getName().charAt(0));
+                    } else if (pos.getShip().isDestroyed()) {
+                        charToPrint = "X";
+                    }
 
                     if (pos.getShip() != null) {
-                        char shipIcon = pos.getShip().getName().charAt(0);
-                        if (pos.getShip().isDestroyed()) {
-                            shipIcon = 'X';
-                        }
-
-                        if (pos.getShip().getIdArmy() == 0) {
-                            System.out.print(Settings.MINE + shipIcon + Settings.RESET + "  ");
-                        } else {
-                            System.out.print(Settings.OPPONENT + shipIcon + Settings.RESET + "  ");
-                        }   
-                    } else {
-                        System.out.print(".  "); 
+                        color = (pos.getShip().getIdArmy() == 0) ? Settings.MINE : Settings.OPPONENT;
                     }
+                    System.out.print(color + charToPrint + Settings.RESET + "  ");
                 }
                 System.out.println("|");
             }

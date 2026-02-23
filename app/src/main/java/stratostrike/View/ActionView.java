@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import stratostrike.Domain.Model.Action.Action;  
 public class ActionView {
-
+    /* 
     public static void showActions(ArrayList<Action> actions) {
         System.out.println();
         System.out.println("Azioni disponibili:");
@@ -33,5 +33,5 @@ public class ActionView {
         System.out.print(action.getDetails());
         System.out.println("=".repeat(60));
     }
-    
+    */
 }

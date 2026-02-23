@@ -66,7 +66,7 @@ public class MakeTurn {
     }
 
 
-    /** ========== LOGIC ========== */
+    /** ========== EVENT HANDLING ========== */
 
     /**
      * The logic for selecting a ship is handled in the game context, this method just updates the selected ship based on the index of the alive ships of the current player's army and then changes the current event to SELECT_ACTION
@@ -92,13 +92,26 @@ public class MakeTurn {
         refresh();
     }
 
+
+    /**
+     * The logic for selecting a target position is handled in the game context, this method just updates the target position based on the coordinates of the selected position and then changes the current event to EXECUTE_ACTION
+     * @param target
+     */
+    public void selectTarget(ArrayList<Integer> target) {
+        Position positionTarget = game.getBoard().getPositionByCoordinates(target);
+        game.getContext().setTargetPosition(positionTarget);
+        game.setCurrentEvent(GameEvent.EXECUTE_ACTION);
+
+        refresh();
+    }
+
     /**
      * Mostra l'area di effetto dell'azione selezionata
      */
     public AffectedPositionsAndArmy showAreaEffect(ArrayList<Integer> target) {
         //List<Integer> target = InputView.getPositionTarget(game.getBoard());
 
-        Position positionTarget = game.getBoard().getPosition(target.get(0), target.get(1), target.get(2));
+        Position positionTarget = game.getBoard().getPositionByCoordinates(target);
         game.getContext().setTargetPosition(positionTarget);
         ArrayList<Position> affectedPositions = game.getContext().getSelectedAction().getShape().getCoveredCordinates(positionTarget);
         ArrayList<StratoShip> army = game.getContext().getCurrentPlayer().getArmy().getShips();
@@ -114,7 +127,7 @@ public class MakeTurn {
         Action action = game.getContext().getSelectedAction();
         
         ArrayList<Integer> target = InputView.getPositionTarget();
-        Position targetPosition = game.getBoard().getPosition(target.get(0), target.get(1), target.get(2));
+        Position targetPosition = game.getBoard().getPositionByCoordinates(target);
         
         if (action.isValidTarget(game.getBoard(), targetPosition, actor)) {
             action.doAction(game.getBoard(), targetPosition, actor);

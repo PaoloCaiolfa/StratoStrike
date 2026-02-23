@@ -1,4 +1,5 @@
 package stratostrike.Domain.Model;
+import java.util.ArrayList;
 import java.util.List;
 
 import stratostrike.Domain.Model.Army.*;
@@ -33,6 +34,13 @@ public class Board {
 
     public Position getPosition(int x, int y, int z) {
         return positions[x][y][z];
+    }
+
+    public Position getPositionByCoordinates(ArrayList<Integer> coordinates) {
+        int x = coordinates.get(0);
+        int y = coordinates.get(1);
+        int z = coordinates.get(2);
+        return getPosition(x, y, z);
     }
 
     public int getLength() { return this.length; }
