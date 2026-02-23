@@ -60,12 +60,6 @@ public class MakeTurn {
         return viewData;
     }
 
-    public PlayerInfo getPlayerInfo() {
-        Player current = game.getContext().getCurrentPlayer();
-        ArrayList<StratoShip> army = current.getArmy().getShips();
-        return new PlayerInfo(current,army); 
-    }
-
 
     /** ========== EVENT HANDLING ========== */
 
@@ -119,14 +113,13 @@ public class MakeTurn {
     public void executeAction() {
         StratoShip actor = game.getContext().getSelectedShip();
         Action action = game.getContext().getSelectedAction();
-        
-        ArrayList<Integer> target = InputView.getPositionTarget();
-        Position targetPosition = game.getBoard().getPositionByCoordinates(target);
+        Position targetPosition = game.getContext().getTargetPosition();
         
         if (action.isValidTarget(game.getBoard(), targetPosition, actor)) {
             action.doAction(game.getBoard(), targetPosition, actor);
         } else {
-            executeAction(); // Chiedi di nuovo finché non viene selezionato un target valido
+            game.setCurrentEvent(GameEvent.SELECT_POSITION);
+            refresh();
         }
     }
 }

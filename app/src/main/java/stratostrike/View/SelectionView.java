@@ -86,49 +86,4 @@ private MakeTurn makeTurn;
         makeTurn.selectTarget(targetValue);
     }
 
-
-        /**
-     * Metodo per stampare un'anteprima dell'area di effetto di un'azione
-     */
-    public static void showAreaEffect(AffectedPositionsAndArmy areaEffectRecord, Board board) {
-        Set<Position> areaSet = new HashSet<>(areaEffectRecord.affectedPositions());
-
-        
-
-        for (int z = 0; z < board.getLevels(); z++) {
-            System.out.println("\n--- ANTEPRIMA AREA EFFETTO - LIVELLO " + z + " (" + board.getLevelName(z) + ") ---");
-            
-            // Intestazione X
-            System.out.print("    ");
-            for (int j = 0; j < board.getWidth(); j++) {
-                System.out.print(j + (j < 10 ? "  " : " "));
-            }
-            System.out.println();
-
-            for (int i = 0; i < board.getLength(); i++) {
-                // Coordinata Y
-                System.out.print((i < 10 ? " " : "") + i + " |");
-                
-                for (int j = 0; j < board.getWidth(); j++) {
-                    Position pos = board.getPosition(i, j, z);
-                    String charToPrint = ".";
-                    String color = "";
-
-                    if (areaSet.contains(pos)) {
-                        charToPrint = "+";
-                    } else if (pos.getShip() != null) {
-                        charToPrint = String.valueOf(pos.getShip().getName().charAt(0));
-                    }
-
-                    if (pos.getShip() != null) {
-                        color = (pos.getShip().getIdArmy() == 0) ? Settings.MINE : Settings.OPPONENT;
-                    }
-
-                    System.out.print(color + charToPrint + Settings.RESET + "  ");
-                }
-                System.out.println("|");
-            }
-            System.out.println("    " + "-".repeat(board.getWidth() * 3));
-        }
-    }
 }

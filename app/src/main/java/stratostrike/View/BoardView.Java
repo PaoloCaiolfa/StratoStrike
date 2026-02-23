@@ -58,11 +58,9 @@ private MakeTurn makeTurn;
 
  
 
+/** 
 
 
-    /**
-     * Metodo per stampare le navi dell'armata con le loro posizioni
-     */
     public void printArmy() {
         PlayerInfo currentInfo = makeTurn.getPlayerInfo();
         ArrayList<StratoShip> armyList = currentInfo.army();
@@ -80,9 +78,7 @@ private MakeTurn makeTurn;
 
 
 
-    /**
-     * Metodo per stampare il giocatore attivo
-     */
+
     public void printActualPlayer() {
         PlayerInfo currentInfo = makeTurn.getPlayerInfo();
         Player player = currentInfo.player();
@@ -93,7 +89,7 @@ private MakeTurn makeTurn;
         System.out.println("-----------------------------------");
     }
 
-
+*/
 }
 
 

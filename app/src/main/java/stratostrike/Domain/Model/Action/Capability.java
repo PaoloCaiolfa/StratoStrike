@@ -7,6 +7,8 @@ import stratostrike.Domain.Model.Position;
 import stratostrike.Domain.Model.Shape;
 import stratostrike.Domain.Model.Army.StratoShip;
 
+import java.util.ArrayList;
+
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "subType" )
@@ -20,6 +22,7 @@ public abstract class Capability implements Action {
     protected String description;
     protected Shape shape;
     protected Shape range;
+    protected ArrayList<String> conditions;
 
     public Capability() {}
 
