@@ -38,13 +38,12 @@ private MakeTurn makeTurn;
                     String charToPrint = ".";
                     String color = "";
 
-                    if (areaEffect.contains(pos)) {
+                    if (areaEffect.size() > 0 && areaEffect.contains(pos)) {
                         charToPrint = "+";
                     } else if (pos.getShip() != null) {
-                        charToPrint = String.valueOf(pos.getShip().getName().charAt(0));
-                    } else if (pos.getShip().isDestroyed()) {
-                        charToPrint = "X";
-                    }
+                        boolean isDestroyed = pos.getShip().isDestroyed();
+                        charToPrint = isDestroyed ? "X" : String.valueOf(pos.getShip().getName().charAt(0));  
+                    } 
 
                     if (pos.getShip() != null) {
                         color = (pos.getShip().getIdArmy() == 0) ? Settings.MINE : Settings.OPPONENT;

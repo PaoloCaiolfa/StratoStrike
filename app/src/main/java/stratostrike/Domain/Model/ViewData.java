@@ -1,5 +1,6 @@
 package stratostrike.Domain.Model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,7 @@ public class ViewData {
     private String message;
     private ArrayList<StratoShip> alivePlayerArmy;
     private ArrayList<Action> availableActions;
+    private ArrayList<Position> areaEffect;
     private HashMap<String, Object> data;
 
     public ViewData() {
@@ -59,6 +61,14 @@ public class ViewData {
         this.alivePlayerArmy = alivePlayerArmy;
     }
 
+    public ArrayList<String> getAvailableShipString() {
+        ArrayList<String> shipNames = new ArrayList<>();
+        for (StratoShip ship : alivePlayerArmy) {
+            shipNames.add(ship.getName());
+        }
+        return shipNames;
+    }
+
     public ArrayList<Action> getAvailableActions() {
         return availableActions;
     }
@@ -75,11 +85,20 @@ public class ViewData {
         this.data = data;
     }
 
+    public ArrayList<Position> getAreaEffect() {
+        return areaEffect;
+    }
+
+    public void setAreaEffect(ArrayList<Position> areaEffect) {
+        this.areaEffect = areaEffect;
+    }
+
     public void from(StratoCraftGame game) {
         this.board = game.getBoard();
         this.title = "Turno di " + game.getContext().getCurrentPlayer().getUsername();
         if (game.getContext().getCurrentPlayer() != null) this.alivePlayerArmy = game.getContext().getCurrentPlayer().getArmy().getAliveShips();
         if (game.getContext().getSelectedShip() != null) this.availableActions = game.getContext().getSelectedShip().getActions();
         this.message = MyStrings.eventMessages.get(game.getCurrentEvent());
+        this.areaEffect = game.getContext().getAreaEffect();
     }
 }

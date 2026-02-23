@@ -34,6 +34,8 @@ public interface Action {
 
     Shape getShape();
 
+    Shape getRange();
+
     Action cloneAction();
 
     String getDetails();

@@ -8,15 +8,15 @@ public class PointAttack extends Capability {
 
     public PointAttack() {super();}
 
-    public PointAttack(String name, String description, int damage, Shape shape) {
-        super(name, description, shape);
+    public PointAttack(String name, String description, int damage, Shape shape, Shape range) {
+        super(name, description, shape, range);
         this.damage = damage;
     
     }
 
     @Override
     public Action cloneAction() {
-        PointAttack clone = new PointAttack(this.name, this.description, this.damage, this.shape);
+        PointAttack clone = new PointAttack(this.name, this.description, this.damage, this.shape, this.range);
         return clone;
     }
 
@@ -66,6 +66,10 @@ public class PointAttack extends Capability {
         if (shape != null && shape instanceof Circle) {
             Circle circle = (Circle) shape;
             details.append("         Raggio: ").append(circle.getRadius());
+        }
+        if (range != null && range instanceof Circle) {
+            Circle circle = (Circle) range;
+            details.append("         Raggio d'azione: ").append(circle.getRadius());
         }
         return details.toString();
     }

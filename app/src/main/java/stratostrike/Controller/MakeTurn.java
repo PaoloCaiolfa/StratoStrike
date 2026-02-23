@@ -1,5 +1,6 @@
 package stratostrike.Controller;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import stratostrike.Domain.Model.Army.*;
@@ -89,6 +90,10 @@ public class MakeTurn {
         game.getContext().setSelectedAction(selectedShip.getActions().get(selectedIndex));
         game.setCurrentEvent(GameEvent.SELECT_POSITION);
 
+        Position shipPosition = game.getBoard().getShipPosition(selectedShip);
+        ArrayList<Position> affectedPositions = game.getContext().getSelectedAction().getRange().getCoveredCordinates(shipPosition);
+        game.getContext().setAreaEffect(affectedPositions);
+
         refresh();
     }
 
@@ -102,21 +107,10 @@ public class MakeTurn {
         game.getContext().setTargetPosition(positionTarget);
         game.setCurrentEvent(GameEvent.EXECUTE_ACTION);
 
-        refresh();
-    }
-
-    /**
-     * Mostra l'area di effetto dell'azione selezionata
-     */
-    public AffectedPositionsAndArmy showAreaEffect(ArrayList<Integer> target) {
-        //List<Integer> target = InputView.getPositionTarget(game.getBoard());
-
-        Position positionTarget = game.getBoard().getPositionByCoordinates(target);
-        game.getContext().setTargetPosition(positionTarget);
         ArrayList<Position> affectedPositions = game.getContext().getSelectedAction().getShape().getCoveredCordinates(positionTarget);
-        ArrayList<StratoShip> army = game.getContext().getCurrentPlayer().getArmy().getShips();
-        //BoardView.showAreaEffect(affectedPositions, game.getBoard(), army);
-        return new AffectedPositionsAndArmy(affectedPositions, army);
+        game.getContext().setAreaEffect(affectedPositions);
+
+        refresh();
     }
 
     /**

@@ -65,6 +65,15 @@ public abstract class Movement implements Action {
         this.shape = shape;
     }
 
+    @Override
+    public Shape getRange() {
+        return shape;
+    }
+
+    public void setRange(Shape range) {
+        this.shape = range;
+    }
+
      @Override
     public String getDetails() {
         StringBuilder details = new StringBuilder();

@@ -11,16 +11,19 @@ public class AreaShield extends Capability {
 
     public AreaShield() {super();}
 
-    public AreaShield(String name, String description, int protection, Shape shape) {
-        super(name, description, shape);
+    public AreaShield(String name, String description, int protection, Shape shape, Shape range) {
+        super(name, description, shape, range);
         this.protection = protection;
     }
 
     @Override
     public Action cloneAction() {
-        AreaShield clone = new AreaShield(this.name, this.description, this.protection, this.shape);
+        AreaShield clone = new AreaShield(this.name, this.description, this.protection, this.shape, this.range);
         if (this.shape != null) {
             clone.setShape(new Circle(((Circle)this.shape).getRadius()));
+        }
+        if (this.range != null) {
+            clone.setRange(new Circle(((Circle)this.range).getRadius()));
         }
         return clone;
     }
@@ -38,7 +41,7 @@ public class AreaShield extends Capability {
 
     @Override
     public void doAction(Board board, Position target,StratoShip actor) {
-
+        // ciao
     }
     
     @Override

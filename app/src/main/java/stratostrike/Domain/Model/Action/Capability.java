@@ -19,13 +19,15 @@ public abstract class Capability implements Action {
     protected String name;
     protected String description;
     protected Shape shape;
+    protected Shape range;
 
     public Capability() {}
 
-    public Capability(String name, String description, Shape shape) {
+    public Capability(String name, String description, Shape shape, Shape range) {
         this.name = name;
         this.description = description;
         this.shape = shape;
+        this.range = range;
     }
 
     @Override
@@ -56,6 +58,14 @@ public abstract class Capability implements Action {
 
     public void setShape(Shape shape) {
         this.shape = shape;
+    }
+
+    public Shape getRange() {
+        return range;
+    }
+
+    public void setRange(Shape range) {
+        this.range = range;
     }
 
     @Override

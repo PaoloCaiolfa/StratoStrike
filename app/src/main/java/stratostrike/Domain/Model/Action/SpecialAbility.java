@@ -66,6 +66,15 @@ public abstract class SpecialAbility implements Action {
     }
 
     @Override
+    public Shape getRange() {
+        return shape;
+    }
+
+    public void setRange(Shape range) {
+        this.shape = range;
+    }
+
+    @Override
     public String getDetails() {
         StringBuilder details = new StringBuilder();
         details.append("         Descrizione: ").append(description).append("\n");

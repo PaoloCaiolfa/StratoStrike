@@ -29,7 +29,7 @@ public class OutputView implements Observer {
         System.out.println(makeTurn.getViewData().getTitle());
         System.out.println("=".repeat(25));
 
-        boardView.printBoard(makeTurn.getViewData().getBoard());
+        boardView.printBoard(makeTurn.getViewData().getBoard(), makeTurn.getViewData().getAreaEffect());
 
         System.out.println(makeTurn.getViewData().getMessage());
 

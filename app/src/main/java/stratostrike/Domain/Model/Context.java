@@ -1,4 +1,6 @@
 package stratostrike.Domain.Model;
+import java.util.ArrayList;
+
 import stratostrike.Domain.Model.*;
 import stratostrike.Domain.Model.Action.*;
 import stratostrike.Domain.Model.Army.*;
@@ -11,6 +13,7 @@ public class Context{
     private Player currentPlayer;
     private Action selectedAction;
     private Position targetPosition;
+    private ArrayList<Position> areaEffect;
     
 
     
@@ -19,7 +22,8 @@ public class Context{
         this.selectedShip = null;
         this.selectedAction = null;
         this.targetPosition = null;
-        }
+        this.areaEffect = new ArrayList<>();
+    }
 
     public Board getBoard() {
         return board;
@@ -55,6 +59,14 @@ public class Context{
 
     public void setTargetPosition(Position targetPosition) {
         this.targetPosition = targetPosition;
+    }
+
+    public ArrayList<Position> getAreaEffect() {
+        return areaEffect;
+    }
+    
+    public void setAreaEffect(ArrayList<Position> areaEffect) {
+        this.areaEffect = areaEffect;
     }
 
 }

@@ -16,6 +16,10 @@
                             "shape": {
                                 "type": "Circle",
                                 "radius": 1
+                            },
+                            "range": {
+                                "type": "Circle",
+                                "radius": 5
                             }
                         },
                         {
@@ -26,7 +30,12 @@
                             "shape": {
                                 "type": "Circle",
                                 "radius": 1
+                            },
+                            "range": {
+                                "type": "Circle",
+                                "radius": 1
                             }
+
                         },
                         {
                             "type": "SpecialAbility",
@@ -36,6 +45,10 @@
                             "shape": {
                                 "type": "Circle",
                                 "radius": 1
+                            },
+                            "range": {
+                                "type": "Circle",
+                                "radius": 5
                             }
                         }
                     ]
@@ -54,6 +67,10 @@
                             "shape": {
                                 "type": "Circle",
                                 "radius": 1
+                            },
+                            "range": {
+                                "type": "Circle",
+                                "radius": 5
                             }
                         },
                         {
@@ -62,6 +79,10 @@
                             "name": "OneZoneMove",
                             "description": "move one zone",
                             "shape": {
+                                "type": "Circle",
+                                "radius": 1
+                            },
+                            "range": {
                                 "type": "Circle",
                                 "radius": 1
                             }
@@ -74,6 +95,10 @@
                             "shape": {
                                 "type": "Circle",
                                 "radius": 1
+                            },
+                            "range": {
+                                "type": "Circle",
+                                "radius": 5
                             }
                         }
                     ]
@@ -94,6 +119,10 @@
                             "shape": {
                                 "type": "Circle",
                                 "radius": 2
+                            },
+                            "range": {
+                                "type": "Circle",
+                                "radius": 3
                             }
                         },
                         {
@@ -102,6 +131,10 @@
                             "name": "OneZoneMove",
                             "description": "move one zone",
                             "shape": {
+                                "type": "Circle",
+                                "radius": 1
+                            },
+                            "range": {
                                 "type": "Circle",
                                 "radius": 1
                             }
@@ -128,7 +161,11 @@
                             "shape": {
                                 "type": "Circle",
                                 "radius": 1
-                            }
+                            },
+                            "range": {
+                                "type": "Circle",
+                                "radius": 5
+                             }
                         }
                     ]
                 }
@@ -148,6 +185,10 @@
                             "shape": {
                                 "type": "Circle",
                                 "radius": 3
+                            },
+                            "range": {
+                                "type": "Circle",
+                                "radius": 5
                             }
                         }
                     ]
