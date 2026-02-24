@@ -9,6 +9,9 @@ import stratostrike.Domain.Model.Circle;
 import stratostrike.Domain.Model.Position;
 import stratostrike.Domain.Model.Shape;
 import stratostrike.Domain.Model.Army.StratoShip;
+import stratostrike.Domain.Model.validate.*;
+import java.util.ArrayList;
+import stratostrike.Domain.Model.Context;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonTypeInfo(
@@ -25,13 +28,17 @@ public abstract class SpecialAbility implements Action {
     protected String name;
     protected String description;
     protected Shape shape;
+    protected ArrayList<Validate> validators;
 
-    protected SpecialAbility() {}
+    protected SpecialAbility() {
+        this.validators = new ArrayList<>();
+    }
 
     public SpecialAbility(String name, String description) {
         this.name = name;
         this.description = description;
         this.shape = null;
+        this.validators = new ArrayList<>();
     }
 
     @Override
@@ -51,19 +58,37 @@ public abstract class SpecialAbility implements Action {
         this.description = description;
     }
 
-    @Override
-    public void doAction(Board board, Position target, StratoShip actor) {
-        // Default implementation (can be overridden by subclasses)
-    }
-
-    @Override
     public Shape getShape() {
         return shape;
     }
-
     public void setShape(Shape shape) {
         this.shape = shape;
     }
+
+    public ArrayList<Validate> getValidators() {
+        return validators;
+    }   
+
+    public void setValidators(ArrayList<Validate> validators) {
+        this.validators = validators;
+    }
+
+    public ValidationResult isValidTarget(Context context) {
+        for (Validate v : validators) {
+            ValidationResult result = v.validate(context);
+            if (!result.isValid()) {
+                return result;
+            }
+        }
+        return new ValidationResult(true, "Target is valid.");
+    }
+
+    @Override
+    public void doAction(Context context) {
+        // Default implementation (can be overridden by subclasses)
+    }
+
+
 
     @Override
     public Shape getRange() {

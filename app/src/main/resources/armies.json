@@ -20,7 +20,8 @@
                             "range": {
                                 "type": "Circle",
                                 "radius": 5
-                            }
+                            },
+                            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
                         },
                         {
                             "type": "Movement",
@@ -34,7 +35,8 @@
                             "range": {
                                 "type": "Circle",
                                 "radius": 1
-                            }
+                            },
+                            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
 
                         },
                         {
@@ -49,7 +51,8 @@
                             "range": {
                                 "type": "Circle",
                                 "radius": 5
-                            }
+                            },
+                            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
                         }
                     ]
                 },
@@ -71,7 +74,8 @@
                             "range": {
                                 "type": "Circle",
                                 "radius": 5
-                            }
+                            },
+                            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
                         },
                         {
                             "type": "Movement",
@@ -85,7 +89,8 @@
                             "range": {
                                 "type": "Circle",
                                 "radius": 1
-                            }
+                            },
+                            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
                         },
                         {
                             "type": "SpecialAbility",
@@ -99,7 +104,8 @@
                             "range": {
                                 "type": "Circle",
                                 "radius": 5
-                            }
+                            },
+                            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
                         }
                     ]
                 }
@@ -123,7 +129,8 @@
                             "range": {
                                 "type": "Circle",
                                 "radius": 3
-                            }
+                            },
+                            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
                         },
                         {
                             "type": "Movement",
@@ -137,7 +144,8 @@
                             "range": {
                                 "type": "Circle",
                                 "radius": 1
-                            }
+                            },
+                            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
                         }
                     ]
                 }
@@ -165,7 +173,8 @@
                             "range": {
                                 "type": "Circle",
                                 "radius": 5
-                             }
+                             },
+                            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
                         }
                     ]
                 }
@@ -189,7 +198,8 @@
                             "range": {
                                 "type": "Circle",
                                 "radius": 5
-                            }
+                            },
+                            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
                         }
                     ]
                 }

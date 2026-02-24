@@ -12,6 +12,7 @@ public class ViewData {
     private String title;
     private Board board;
     private String message;
+    private String errorMessage;
     private ArrayList<StratoShip> alivePlayerArmy;
     private ArrayList<Action> availableActions;
     private ArrayList<Position> areaEffect;
@@ -24,6 +25,7 @@ public class ViewData {
         this.availableActions = new ArrayList<>();
         this.message = "message null";
         this.data = new HashMap<>();
+        this.errorMessage="";
     }
 
 
@@ -91,12 +93,23 @@ public class ViewData {
         this.areaEffect = areaEffect;
     }
 
+    public String getErrorMessage() {
+        String e = new String(errorMessage);
+        setErrorMessage("");
+        return e;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+
     public void from(StratoCraftGame game) {
         this.board = game.getBoard();
-        this.title = "Turno di " + game.getContext().getCurrentPlayer().getUsername();
+        this.title = MyStrings.eventTitles.get(game.getCurrentEvent());
         if (game.getContext().getCurrentPlayer() != null) this.alivePlayerArmy = game.getContext().getCurrentPlayer().getArmy().getAliveShips();
         if (game.getContext().getSelectedShip() != null) this.availableActions = game.getContext().getSelectedShip().getActions();
         this.message = MyStrings.eventMessages.get(game.getCurrentEvent());
         this.areaEffect = game.getContext().getAreaEffect();
     }
+
 }

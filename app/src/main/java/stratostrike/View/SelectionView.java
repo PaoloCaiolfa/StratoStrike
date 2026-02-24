@@ -21,33 +21,6 @@ private MakeTurn makeTurn;
         this.makeTurn = makeTurn;
     }
 
-    /** 
-     * Metodo per mostrare le azioni disponibili per la nave selezionata e chiedere un input al giocatore per selezionare un'azione
-     */
-    public void showActions() {
-   
-        //ArrayList<Action> actions = makeTurn.showActions();
-        //System.out.println("\nAzioni disponibili per la nave ");
-        //for (int i = 0; i < actions.size(); i++) {
-        //    System.out.println(i + ": " + actions.get(i).getName());
-        //}
-    }
-
-    /**
-     * Metodo per mostrare le azioni disponibili per la nave selezionata e chiedere un input al giocatore per selezionare un'azione
-     */
-    public void selectAction(){
-        
-        //ArrayList<Action> actions = makeTurn.showActions();
-        //int selectedIndex = InputView.getActionSelection(actions.size());
-        //
-        //makeTurn.selectAction(selectedIndex);
-        //ArrayList<Integer> targetValue = InputView.getPositionTarget();
-        //AffectedPositionsAndArmy areaEffectRecord = makeTurn.showAreaEffect(targetValue);
-        //BoardView.showAreaEffect(areaEffectRecord, makeTurn.getBoard());
-
-    }
-
 
     /**
      * Method to ask the player to select a ship from their army and set it as the selected ship in the game context
@@ -86,4 +59,8 @@ private MakeTurn makeTurn;
         makeTurn.selectTarget(targetValue);
     }
 
+    public void askForContinue() {
+        boolean validInput = InputView.readYesOrNo();
+        makeTurn.executeAction(validInput);
+    }
 }

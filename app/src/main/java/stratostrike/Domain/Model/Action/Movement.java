@@ -4,11 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import stratostrike.Domain.Model.Board;
+
 import stratostrike.Domain.Model.Circle;
-import stratostrike.Domain.Model.Position;
+
 import stratostrike.Domain.Model.Shape;
-import stratostrike.Domain.Model.Army.StratoShip;
+
+import stratostrike.Domain.Model.validate.*;
+import java.util.ArrayList;
+import stratostrike.Domain.Model.Context;
+
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonTypeInfo(
@@ -25,13 +29,17 @@ public abstract class Movement implements Action {
     protected String name;
     protected String description;
     protected Shape shape;
+    protected ArrayList<Validate> validators;
 
-    protected Movement() {}
+    protected Movement() {
+    this.validators = new ArrayList<>();
+    }
 
-    public Movement(String name, String description) {
+    public Movement(String name, String description, Shape shape, ArrayList<Validate> validators) {
         this.name = name;
         this.description = description;
-        this.shape = null;
+        this.shape = shape;
+        this.validators = validators;
     }
 
     @Override
@@ -52,7 +60,7 @@ public abstract class Movement implements Action {
     }
 
     @Override
-    public void doAction(Board board, Position target,StratoShip actor) {
+    public void doAction(Context context) {
         // Default implementation (can be overridden by subclasses)
     }
 
@@ -73,6 +81,25 @@ public abstract class Movement implements Action {
     public void setRange(Shape range) {
         this.shape = range;
     }
+
+    public ArrayList<Validate> getValidators() {
+        return validators;
+    }
+
+    public void setValidators(ArrayList<Validate> validators) {
+        this.validators = validators;
+    }
+
+    public ValidationResult isValidTarget(Context context) {
+        for (Validate v : validators) {
+            ValidationResult result = v.validate(context);
+            if (!result.isValid()) {
+                return result;
+            }
+        }
+        return new ValidationResult(true, "Target is valid.");
+    }
+
 
      @Override
     public String getDetails() {

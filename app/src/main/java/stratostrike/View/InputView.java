@@ -130,4 +130,27 @@ public class InputView {
             System.out.println("---------------------------");
         }
     }
+
+    public static boolean readYesOrNo() {
+        while (true) {
+        if (scanner.hasNextLine()) {
+            String input = scanner.nextLine().trim().toLowerCase();
+            
+            // Gestiamo il caso di riga vuota (solo invio)
+            if (input.isEmpty()) continue; 
+
+            if (input.equals("y") || input.equals("n")) {
+                return input.equals("y");
+            }
+        }
+        
+        // Se arriviamo qui, l'input era sbagliato o mancante
+        System.out.println("Input non valido. Inserisci 'y' per SI o 'n' per NO:");
+        
+        // Se lo scanner non ha più input (es. file terminato), dobbiamo uscire
+        if (!scanner.hasNext()) {
+            throw new IllegalStateException("Scanner terminato o input non disponibile");
+        }
+    }
+    }
 }

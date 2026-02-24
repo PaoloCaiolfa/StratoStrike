@@ -17,5 +17,20 @@ public class MyStrings {
         Map.entry(GameEvent.GAME_WON, "Hai vinto la partita!"),
         Map.entry(GameEvent.GAME_LOST, "Hai perso la partita!")
     );
+
+
+    public static final Map<GameEvent, String> eventTitles = Map.ofEntries(
+        Map.entry(GameEvent.TURN_STARTED, "Inizio del turno"),
+        Map.entry(GameEvent.SELECT_SHIP, "Selezione della nave"),
+        Map.entry(GameEvent.SELECT_ACTION, "Selezione dell'azione"),
+        Map.entry(GameEvent.SELECT_POSITION, "Selezione del bersaglio"),
+        Map.entry(GameEvent.EXECUTE_ACTION, "Esecuzione dell'azione"),
+        Map.entry(GameEvent.SHIP_HIT, "Colpo riuscito"),
+        Map.entry(GameEvent.SHIP_MISSED, "Colpo mancato"),
+        Map.entry(GameEvent.SHIP_DESTROYED, "Nave distrutta"),
+        Map.entry(GameEvent.TURN_ENDED, "Fine del turno"),
+        Map.entry(GameEvent.GAME_WON, "Vittoria!"),
+        Map.entry(GameEvent.GAME_LOST, "Sconfitta!")
+    );
     
 }

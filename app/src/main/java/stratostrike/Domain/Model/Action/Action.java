@@ -2,11 +2,9 @@ package stratostrike.Domain.Model.Action;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-
-import stratostrike.Domain.Model.Board;
-import stratostrike.Domain.Model.Position;
+import stratostrike.Domain.Model.Context;
 import stratostrike.Domain.Model.Shape;
-import stratostrike.Domain.Model.Army.StratoShip;
+import stratostrike.Domain.Model.validate.ValidationResult;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -28,9 +26,9 @@ public interface Action {
 
     String getName();
 
-    void doAction(Board board, Position target, StratoShip actor);
+    void doAction(Context context);
 
-    boolean isValidTarget(Board board, Position target, StratoShip actor);
+    ValidationResult isValidTarget(Context context);
 
     Shape getShape();
 

@@ -1,12 +1,12 @@
 package stratostrike.View;
 
-import java.util.ArrayList;
 
 import stratostrike.GameEvent;
 import stratostrike.Controller.MakeTurn;
 import stratostrike.Domain.Model.Observer;
-import stratostrike.Domain.Model.Army.StratoShip;
-import stratostrike.Domain.Model.*;
+
+
+
 
 public class OutputView implements Observer {
 
@@ -33,6 +33,8 @@ public class OutputView implements Observer {
 
         System.out.println(makeTurn.getViewData().getMessage());
 
+        System.out.println(makeTurn.getViewData().getErrorMessage());
+
         // NOTA: questo switch è un po' brutto, ma per ora va bene così. In futuro potremmo voler creare dei metodi specifici per ogni evento e chiamarli qui
         // In questo modo evitiamo di avere tutta la logica di visualizzazione sparsa nei vari metodi del controller e la centralizziamo in un unico punto, rendendo più facile la manutenzione e l'estensione del codice in futuro
         switch (makeTurn.getCurrentEvent()) {
@@ -45,6 +47,8 @@ public class OutputView implements Observer {
             case GameEvent.SELECT_POSITION:
                 selectionView.askForTarget();
                 break;
+            case GameEvent.EXECUTE_ACTION:
+                selectionView.askForContinue();
             default:
                 // Non fare nulla per altri eventi
                 break;

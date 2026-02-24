@@ -14,15 +14,18 @@ public class Context{
     private Action selectedAction;
     private Position targetPosition;
     private ArrayList<Position> areaEffect;
+    private ArrayList<Action> actionControl; // Lista delle azioni eseguite durante il turno, per tenere traccia di quante azioni sono state fatte e quali sono ancora disponibili
     
 
     
     public Context() {
+        this.board = null;
         this.currentPlayer = null;
         this.selectedShip = null;
         this.selectedAction = null;
         this.targetPosition = null;
         this.areaEffect = new ArrayList<>();
+        this.actionControl = new ArrayList<>();
     }
 
     public Board getBoard() {
@@ -39,6 +42,10 @@ public class Context{
 
     public Action getSelectedAction() {
         return selectedAction;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
     }
 
     public void setSelectedShip(StratoShip selectedShip) {
@@ -69,4 +76,28 @@ public class Context{
         this.areaEffect = areaEffect;
     }
 
+    public ArrayList<Action> getActionControl() {
+        return actionControl;
+    }
+
+    public void setActionControl(Action actionControl) {
+        
+        this.actionControl.add(actionControl);
+    }
+
+    public boolean allActionsDone() {
+        if (actionControl.size() ==3) return true;
+        return false;
+    }
+
+    public boolean actionAlreadyDone(Action action) {
+        for (Action a : actionControl) {
+            if (a.getClass().getSuperclass().equals(action.getClass().getSuperclass())) {
+                return true;
+            }      
+        }
+
+        return false;
+    }
+    
 }

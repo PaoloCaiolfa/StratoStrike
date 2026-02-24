@@ -1,9 +1,9 @@
 package stratostrike.Domain.Model.Action;
 
-import stratostrike.Domain.Model.Board;
+import java.util.ArrayList;
 import stratostrike.Domain.Model.Circle;
-import stratostrike.Domain.Model.Position;
-import stratostrike.Domain.Model.Army.StratoShip;
+import stratostrike.Domain.Model.Context;
+
 
 public class DoubleAttack extends SpecialAbility {
 
@@ -23,12 +23,7 @@ public class DoubleAttack extends SpecialAbility {
     }
 
     @Override
-    public boolean isValidTarget(Board board, Position target, StratoShip actor) {
-        return false;
-    }
-
-    @Override
-    public void doAction(Board board, Position target, StratoShip actor) {
+    public void doAction(Context context) {
 
     }
     

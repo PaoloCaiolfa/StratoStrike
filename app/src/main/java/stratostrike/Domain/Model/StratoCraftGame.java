@@ -18,11 +18,12 @@ public class StratoCraftGame {
         this.currentEvent = GameEvent.SELECT_SHIP;
         this.context = new Context();
         this.context.setCurrentPlayer(player1); // Il giocatore 1 inizia per primo
-        
+        this.context.setBoard(this.board);
     }
 
     public void setBoard(Board board) {
         this.board = board;
+        
     }
 
     public Board getBoard() {

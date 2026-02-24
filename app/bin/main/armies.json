@@ -16,7 +16,12 @@
                             "shape": {
                                 "type": "Circle",
                                 "radius": 1
-                            }
+                            },
+                            "range": {
+                                "type": "Circle",
+                                "radius": 5
+                            },
+                            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
                         },
                         {
                             "type": "Movement",
@@ -26,7 +31,13 @@
                             "shape": {
                                 "type": "Circle",
                                 "radius": 1
-                            }
+                            },
+                            "range": {
+                                "type": "Circle",
+                                "radius": 1
+                            },
+                            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
+
                         },
                         {
                             "type": "SpecialAbility",
@@ -36,7 +47,12 @@
                             "shape": {
                                 "type": "Circle",
                                 "radius": 1
-                            }
+                            },
+                            "range": {
+                                "type": "Circle",
+                                "radius": 5
+                            },
+                            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
                         }
                     ]
                 },
@@ -54,7 +70,12 @@
                             "shape": {
                                 "type": "Circle",
                                 "radius": 1
-                            }
+                            },
+                            "range": {
+                                "type": "Circle",
+                                "radius": 5
+                            },
+                            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
                         },
                         {
                             "type": "Movement",
@@ -64,7 +85,12 @@
                             "shape": {
                                 "type": "Circle",
                                 "radius": 1
-                            }
+                            },
+                            "range": {
+                                "type": "Circle",
+                                "radius": 1
+                            },
+                            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
                         },
                         {
                             "type": "SpecialAbility",
@@ -74,7 +100,12 @@
                             "shape": {
                                 "type": "Circle",
                                 "radius": 1
-                            }
+                            },
+                            "range": {
+                                "type": "Circle",
+                                "radius": 5
+                            },
+                            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
                         }
                     ]
                 }
@@ -94,7 +125,12 @@
                             "shape": {
                                 "type": "Circle",
                                 "radius": 2
-                            }
+                            },
+                            "range": {
+                                "type": "Circle",
+                                "radius": 3
+                            },
+                            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
                         },
                         {
                             "type": "Movement",
@@ -104,7 +140,12 @@
                             "shape": {
                                 "type": "Circle",
                                 "radius": 1
-                            }
+                            },
+                            "range": {
+                                "type": "Circle",
+                                "radius": 1
+                            },
+                            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
                         }
                     ]
                 }
@@ -128,7 +169,12 @@
                             "shape": {
                                 "type": "Circle",
                                 "radius": 1
-                            }
+                            },
+                            "range": {
+                                "type": "Circle",
+                                "radius": 5
+                             },
+                            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
                         }
                     ]
                 }
@@ -148,7 +194,12 @@
                             "shape": {
                                 "type": "Circle",
                                 "radius": 3
-                            }
+                            },
+                            "range": {
+                                "type": "Circle",
+                                "radius": 5
+                            },
+                            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
                         }
                     ]
                 }

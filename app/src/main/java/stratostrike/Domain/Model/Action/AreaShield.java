@@ -5,20 +5,23 @@ import stratostrike.Domain.Model.Circle;
 import stratostrike.Domain.Model.Position;
 import stratostrike.Domain.Model.Shape;
 import stratostrike.Domain.Model.Army.StratoShip;
+import stratostrike.Domain.Model.Context;
+import java.util.ArrayList;
+import stratostrike.Domain.Model.validate.*;
 
 public class AreaShield extends Capability {
     private int protection; //quantità di protezione
 
     public AreaShield() {super();}
 
-    public AreaShield(String name, String description, int protection, Shape shape, Shape range) {
-        super(name, description, shape, range);
+    public AreaShield(String name, String description, int protection, Shape shape, Shape range, ArrayList<Validate> valids) {
+        super(name, description, shape, range, valids);
         this.protection = protection;
     }
 
     @Override
     public Action cloneAction() {
-        AreaShield clone = new AreaShield(this.name, this.description, this.protection, this.shape, this.range);
+        AreaShield clone = new AreaShield(this.name, this.description, this.protection, this.shape, this.range, this.validators);
         if (this.shape != null) {
             clone.setShape(new Circle(((Circle)this.shape).getRadius()));
         }
@@ -29,18 +32,10 @@ public class AreaShield extends Capability {
     }
 
     @Override
-    public boolean isValidTarget(Board board, Position target, StratoShip actor) {
-        StratoShip targetShip = target.getShip();
-
-        if (targetShip != null && board.containsShip(targetShip)) {
-            return true;
-        }
-
-        return false;
-    }
-
-    @Override
-    public void doAction(Board board, Position target,StratoShip actor) {
+    public void doAction(Context context) {
+        Board board = context.getBoard();
+        Position target = context.getTargetPosition();
+        StratoShip actor = context.getSelectedShip();
         // ciao
     }
     

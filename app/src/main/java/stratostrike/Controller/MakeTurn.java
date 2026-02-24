@@ -8,6 +8,8 @@ import stratostrike.Domain.Model.Action.*;
 import stratostrike.View.*;
 import stratostrike.GameEvent;
 import stratostrike.Domain.Model.*;
+import stratostrike.Domain.Model.validate.Validate;
+import stratostrike.Domain.Model.validate.ValidationResult;
 
 public class MakeTurn {
 
@@ -23,6 +25,10 @@ public class MakeTurn {
 
     /** ========== SETUP =========== */
 
+    /**
+     * Adds an observer to the list of observers
+     * @param observer the observer to be added
+     */
     public void addObserver(Observer observer) {
         observers.add(observer);
     }
@@ -33,10 +39,17 @@ public class MakeTurn {
         }
     }
 
+
+    /** 
+     * Method to update the view data based on the current state of the game, this method should be called every time the game state changes to ensure that the view data is always up to date with the current state of the game
+    */
     public void updateViewData() {
         viewData.from(game);
     }  
 
+    /** 
+     * metod to refresh the view by updating the view data and notifying the observers, this method should be called every time the game state changes to ensure that the view is always up to date with the current state of the game
+    */
     public void refresh() {
         updateViewData();
         notifyObservers();
@@ -84,6 +97,7 @@ public class MakeTurn {
         game.getContext().setSelectedAction(selectedShip.getActions().get(selectedIndex));
         game.setCurrentEvent(GameEvent.SELECT_POSITION);
 
+        //show range for the selection of target 
         Position shipPosition = game.getBoard().getShipPosition(selectedShip);
         ArrayList<Position> affectedPositions = game.getContext().getSelectedAction().getRange().getCoveredCordinates(shipPosition);
         game.getContext().setAreaEffect(affectedPositions);
@@ -107,19 +121,39 @@ public class MakeTurn {
         refresh();
     }
 
+
     /**
      * Esegue l'azione selezionata
      */
-    public void executeAction() {
-        StratoShip actor = game.getContext().getSelectedShip();
+    public void executeAction(boolean confirmation) {
+      
         Action action = game.getContext().getSelectedAction();
-        Position targetPosition = game.getContext().getTargetPosition();
-        
-        if (action.isValidTarget(game.getBoard(), targetPosition, actor)) {
-            action.doAction(game.getBoard(), targetPosition, actor);
+        if (confirmation) {
+            ValidationResult result = action.isValidTarget(game.getContext());
+            if (result.isValid()) {
+
+                if (game.getContext().allActionsDone()) {
+                    game.setCurrentEvent(GameEvent.TURN_ENDED);
+                }
+                
+                if (game.getContext().actionAlreadyDone(action)) {
+                    viewData.setErrorMessage("Hai già usato un'azione di questo tipo in questo turno, seleziona un'altra azione o termina il turno.");
+                    game.setCurrentEvent(GameEvent.SELECT_ACTION);
+                }
+                else{
+                    game.getContext().setActionControl(action);
+                    action.doAction(game.getContext());
+                    game.setCurrentEvent(GameEvent.SELECT_SHIP);
+                }
+                
+            } else {
+                viewData.setErrorMessage(result.errorMessage());
+                game.setCurrentEvent(GameEvent.SELECT_ACTION);
+            }
         } else {
-            game.setCurrentEvent(GameEvent.SELECT_POSITION);
-            refresh();
+            game.setCurrentEvent(GameEvent.SELECT_ACTION);
         }
+
+        refresh();
     }
 }

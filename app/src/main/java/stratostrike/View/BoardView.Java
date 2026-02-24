@@ -17,7 +17,7 @@ private MakeTurn makeTurn;
     /**
      * Metodo per stampare il tabellone di gioco con le navi posizionate
      */
-    public void printBoard(Board board, ArrayList<Position> areaEffect) {
+    public void printBoard(Board board, ArrayList<Position> coveredZone) {
         for (int z = 0; z < board.getLevels(); z++) {
        
             System.out.println("\n--- LIVELLO " + z + ": " + board.getLevelName(z) + " ---");
@@ -38,7 +38,7 @@ private MakeTurn makeTurn;
                     String charToPrint = ".";
                     String color = "";
 
-                    if (areaEffect.size() > 0 && areaEffect.contains(pos)) {
+                    if (coveredZone.size() > 0 && coveredZone.contains(pos)) {
                         charToPrint = "+";
                     } else if (pos.getShip() != null) {
                         boolean isDestroyed = pos.getShip().isDestroyed();
