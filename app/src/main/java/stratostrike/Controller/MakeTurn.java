@@ -132,9 +132,7 @@ public class MakeTurn {
             ValidationResult result = action.isValidTarget(game.getContext());
             if (result.isValid()) {
 
-                if (game.getContext().allActionsDone()) {
-                    game.setCurrentEvent(GameEvent.TURN_ENDED);
-                }
+                
                 
                 if (game.getContext().actionAlreadyDone(action)) {
                     viewData.setErrorMessage("Hai già usato un'azione di questo tipo in questo turno, seleziona un'altra azione o termina il turno.");
@@ -144,6 +142,10 @@ public class MakeTurn {
                     game.getContext().setActionControl(action);
                     action.doAction(game.getContext());
                     game.setCurrentEvent(GameEvent.SELECT_SHIP);
+                    
+                    if (game.getContext().allActionsDone()) {
+                        game.setCurrentEvent(GameEvent.TURN_ENDED);
+                    }
                 }
                 
             } else {
