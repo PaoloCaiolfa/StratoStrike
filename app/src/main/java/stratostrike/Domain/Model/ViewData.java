@@ -1,9 +1,7 @@
 package stratostrike.Domain.Model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import stratostrike.MyStrings;
 import stratostrike.Domain.Model.Army.StratoShip;
