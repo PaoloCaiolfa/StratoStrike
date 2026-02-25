@@ -52,6 +52,14 @@ public class Board {
         positions[x][y][z].setShip(ship);
     }
 
+    public void moveShip(StratoShip ship, Position newPosition) {
+        Position currentPosition = getShipPosition(ship);
+        if (currentPosition != null) {
+            currentPosition.setShip(null); 
+        }
+        newPosition.setShip(ship); 
+    }
+
     public void setupRandomArmyPlacement(Army army) {
         for (StratoShip ship : army.getShips()) {
             int x, y, z;

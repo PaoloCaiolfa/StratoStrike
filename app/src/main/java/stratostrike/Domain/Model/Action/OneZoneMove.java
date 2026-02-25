@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import stratostrike.Domain.Model.Circle;
 import stratostrike.Domain.Model.Position;
 import stratostrike.Domain.Model.Shape;
+import stratostrike.Domain.Model.Army.StratoShip;
 import stratostrike.Domain.Model.Context;
 import stratostrike.Domain.Model.validate.Validate;
 
@@ -30,7 +31,7 @@ public class OneZoneMove extends Movement {
 
     @Override
     public void doAction(Context context) {
-
+        context.getBoard().moveShip(context.getSelectedShip(), context.getTargetPosition());
     }
     
 }
