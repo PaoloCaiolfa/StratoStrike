@@ -6,7 +6,6 @@ import stratostrike.Domain.Model.Army.*;
 import stratostrike.Domain.Model.Action.*;
 import stratostrike.GameEvent;
 import stratostrike.Domain.Model.*;
-import stratostrike.Domain.Model.validate.Validate;
 import stratostrike.Domain.Model.validate.ValidationResult;
 
 public class MakeTurn {
@@ -112,10 +111,11 @@ public class MakeTurn {
         Position positionTarget = game.getBoard().getPositionByCoordinates(target);
         game.getContext().setTargetPosition(positionTarget);
         game.setCurrentEvent(GameEvent.EXECUTE_ACTION);
-
-        ArrayList<Position> affectedPositions = game.getContext().getSelectedAction().getShape().getCoveredCordinates(positionTarget);
-        game.getContext().setAreaEffect(affectedPositions);
-
+        if (game.getContext().getSelectedAction().getShape() != null) {
+            //show area of effect for the selection of target
+            ArrayList<Position> affectedPositions = game.getContext().getSelectedAction().getShape().getCoveredCordinates(positionTarget);
+            game.getContext().setAreaEffect(affectedPositions);
+        }    
         refresh();
     }
 
