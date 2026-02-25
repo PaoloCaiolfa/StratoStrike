@@ -6,6 +6,7 @@ import stratostrike.Domain.Model.Position;
 import stratostrike.Domain.Model.*;
 import stratostrike.Settings;
 import stratostrike.Controller.MakeTurn;
+import stratostrike.Controller.SetupArmy;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -15,10 +16,12 @@ import java.util.Set;
 public class SelectionView {
 
 private MakeTurn makeTurn;
+private SetupArmy setupArmy;
 
 
-    public SelectionView(MakeTurn makeTurn) {
+    public SelectionView(MakeTurn makeTurn, SetupArmy setupArmy) {
         this.makeTurn = makeTurn;
+        this.setupArmy = setupArmy;
     }
 
 
@@ -65,5 +68,11 @@ private MakeTurn makeTurn;
     public void askForContinue() {
         boolean validInput = InputView.readYesOrNo();
         makeTurn.executeAction(validInput);
+    }
+
+    public void askForArmy() {
+        int selectedArmy = InputView.selectArmy();
+        setupArmy.selectArmy(selectedArmy);
+        
     }
 }

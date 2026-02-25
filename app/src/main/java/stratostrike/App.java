@@ -11,6 +11,7 @@ import stratostrike.Domain.Model.Army.Army;
 import stratostrike.Domain.Model.Army.Factory.ArmyFactory;
 import stratostrike.Domain.Model.Army.Factory.ArmyManager;
 import stratostrike.View.*;
+import stratostrike.Controller.SetupArmy;
 
 
 public class App {
@@ -21,12 +22,14 @@ public class App {
     public static void main(String[] args) {
         
         //insitnziazione giocatori e navi e attacchi
-        Player player1 = new Player("Player1",1);
-        Player player2 = new Player("Player2",2);
-
+        Player player1 = new Player("Player1",0);
+        Player player2 = new Player("Player2",1);
+        java.util.ArrayList<Player> players = new java.util.ArrayList<>();
+        players.add(player1);
+        players.add(player2);
         //creazione partita
-        StratoCraftGame game = new StratoCraftGame(player1, player2);
-        System.out.println("Welcome to " + game.getPlayer1().getUsername() + " vs " + game.getPlayer2().getUsername()
+        StratoCraftGame game = new StratoCraftGame(players);
+        System.out.println("Welcome to " + game.getPlayer(0).getUsername() + " vs " + game.getPlayer(1).getUsername()
                 + " Stratostrike Game!");
 
                 
@@ -90,22 +93,18 @@ public class App {
 
 
         //CODICE PER TESTARE LA VIEW
-        InputView view = new InputView();
-        ArmyFactory factory = view.scegliArmata();
-        Army miaArmata = factory.createArmy();
-
-        view.stampaStatoArmata(miaArmata);
-        game.getContext().getCurrentPlayer().setArmy(miaArmata);
-        game.getBoard().setupRandomArmyPlacement(miaArmata);
-
+         LoopingTurn turn = new LoopingTurn(game);
+         SetupArmy setupArmy = new SetupArmy(game);
+        SelectionView selection = new SelectionView(turn.getMakeTurn(),setupArmy);
+        
+        SetupView setupView = new SetupView(setupArmy,selection);
+        
         // Creo un'armata nemica e la metto sulla board per test
-        Army enemyArmy = ArmyManager.getFactory("Cyber").createArmy();
-        game.getBoard().setupRandomArmyPlacement(enemyArmy);
-        game.getPlayer2().setArmy(enemyArmy);
-
-        LoopingTurn turn = new LoopingTurn(game);
-        OutputView outputView = new OutputView(turn.getMakeTurn()); //porcata
-
+       
+        setupArmy.selectionForAllPlayer();
+       
+        OutputView outputView = new OutputView(turn.getMakeTurn(),setupArmy ); //porcata
+        
         turn.startMatch();
     }
 }

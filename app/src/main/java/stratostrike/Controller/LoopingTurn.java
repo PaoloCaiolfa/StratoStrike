@@ -21,15 +21,15 @@ public class LoopingTurn {
 
 
     public void startMatch(){
-        int extracted= (int) (Math.random() * 2); // Estrae un numero casuale tra 0 e 1
+        int extracted= (int) (Math.random() * game.getPlayers().size()); // Estrae un numero casuale tra 0 e 1
         if (extracted == 0) {
-            game.getContext().setCurrentPlayer(game.getPlayer1());
+            game.getContext().setCurrentPlayer(game.getPlayer(0));
         } else {
-            game.getContext().setCurrentPlayer(game.getPlayer2());       
+            game.getContext().setCurrentPlayer(game.getPlayer(1));       
 
         }
         while(!isGameOver()) {
-            if (game.getContext().getCurrentPlayer() == game.getPlayer1()) {
+            if (game.getContext().getCurrentPlayer() == game.getPlayer(0)) {
                 game.setCurrentEvent(GameEvent.PLAYER1_TURN_STARTED);
             } else {
                 game.setCurrentEvent(GameEvent.PLAYER2_TURN_STARTED);
@@ -43,10 +43,10 @@ public class LoopingTurn {
 
 
     public boolean isGameOver() {
-        if (game.getPlayer1().isFleetDestroyed()) {
+        if (game.getPlayer(0).isFleetDestroyed()) {
             System.out.println("Player 2 wins!");
             return true;
-        } else if (game.getPlayer2().isFleetDestroyed()) {
+        } else if (game.getPlayer(1).isFleetDestroyed()) {
             System.out.println("Player 1 wins!");
             return true;
         }
@@ -55,10 +55,10 @@ public class LoopingTurn {
     
 
     public void nextTurn() {
-        if (game.getContext().getCurrentPlayer() == game.getPlayer1()) {
-            game.getContext().setCurrentPlayer(game.getPlayer2());
+        if (game.getContext().getCurrentPlayer() == game.getPlayer(0)) {
+            game.getContext().setCurrentPlayer(game.getPlayer(1));
         } else {
-            game.getContext().setCurrentPlayer(game.getPlayer1());
+            game.getContext().setCurrentPlayer(game.getPlayer(0));
         }
     }
 

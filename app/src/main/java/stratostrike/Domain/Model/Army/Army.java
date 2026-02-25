@@ -63,6 +63,9 @@ public class Army {
 
     public void setIdArmy(int idArmy) {
         this.idArmy = idArmy;
+        for (StratoShip ship : ships) {
+            ship.setIdArmy(idArmy);
+        }
     }
 
     public int getCapacity() {

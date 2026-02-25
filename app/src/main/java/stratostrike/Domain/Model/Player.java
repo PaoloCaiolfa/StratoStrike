@@ -44,6 +44,7 @@ public class Player {
 
     public void setArmy(Army army) {
         this.army = army;
+        army.setIdArmy(idPlayer);
     }
 
     public boolean isFleetDestroyed() {

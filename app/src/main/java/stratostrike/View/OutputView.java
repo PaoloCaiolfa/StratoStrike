@@ -2,21 +2,26 @@ package stratostrike.View;
 
 
 import stratostrike.Controller.MakeTurn;
+import stratostrike.Controller.SetupArmy;
 import stratostrike.Domain.Model.Observer;
 import stratostrike.GameEvent;
+
 
 public class OutputView implements Observer {
 
     MakeTurn makeTurn;
+    SetupArmy setupArmy;
+    
     BoardView boardView;
     SelectionView selectionView;
+  
 
-    public OutputView(MakeTurn makeTurn) {
+    public OutputView(MakeTurn makeTurn, SetupArmy setupArmy) {
         this.makeTurn = makeTurn;
+        this.setupArmy = setupArmy;
         makeTurn.addObserver(this);
-
         this.boardView = new BoardView(makeTurn);
-        this.selectionView = new SelectionView(makeTurn);
+        this.selectionView = new SelectionView(makeTurn, setupArmy);
     }
 
     @Override

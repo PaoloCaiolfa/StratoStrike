@@ -98,24 +98,15 @@ public class InputView {
     // CODICE PER TESTARE LE FACTORY
 
     // Metodo per scegliere l'armata
-    public ArmyFactory scegliArmata() {
+    public static int selectArmy() {
         System.out.println("=== SELEZIONE ARMATA ===");
         System.out.println("Scegli la fazione desiderata:");
         for (String el : Settings.ArmyTipology) {
             System.out.println((Settings.ArmyTipology.indexOf(el)) + ": " + el);
         }
 
-        int scelta = scanner.nextInt();
-        scanner.nextLine(); 
-        if (scelta >= 0 && scelta < Settings.ArmyTipology.size()) {
-            String fazione = Settings.ArmyTipology.get(scelta);
-            System.out.println("Hai scelto: " + fazione);
-            return ArmyManager.getFactory(fazione);
-            
-        } else {
-            System.out.println("Scelta non valida. Riprova.");
-            return scegliArmata(); 
-        }
+       int x=readValidInt(0, Settings.ArmyTipology.size() - 1); 
+       return x;    
     }
 
     // Metodo per visualizzare i veicoli dell'armata creata
