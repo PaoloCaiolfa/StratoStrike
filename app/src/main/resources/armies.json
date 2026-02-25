@@ -192,8 +192,8 @@
                             "description": "shield one zone",
                             "protection": 120,
                             "shape": {
-                                "type": "Circle",
-                                "radius": 3
+                                "type": "Cross",
+                                "length": 3
                             },
                             "range": {
                                 "type": "Circle",

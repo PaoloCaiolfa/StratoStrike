@@ -1,15 +1,19 @@
 package stratostrike.Domain.Model.Action;
 
+import java.util.ArrayList;
+
+import stratostrike.Domain.Model.Army.StratoShip;
 import stratostrike.Domain.Model.Board;
 import stratostrike.Domain.Model.Circle;
+import stratostrike.Domain.Model.Context;
 import stratostrike.Domain.Model.Position;
 import stratostrike.Domain.Model.Shape;
-import stratostrike.Domain.Model.Army.StratoShip;
-import stratostrike.Domain.Model.Context;
-import java.util.ArrayList;
-import stratostrike.Domain.Model.validate.*;
+import stratostrike.Domain.Model.validate.Validate;
+
+
 
 public class AreaShield extends Capability {
+
     private int protection; //quantità di protezione
 
     public AreaShield() {super();}
@@ -19,15 +23,10 @@ public class AreaShield extends Capability {
         this.protection = protection;
     }
 
+    
     @Override
     public Action cloneAction() {
         AreaShield clone = new AreaShield(this.name, this.description, this.protection, this.shape, this.range, this.validators);
-        if (this.shape != null) {
-            clone.setShape(new Circle(((Circle)this.shape).getRadius()));
-        }
-        if (this.range != null) {
-            clone.setRange(new Circle(((Circle)this.range).getRadius()));
-        }
         return clone;
     }
 
