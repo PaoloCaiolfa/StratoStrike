@@ -32,7 +32,7 @@
                                 "type": "Circle",
                                 "radius": 1
                             },
-                            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
+                            "validators":[{"type":"validateHigh"},{"type":"validatePosition"},{"type":"validateRange"}]
 
                         },
                         {
@@ -82,7 +82,7 @@
                                 "type": "Circle",
                                 "radius": 1
                             },
-                            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
+                            "validators":[{"type":"validateRange"},{"type":"validatePosition"},{"type":"validateHigh"}]
                         },
                         {
                             "type": "SpecialAbility",
@@ -133,7 +133,7 @@
                                 "type": "Circle",
                                 "radius": 1
                             },
-                            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
+                            "validators":[{"type":"validateRange"},{"type":"validatePosition"},{"type":"validateHigh"}]
                         }
                     ]
                 }
