@@ -11,5 +11,7 @@ public enum GameEvent {
     SHIP_MISSED,
     TURN_ENDED,
     GAME_WON,
-    GAME_LOST
+    GAME_LOST,
+    PLAYER1_TURN_STARTED,
+    PLAYER2_TURN_STARTED
 }

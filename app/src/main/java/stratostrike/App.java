@@ -3,6 +3,7 @@
  */
 package stratostrike;
 
+import stratostrike.Controller.LoopingTurn;
 import stratostrike.Controller.MakeTurn;
 import stratostrike.Domain.Model.Player;
 import stratostrike.Domain.Model.StratoCraftGame;
@@ -100,10 +101,11 @@ public class App {
         // Creo un'armata nemica e la metto sulla board per test
         Army enemyArmy = ArmyManager.getFactory("Cyber").createArmy();
         game.getBoard().setupRandomArmyPlacement(enemyArmy);
+        game.getPlayer2().setArmy(enemyArmy);
 
-        MakeTurn turn = new MakeTurn(game);
-        OutputView outputView = new OutputView(turn);
+        LoopingTurn turn = new LoopingTurn(game);
+        OutputView outputView = new OutputView(turn.getMakeTurn()); //porcata
 
-        turn.playTurn();
+        turn.startMatch();
     }
 }

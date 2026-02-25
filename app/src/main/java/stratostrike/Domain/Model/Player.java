@@ -46,4 +46,10 @@ public class Player {
         this.army = army;
     }
 
+    public boolean isFleetDestroyed() {
+        return army.isFleetDestroyed();
+    }
+
+
+
 }

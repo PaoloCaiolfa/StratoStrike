@@ -54,6 +54,8 @@ public class MakeTurn {
 
     public void playTurn() {
         refresh();
+        game.setCurrentEvent(GameEvent.SELECT_SHIP);
+        refresh();
     }
 
     /** ========== GETTERS ========== */
@@ -78,10 +80,15 @@ public class MakeTurn {
      * @param selectedIndex
      */
     public void selectShip(int selectedIndex) {
-        Player current = game.getContext().getCurrentPlayer();
-        game.getContext().setSelectedShip(current.getArmy().get(selectedIndex));
-        game.setCurrentEvent(GameEvent.SELECT_ACTION);
-
+        if (selectedIndex == game.getContext().getCurrentPlayer().getArmy().getAliveShips().size()) {
+            game.setCurrentEvent(GameEvent.TURN_ENDED);
+        }
+        else{
+            Player current = game.getContext().getCurrentPlayer();
+            game.getContext().setSelectedShip(current.getArmy().getAliveShips().get(selectedIndex));
+            game.setCurrentEvent(GameEvent.SELECT_ACTION);
+        }
+      
         refresh();
     }
 
@@ -90,14 +97,20 @@ public class MakeTurn {
      * @param selectedIndex
      */
     public void selectAction(int selectedIndex) {
-        StratoShip selectedShip = game.getContext().getSelectedShip();  
-        game.getContext().setSelectedAction(selectedShip.getActions().get(selectedIndex));
-        game.setCurrentEvent(GameEvent.SELECT_POSITION);
 
-        //show range for the selection of target 
-        Position shipPosition = game.getBoard().getShipPosition(selectedShip);
-        ArrayList<Position> affectedPositions = game.getContext().getSelectedAction().getRange().getCoveredCordinates(shipPosition);
-        game.getContext().setAreaEffect(affectedPositions);
+        if (selectedIndex == game.getContext().getSelectedShip().getActions().size()) {
+            game.setCurrentEvent(GameEvent.SELECT_SHIP);
+        }
+        else{
+            StratoShip selectedShip = game.getContext().getSelectedShip();  
+            game.getContext().setSelectedAction(selectedShip.getActions().get(selectedIndex));
+            game.setCurrentEvent(GameEvent.SELECT_POSITION);
+
+            //show range for the selection of target 
+            Position shipPosition = game.getBoard().getShipPosition(selectedShip);
+            ArrayList<Position> affectedPositions = game.getContext().getSelectedAction().getRange().getCoveredCordinates(shipPosition);
+            game.getContext().setAreaEffect(affectedPositions);
+        }
 
         refresh();
     }

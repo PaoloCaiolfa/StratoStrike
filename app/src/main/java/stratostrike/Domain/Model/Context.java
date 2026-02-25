@@ -86,7 +86,7 @@ public class Context{
     }
 
     public boolean allActionsDone() {
-        if (actionControl.size() ==3) return true;
+        if (actionControl.size() ==2) return true;  /// RICORDA SONO 3 AZIONI PER TURNOO, cambia quando avrai deciso quante azioni per turno vuoi mettere
         return false;
     }
 

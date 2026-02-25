@@ -5,8 +5,10 @@ import java.util.Map;
 public class MyStrings {
     
     public static final Map<GameEvent, String> eventMessages = Map.ofEntries(
+
         Map.entry(GameEvent.TURN_STARTED, "Il turno è iniziato!"),
-        Map.entry(GameEvent.SELECT_SHIP, "Seleziona una nave da utilizzare."),
+        Map.entry(GameEvent.SELECT_SHIP, "Seleziona una nave da utilizzare.")
+        ,
         Map.entry(GameEvent.SELECT_ACTION, "Seleziona un'azione da eseguire."),
         Map.entry(GameEvent.SELECT_POSITION, "Seleziona una posizione bersaglio."),
         Map.entry(GameEvent.EXECUTE_ACTION, "Confermi le scelte effettuate nel turno?"),
@@ -20,7 +22,8 @@ public class MyStrings {
 
 
     public static final Map<GameEvent, String> eventTitles = Map.ofEntries(
-        Map.entry(GameEvent.TURN_STARTED, "Inizio del turno"),
+        Map.entry(GameEvent.PLAYER1_TURN_STARTED, "Inizio del turno del giocatore 1"),
+        Map.entry(GameEvent.PLAYER2_TURN_STARTED, "Inizio del turno del giocatore 2"),
         Map.entry(GameEvent.SELECT_SHIP, "Selezione della nave"),
         Map.entry(GameEvent.SELECT_ACTION, "Selezione dell'azione"),
         Map.entry(GameEvent.SELECT_POSITION, "Selezione del bersaglio"),

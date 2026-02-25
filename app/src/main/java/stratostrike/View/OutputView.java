@@ -21,6 +21,12 @@ public class OutputView implements Observer {
 
     @Override
     public void update() {
+
+        if (makeTurn.getCurrentEvent() == GameEvent.PLAYER1_TURN_STARTED || makeTurn.getCurrentEvent() == GameEvent.PLAYER2_TURN_STARTED) {
+            System.out.println("=".repeat(25));
+            System.out.println(makeTurn.getViewData().getTitle());
+            return; // Se è l'inizio del turno, non stampare nient'altro per ora
+        }
         // Implementazione del metodo update per aggiornare la visualizzazione
         System.out.println("=".repeat(25));
         System.out.println(makeTurn.getViewData().getTitle());

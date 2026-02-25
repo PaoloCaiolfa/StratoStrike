@@ -72,4 +72,14 @@ public class Army {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
+
+
+    public boolean isFleetDestroyed() {
+        for (StratoShip ship : ships) {
+            if (!ship.isDestroyed()) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

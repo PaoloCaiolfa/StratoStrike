@@ -32,8 +32,9 @@ private MakeTurn makeTurn;
             StratoShip ship = army.get(i);
             System.out.println(i + ": " + ship.toString());
         }
+        System.out.println(army.size() + ": passa il turno");
 
-        int selectedIndex = InputView.getShipSelection(army.size());
+        int selectedIndex = InputView.getShipSelection(army.size() + 1);
         makeTurn.selectShip(selectedIndex);
     }
 
@@ -47,9 +48,11 @@ private MakeTurn makeTurn;
         for (int i = 0; i < actions.size(); i++) {
             Action action = actions.get(i);
             System.out.println(i + ": " + action.toString());
+            
         }
+        System.out.println(actions.size() + ": torna selezione nave");
 
-        int selectedIndex = InputView.getActionSelection(actions.size());
+        int selectedIndex = InputView.getActionSelection(actions.size() + 1);
         makeTurn.selectAction(selectedIndex);
     }
 
