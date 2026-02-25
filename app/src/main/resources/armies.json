@@ -28,10 +28,6 @@
                             "subType": "OneZoneMove",
                             "name": "OneZoneMove",
                             "description": "move one zone",
-                            "shape": {
-                                "type": "Circle",
-                                "radius": 1
-                            },
                             "range": {
                                 "type": "Circle",
                                 "radius": 1
@@ -82,10 +78,6 @@
                             "subType": "OneZoneMove",
                             "name": "OneZoneMove",
                             "description": "move one zone",
-                            "shape": {
-                                "type": "Circle",
-                                "radius": 1
-                            },
                             "range": {
                                 "type": "Circle",
                                 "radius": 1
@@ -137,10 +129,6 @@
                             "subType": "OneZoneMove",
                             "name": "OneZoneMove",
                             "description": "move one zone",
-                            "shape": {
-                                "type": "Circle",
-                                "radius": 1
-                            },
                             "range": {
                                 "type": "Circle",
                                 "radius": 1

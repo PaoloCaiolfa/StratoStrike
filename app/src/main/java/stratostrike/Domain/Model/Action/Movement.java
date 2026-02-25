@@ -27,17 +27,17 @@ import stratostrike.Domain.Model.validate.ValidationResult;
 public abstract class Movement implements Action {
     protected String name;
     protected String description;
-    protected Shape shape;
+    protected Shape range;
     protected ArrayList<Validate> validators;
 
     protected Movement() {
     this.validators = new ArrayList<>();
     }
 
-    public Movement(String name, String description, Shape shape, ArrayList<Validate> validators) {
+    public Movement(String name, String description, Shape range, ArrayList<Validate> validators) {
         this.name = name;
         this.description = description;
-        this.shape = shape;
+        this.range = range;
         this.validators = validators;
     }
     
@@ -63,22 +63,19 @@ public abstract class Movement implements Action {
         // Default implementation (can be overridden by subclasses)
     }
 
+    // It doesn't use shape in movement
     @Override
     public Shape getShape() {
-        return shape;
+        return null;
     }
-
-    public void setShape(Shape shape) {
-        this.shape = shape;
-    }
-
+    
     @Override
     public Shape getRange() {
-        return shape;
+        return range;
     }
 
     public void setRange(Shape range) {
-        this.shape = range;
+        this.range = range;
     }
 
     public ArrayList<Validate> getValidators() {
@@ -89,6 +86,7 @@ public abstract class Movement implements Action {
         this.validators = validators;
     }
 
+    @Override
     public ValidationResult isValidTarget(Context context) {
         for (Validate v : validators) {
             ValidationResult result = v.validate(context);
@@ -100,12 +98,12 @@ public abstract class Movement implements Action {
     }
 
 
-     @Override
+    @Override
     public String getDetails() {
         StringBuilder details = new StringBuilder();
         details.append("         Descrizione: ").append(description).append("\n");
-        if (shape != null && shape instanceof Circle) {
-            Circle circle = (Circle) shape;
+        if (range != null && range instanceof Circle) {
+            Circle circle = (Circle) range;
             details.append("         Raggio: ").append(circle.getRadius());
         }
         return details.toString();

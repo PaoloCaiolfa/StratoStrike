@@ -1,17 +1,16 @@
 package stratostrike.Domain.Model.Action;
 
+import java.util.ArrayList;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import stratostrike.Domain.Model.Board;
 import stratostrike.Domain.Model.Circle;
-import stratostrike.Domain.Model.Position;
-import stratostrike.Domain.Model.Shape;
-import stratostrike.Domain.Model.Army.StratoShip;
-import stratostrike.Domain.Model.validate.*;
-import java.util.ArrayList;
 import stratostrike.Domain.Model.Context;
+import stratostrike.Domain.Model.Shape;
+import stratostrike.Domain.Model.validate.Validate;
+import stratostrike.Domain.Model.validate.ValidationResult;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonTypeInfo(
@@ -58,6 +57,7 @@ public abstract class SpecialAbility implements Action {
         this.description = description;
     }
 
+    @Override
     public Shape getShape() {
         return shape;
     }
@@ -73,6 +73,7 @@ public abstract class SpecialAbility implements Action {
         this.validators = validators;
     }
 
+    @Override
     public ValidationResult isValidTarget(Context context) {
         for (Validate v : validators) {
             ValidationResult result = v.validate(context);
@@ -87,8 +88,6 @@ public abstract class SpecialAbility implements Action {
     public void doAction(Context context) {
         // Default implementation (can be overridden by subclasses)
     }
-
-
 
     @Override
     public Shape getRange() {

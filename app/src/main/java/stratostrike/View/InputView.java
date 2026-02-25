@@ -2,22 +2,21 @@
 package stratostrike.View;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-import stratostrike.Settings;
-import stratostrike.Domain.Model.Board;
+
 import stratostrike.Domain.Model.Army.Army;
-import stratostrike.Domain.Model.Army.StratoShip;
 import stratostrike.Domain.Model.Army.Factory.ArmyFactory;
 import stratostrike.Domain.Model.Army.Factory.ArmyManager;
+import stratostrike.Domain.Model.Army.StratoShip;
+import stratostrike.Settings;
 
 public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static int getShipSelection(int maxIndex) {
+    public static int getShipSelection(int size) {
         int selection = -1;
-
+        int maxIndex = size - 1;
         while (selection < 0 || selection > maxIndex) {
             System.out.print("\nInserisci l'ID della nave da selezionare (0-" + maxIndex + "): ");
 
