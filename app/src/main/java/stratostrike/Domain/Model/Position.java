@@ -75,4 +75,12 @@ public class Position {
     }
 
 
+    public boolean isOccupied() {
+        if (this.ship != null) {
+            return true;
+        }
+        return false;
+    }
+
+
 }
