@@ -71,6 +71,7 @@ public abstract class Capability implements Action {
         this.shape = shape;
     }
 
+    @Override
     public Shape getRange() {
         return range;
     }

@@ -1,12 +1,9 @@
 package stratostrike.View;
 
 
-import stratostrike.GameEvent;
 import stratostrike.Controller.MakeTurn;
 import stratostrike.Domain.Model.Observer;
-
-
-
+import stratostrike.GameEvent;
 
 public class OutputView implements Observer {
 

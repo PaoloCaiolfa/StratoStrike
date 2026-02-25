@@ -4,12 +4,11 @@ import stratostrike.Domain.Model.*;
 import stratostrike.Domain.Model.Army.*;
 import stratostrike.Settings;
 import stratostrike.Controller.MakeTurn;
-
 import java.util.ArrayList;
 
 public class BoardView {
 
-private MakeTurn makeTurn;
+    private MakeTurn makeTurn;
 
     public BoardView(MakeTurn makeTurn) {
         this.makeTurn = makeTurn;

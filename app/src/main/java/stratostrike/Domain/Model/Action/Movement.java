@@ -41,7 +41,7 @@ public abstract class Movement implements Action {
         this.shape = shape;
         this.validators = validators;
     }
-
+    
     @Override
     public String getName() {
         return name;

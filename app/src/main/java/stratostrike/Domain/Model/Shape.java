@@ -11,7 +11,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
     property = "type" 
 )
 @JsonSubTypes({
-    @JsonSubTypes.Type(value = Circle.class, name = "Circle")
+    @JsonSubTypes.Type(value = Circle.class, name = "Circle"),
+    @JsonSubTypes.Type(value = Cross.class, name = "Cross")
 })
 
 public interface Shape {
