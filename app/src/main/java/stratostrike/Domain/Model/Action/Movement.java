@@ -1,17 +1,16 @@
 package stratostrike.Domain.Model.Action;
 
+import java.util.ArrayList;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-
 import stratostrike.Domain.Model.Circle;
-
-import stratostrike.Domain.Model.Shape;
-
-import stratostrike.Domain.Model.validate.*;
-import java.util.ArrayList;
 import stratostrike.Domain.Model.Context;
+import stratostrike.Domain.Model.Shape;
+import stratostrike.Domain.Model.validate.Validate;
+import stratostrike.Domain.Model.validate.ValidationResult;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)

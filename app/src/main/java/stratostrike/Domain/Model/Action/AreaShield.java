@@ -11,6 +11,7 @@ import stratostrike.Domain.Model.Shape;
 import stratostrike.Domain.Model.validate.Validate;
 
 
+
 public class AreaShield extends Capability {
 
     private int protection; //quantità di protezione
