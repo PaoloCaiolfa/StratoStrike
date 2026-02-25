@@ -1,5 +1,7 @@
 package stratostrike.Domain.Model;
 
+import java.util.ArrayList;
+
 import stratostrike.GameEvent;
 
 public class StratoCraftGame {
@@ -47,6 +49,7 @@ public class StratoCraftGame {
     }
 
     public void setCurrentEvent(GameEvent currentEvent) {
+        context.setAreaEffect(new ArrayList<>());
         this.currentEvent = currentEvent;
     }
 

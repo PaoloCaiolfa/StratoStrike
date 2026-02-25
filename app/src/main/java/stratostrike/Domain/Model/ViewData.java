@@ -1,5 +1,6 @@
 package stratostrike.Domain.Model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -86,7 +87,9 @@ public class ViewData {
     }
 
     public ArrayList<Position> getAreaEffect() {
-        return areaEffect;
+        ArrayList<Position> areaEffectCopy = new ArrayList<>(areaEffect);
+        areaEffect.clear(); 
+        return areaEffectCopy;
     }
 
     public void setAreaEffect(ArrayList<Position> areaEffect) {
