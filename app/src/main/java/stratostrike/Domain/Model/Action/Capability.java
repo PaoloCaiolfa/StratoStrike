@@ -87,6 +87,7 @@ public abstract class Capability implements Action {
         this.validators = validators;
     }
 
+    @Override
     public ValidationResult isValidTarget(Context context) {
         for (Validate v : validators) {
             ValidationResult result = v.validate(context);

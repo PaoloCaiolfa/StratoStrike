@@ -38,5 +38,6 @@ public interface Action {
 
     String getDetails();
 
+    @Override
     String toString();
 }

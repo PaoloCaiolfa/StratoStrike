@@ -1,8 +1,6 @@
 package stratostrike.Domain.Model.Action;
 
 import java.util.ArrayList;
-
-import stratostrike.Domain.Model.Board;
 import stratostrike.Domain.Model.Circle;
 import stratostrike.Domain.Model.Context;
 import stratostrike.Domain.Model.Shape;
