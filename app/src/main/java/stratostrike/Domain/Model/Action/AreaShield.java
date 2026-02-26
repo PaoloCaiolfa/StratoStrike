@@ -2,10 +2,13 @@ package stratostrike.Domain.Model.Action;
 
 import java.util.ArrayList;
 
+import stratostrike.Domain.Model.Board;
 import stratostrike.Domain.Model.Circle;
 import stratostrike.Domain.Model.Context;
 import stratostrike.Domain.Model.Shape;
+import stratostrike.Domain.Model.Army.StratoShip;
 import stratostrike.Domain.Model.validate.Validate;
+import stratostrike.Domain.Model.Position;
 
 
 
@@ -29,8 +32,20 @@ public class AreaShield extends Capability {
 
     @Override
     public void doAction(Context context) {
+        Position target = context.getTargetPosition();
+        System.out.println("Scudo attivato! Protezione fornita: " + protection);
+        int friendlyShipsID = context.getCurrentPlayer().getArmy().getIdArmy();
+        ArrayList<Position> coveredPositions = shape.getCoveredCordinates(target); //ottenere le posizioni coperte dalla shape 
 
+        for (Position pos: coveredPositions) {
+            StratoShip ship = pos.getShip();
+            if (ship != null && ship.getIdArmy() == friendlyShipsID && ship.isDestroyed() == false) {
+                ship.repair(protection);
+                    System.out.println("La nave " + ship.getName() + " ha ricevuto protezione! HP attuali: " + ship.getHp());
+            }
+        }
     }
+    
     
     @Override
     public Shape getShape() {

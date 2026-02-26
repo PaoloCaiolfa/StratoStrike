@@ -2,7 +2,8 @@ package stratostrike.Domain.Model;
 import java.util.ArrayList;
 import java.util.List;
 
-import stratostrike.Domain.Model.Army.*;
+import stratostrike.Domain.Model.Army.Army;
+import stratostrike.Domain.Model.Army.StratoShip;
 
 public class Board {
     private final int width;

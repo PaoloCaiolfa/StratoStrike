@@ -1,12 +1,12 @@
 package stratostrike.Domain.Model.Army;
 
+import java.util.ArrayList;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import stratostrike.Domain.Model.Action.Action;
-
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import java.util.ArrayList;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 
@@ -61,6 +61,10 @@ public abstract class StratoShip {
             this.hp = (this.hp - damage);
         else if (damage > this.hp)
             this.hp = 0;
+    }
+
+    public void repair(int amount) {
+        this.hp = this.hp + amount;
     }
 
     public ArrayList<Action> getActions() {
