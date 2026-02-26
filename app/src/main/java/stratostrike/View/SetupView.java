@@ -25,11 +25,6 @@ public class SetupView implements Observer {
         selectionView.askForArmy();
 
 
-
-
-
-
-        
      
     }
 

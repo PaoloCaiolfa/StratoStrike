@@ -18,6 +18,11 @@ public class Army {
         this.idArmy = idArmy;
     }
 
+    public Army(String name, ArrayList<StratoShip> ships) {
+        this.ships = ships;
+        this.name = name;
+    }
+
     public void addShip(StratoShip ship) {
         ships.add(ship);
         ship.setIdArmy(this.idArmy);

@@ -50,7 +50,7 @@ public class CyberArmyFactory implements ArmyFactory {
     }
 
     @Override
-    public Army createArmy() {
+    public Army createArmy(String armyName) {
         Army cyberArmy = new Army("CYBER",1);
         for (StratoShip p : prototipi) {
             cyberArmy.addShip(p.cloneShip());

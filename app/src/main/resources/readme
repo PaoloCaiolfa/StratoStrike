@@ -1,1 +1,9 @@
 modalitas gioco con straety a tempo e armi distrutte
+
+
+
+
+ShipTemplateLoader loader = ShipTemplateLoader.getInstance();
+Map<String, StratoShip> templates = loader.loadTemplates();
+
+ShipRegistry registry = new ShipRegistry(templates);

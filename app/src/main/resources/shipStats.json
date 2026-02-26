@@ -1,0 +1,53 @@
+{
+  "ships": [
+    {
+        "type": "Fighter",
+        "name": "F-35",
+        "hp": 100,
+        "actions": [
+            {
+                "type": "Capability",
+                "subType": "PointAttack",
+                "name": "PointAttack",
+                "description": "attack one zone",
+                "damage": 25,
+                "shape": {
+                    "type": "Circle",
+                    "radius": 1
+                },
+                "range": {
+                    "type": "Circle",
+                    "radius": 5
+                },
+                "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
+            },
+            {
+                "type": "Movement",
+                "subType": "OneZoneMove",
+                "name": "OneZoneMove",
+                "description": "move one zone",
+                "range": {
+                    "type": "Circle",
+                    "radius": 1
+                },
+                "validators":[{"type":"validateHigh"},{"type":"validatePosition"},{"type":"validateRange"}]
+            },
+            {
+                "type": "SpecialAbility",
+                "subType": "DoubleAttack",
+                "name": "DoubleAttack",
+                "description": "attack two zones",
+                "shape": {
+                    "type": "Circle",
+                    "radius": 1
+                },
+                "range": {
+                    "type": "Circle",
+                    "radius": 5
+                },
+                "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
+            }
+        ]
+    }
+]
+}

@@ -1,0 +1,17 @@
+{
+    "armies": [
+        {
+            "name": "HUMEN",
+            "ships": ["fighter", "satellite"]
+        },
+    {
+        "name": "ALIEN",
+        "ships": ["fighter", "satellite"]
+    },
+    {
+        "name": "ARMATA DI FEDERICO",
+        "ships": ["fighter", "satellite"]
+    }
+
+]
+}

@@ -42,8 +42,8 @@ public class HumanArmyFactory implements ArmyFactory{
     }
 
     @Override
-    public Army createArmy() {
-        Army humanArmy = new Army("HUMAN",0);
+    public Army createArmy(String armyName) {
+        Army humanArmy = new Army(armyName,0);
         for (StratoShip p : prototipi) {
             humanArmy.addShip(p.cloneShip());
         }
