@@ -2,16 +2,16 @@
     "armies": [
     {
         "name": "ARMATA DI GIOVANNI",
-        "ships": ["fighter", "satellite"]
+        "ships": ["F-35", "F-35", "F-35", "F-35", "F-35"]
     },
     {
         "name": "GIOVANNI DI ARMATA",
-        "ships": ["fighter", "satellite"]
+        "ships": ["F-35", "F-35", "F-35", "F-35", "F-35"]
     },
     {
         "name": "ARMATA DI FEDERICO",
-        "ships": ["fighter", "satellite"]
+        "ships": ["F-35", "F-35", "F-35", "F-35", "F-35"]
     }
 
-]
+    ]
 }

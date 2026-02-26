@@ -20,6 +20,10 @@ public class CustomArmyFactory implements ArmyFactory {
         this.loader = CustomArmyLoader.getInstance();
     }
 
+    public static CustomArmyFactory getInstance() {
+        return new CustomArmyFactory(ShipRegistry.getInstance(), CustomArmyLoader.getInstance());
+    }
+
     @Override
     public Army createArmy(String armyName) {
        ArrayList<StratoShip> ships = new ArrayList<>();
