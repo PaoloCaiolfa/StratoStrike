@@ -1,7 +1,6 @@
 package stratostrike.Domain.Model.Action;
 
 import stratostrike.Domain.Model.*;
-import stratostrike.Domain.Model.Army.*;
 import java.util.ArrayList;
 import stratostrike.Domain.Model.validate.*;
 
@@ -25,9 +24,8 @@ public class PointAttack extends Capability {
 
     @Override
     public void doAction(Context context) {
-        Board board = context.getBoard();
         Position target = context.getTargetPosition();
-        StratoShip actor = context.getSelectedShip();
+
         System.out.println("Attacco riuscito! Danno inflitto: " + damage);
         if (target.getShip() != null) {
             target.getShip().changeStatus(damage);

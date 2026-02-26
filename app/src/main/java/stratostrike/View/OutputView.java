@@ -20,7 +20,7 @@ public class OutputView implements Observer {
         this.makeTurn = makeTurn;
         this.setupArmy = setupArmy;
         makeTurn.addObserver(this);
-        this.boardView = new BoardView(makeTurn);
+        this.boardView = new BoardView();
         this.selectionView = new SelectionView(makeTurn, setupArmy);
     }
 

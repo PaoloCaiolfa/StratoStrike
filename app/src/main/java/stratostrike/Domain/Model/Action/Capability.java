@@ -2,11 +2,8 @@ package stratostrike.Domain.Model.Action;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import stratostrike.Domain.Model.Board;
 import stratostrike.Domain.Model.Context;
-import stratostrike.Domain.Model.Position;
 import stratostrike.Domain.Model.Shape;
-import stratostrike.Domain.Model.Army.StratoShip;
 import stratostrike.Domain.Model.validate.*;
 
 import java.util.ArrayList;

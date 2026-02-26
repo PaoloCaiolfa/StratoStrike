@@ -1,7 +1,6 @@
 package stratostrike.Domain.Model;
 import java.util.ArrayList;
 
-import stratostrike.Domain.Model.*;
 import stratostrike.Domain.Model.Action.*;
 import stratostrike.Domain.Model.Army.*;
 

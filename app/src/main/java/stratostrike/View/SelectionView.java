@@ -2,15 +2,12 @@ package stratostrike.View;
 
 import stratostrike.Domain.Model.Action.*;
 import stratostrike.Domain.Model.Army.*;
-import stratostrike.Domain.Model.Position;
-import stratostrike.Domain.Model.*;
 import stratostrike.Settings;
 import stratostrike.Controller.MakeTurn;
 import stratostrike.Controller.SetupArmy;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+
 
 
 public class SelectionView {

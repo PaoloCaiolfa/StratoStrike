@@ -2,13 +2,9 @@ package stratostrike.Domain.Model.Army.Registry;
 
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Map;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.base.Strings;
 
-import stratostrike.Domain.Model.Army.StratoShip;
 
 public class CustomArmyLoader {
 

@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import stratostrike.Domain.Model.Army.Army;
-import stratostrike.Domain.Model.Army.Factory.ArmyFactory;
-import stratostrike.Domain.Model.Army.Factory.ArmyManager;
 import stratostrike.Domain.Model.Army.StratoShip;
 import stratostrike.Settings;
 

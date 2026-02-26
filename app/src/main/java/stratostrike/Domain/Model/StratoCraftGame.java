@@ -1,6 +1,5 @@
 package stratostrike.Domain.Model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import stratostrike.GameEvent;
