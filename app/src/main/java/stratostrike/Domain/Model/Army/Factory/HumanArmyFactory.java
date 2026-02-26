@@ -8,14 +8,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import stratostrike.Domain.Model.Army.Army;
 import stratostrike.Domain.Model.Army.StratoShip;
+import stratostrike.Domain.Model.Army.Registry.ShipRegistry;
 
 public class HumanArmyFactory implements ArmyFactory{
     
     private static HumanArmyFactory instance;
+
+    private ShipRegistry shipRegistry;
+
     private ArrayList<StratoShip> prototipi = new ArrayList<>(); 
 
     private HumanArmyFactory() {
-        uploadConfiguration();
+        shipRegistry= ShipRegistry.getInstance();
     }
 
     public static HumanArmyFactory getInstance() {
@@ -23,38 +27,18 @@ public class HumanArmyFactory implements ArmyFactory{
         return instance;
     }
 
-    private void uploadConfiguration() {
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            InputStream is = getClass().getClassLoader().getResourceAsStream("armies.json");
-            JsonNode root = mapper.readTree(is);
-            JsonNode human = root.get("HUMAN").get(0);
-
-            ArrayList<StratoShip> cielo = mapper.readerForListOf(StratoShip.class).readValue(human.get("cielo"));
-            ArrayList<StratoShip> spazio = mapper.readerForListOf(StratoShip.class).readValue(human.get("spazio"));
-
-            this.prototipi.clear();
-            prototipi.addAll(cielo);
-            prototipi.addAll(spazio);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public Army createArmy(String armyName) {
+        prototipi.clear();
+        prototipi.add(shipRegistry.get("F-35"));
+        prototipi.add(shipRegistry.get("F-35"));
+        // qui non ci vanno prototipi hardcoded, ma metteremo dentro in base ad una logica specifica
+
+
         Army humanArmy = new Army(armyName,0);
         for (StratoShip p : prototipi) {
             humanArmy.addShip(p.cloneShip());
         }
         return humanArmy;
-    }
-
-    public ArrayList<StratoShip> getPrototipi() {
-        return prototipi;
-    }
-
-    public void setPrototipi(ArrayList<StratoShip> prototipi) {
-        this.prototipi = prototipi;
     }
 }

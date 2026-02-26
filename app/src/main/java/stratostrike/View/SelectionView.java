@@ -71,7 +71,7 @@ private SetupArmy setupArmy;
     }
 
     public void askForArmy() {
-        int selectedArmy = InputView.selectArmy();
+        int selectedArmy = InputView.selectArmy(Settings.ArmyTipology.size() + setupArmy.getArmyNames().size() - 2);
         setupArmy.selectArmy(selectedArmy);
         
     }

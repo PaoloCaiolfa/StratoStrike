@@ -53,5 +53,29 @@ public class CustomArmyLoader {
             throw new RuntimeException("Errore durante il caricamento dei template delle navi", e);
         }
     }
+
+    public ArrayList<String> getArmyName() {
+        try (InputStream is = getClass()
+                .getClassLoader()
+                .getResourceAsStream("armyConfig.json")) {
+
+            ObjectMapper mapper = new ObjectMapper();
+
+            JsonNode root = mapper.readTree(is);
+            JsonNode armiesNode = root.get("armies");
+
+            // Deserializziamo la lista di navi
+            ArrayList<String> armyNames = new ArrayList<>();
+
+            for (JsonNode armyNode : armiesNode) {
+                armyNames.add(armyNode.get("name").asText());
+            }
+
+            return armyNames;
+
+        } catch (Exception e) {
+            throw new RuntimeException("Errore durante il caricamento dei template delle navi", e);
+        }
+    }
     
 }

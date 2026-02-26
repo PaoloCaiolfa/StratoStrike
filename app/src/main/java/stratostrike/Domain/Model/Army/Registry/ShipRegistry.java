@@ -17,6 +17,7 @@ public class ShipRegistry {
     public static ShipRegistry getInstance() {
         if (instance == null) {
             instance = new ShipRegistry(ShipTemplateLoader.getInstance().loadTemplates());
+            System.out.println("ShipRegistry initialized with templates: " + instance.shipTemplates.keySet());
         }
         return instance;
     }

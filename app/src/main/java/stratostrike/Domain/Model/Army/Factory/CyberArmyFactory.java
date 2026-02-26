@@ -8,14 +8,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import stratostrike.Domain.Model.Army.Army;
 import stratostrike.Domain.Model.Army.StratoShip;
+import stratostrike.Domain.Model.Army.Registry.ShipRegistry;
 
 public class CyberArmyFactory implements ArmyFactory {
     
     private static CyberArmyFactory instance;
+
+    private ShipRegistry shipRegistry;
     private ArrayList<StratoShip> prototipi = new ArrayList<>(); 
 
     private CyberArmyFactory() {
-        uploadConfiguration();
+        shipRegistry= ShipRegistry.getInstance();
     }
 
     public static CyberArmyFactory getInstance() {
@@ -23,48 +26,20 @@ public class CyberArmyFactory implements ArmyFactory {
         return instance;
     }
 
-    private void uploadConfiguration() {
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            InputStream is = getClass().getClassLoader().getResourceAsStream("armies.json");
-            JsonNode root = mapper.readTree(is);
-            JsonNode cyber = root.get("CYBER");
-
-            // Deserializziamo i veicoli cielo (SkyShip) e spazio (SpaceShip)
-            // Jackson userà i tag @JsonSubTypes che ci sono in StratoShip
-            if (cyber != null && cyber.isArray()) {
-            JsonNode firstElement = cyber.get(0);
-
-            ArrayList<StratoShip> cielo = mapper.readerForListOf(StratoShip.class)
-                                                .readValue(firstElement.get("cielo"));
-            ArrayList<StratoShip> spazio = mapper.readerForListOf(StratoShip.class)
-                                                 .readValue(firstElement.get("spazio"));
-
-            this.prototipi.clear();
-            this.prototipi.addAll(cielo);
-            this.prototipi.addAll(spazio);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public Army createArmy(String armyName) {
-        Army cyberArmy = new Army("CYBER",1);
+        prototipi.clear();
+        prototipi.add(shipRegistry.get("Fighter"));
+        prototipi.add(shipRegistry.get("Satellite"));
+        prototipi.add(shipRegistry.get("Satellite"));
+        // qui non ci vanno prototipi hardcoded, ma metteremo dentro in base ad una logica specifica
+
+
+        Army humanArmy = new Army(armyName,0);
         for (StratoShip p : prototipi) {
-            cyberArmy.addShip(p.cloneShip());
+            humanArmy.addShip(p.cloneShip());
         }
-        return cyberArmy;
+        return humanArmy;
     }
-
-    public ArrayList<StratoShip> getPrototipi() {
-        return prototipi;
-    }
-
-    public void setPrototipi(ArrayList<StratoShip> prototipi) {
-        this.prototipi = prototipi;
-    }
-
 
 }

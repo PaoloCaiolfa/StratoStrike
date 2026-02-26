@@ -1,6 +1,7 @@
 package stratostrike.View;
 
-import stratostrike.Domain.Model.Observer; 
+import stratostrike.Domain.Model.Observer;
+import stratostrike.Settings;
 import stratostrike.Controller.SetupArmy; 
 
 
@@ -22,10 +23,17 @@ public class SetupView implements Observer {
     public void update() {
 
         System.out.println("Seleziona l'armata per il giocatore " + setupArmy.getPlayerUsername());
-        selectionView.askForArmy();
 
+        System.out.println("=== SELEZIONE ARMATA ===");
+        System.out.println("Scegli la fazione desiderata:");
+        for (String el : Settings.ArmyTipology) {
+            System.out.println((Settings.ArmyTipology.indexOf(el)) + ": " + el);
+        }
+        for (String el : setupArmy.getArmyNames()) {
+            System.out.println((setupArmy.getArmyNames().indexOf(el) + Settings.ArmyTipology.size()) + ": " + el);
+        }
 
-     
+        selectionView.askForArmy();     
     }
 
 

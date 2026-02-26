@@ -5,9 +5,10 @@ import stratostrike.Domain.Model.Army.*;
 import stratostrike.Domain.Model.Army.Factory.ArmyFactory;
 import stratostrike.Domain.Model.StratoCraftGame;
 import stratostrike.Domain.Model.Army.Factory.ArmyManager;
+import stratostrike.Domain.Model.Army.Registry.CustomArmyLoader;
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 import stratostrike.Settings;
 
@@ -17,10 +18,12 @@ import stratostrike.Settings;
 public class SetupArmy  {
 
      private StratoCraftGame game;
+     private ArrayList<String> armyNames = new ArrayList<>();
      private ArrayList<Observer> observers = new ArrayList<>();
 
     public SetupArmy(StratoCraftGame game) {
         this.game = game;
+        this.armyNames = CustomArmyLoader.getInstance().getArmyName();
     }
 
     public void addObserver(Observer observer) {
@@ -32,9 +35,6 @@ public class SetupArmy  {
             observer.update();
         }
     }   
-
-
-
 
     public void selectionForAllPlayer() {
         for (Player player : game.getPlayers()) {
@@ -48,27 +48,28 @@ public class SetupArmy  {
         return game;
     }
 
+    public List<String> getArmyNames() {
+        return armyNames;
+    }
+
     public String getPlayerUsername() {
         return game.getContext().getCurrentPlayer().getUsername();
     }
    
-
-
-
     public void selectArmy(int value) {
-        String factoryName = Settings.ArmyTipology.get(value);
-        ArmyFactory factory = ArmyManager.getFactory(factoryName);
-        Army army1 = factory.createArmy();
-        game.getContext().getCurrentPlayer().setArmy(army1);
-        game.getBoard().setupRandomArmyPlacement(army1);
+        if (value < Settings.ArmyTipology.size()) {
+            String factoryName = Settings.ArmyTipology.get(value);
+            ArmyFactory factory = ArmyManager.getFactory(factoryName);
+            Army army1 = factory.createArmy(factoryName);
+            game.getContext().getCurrentPlayer().setArmy(army1);
+            game.getBoard().setupRandomArmyPlacement(army1);
+        } else {
+            ArmyFactory factory = ArmyManager.getFactory("CUSTOM");
+            Army customArmy = factory.createArmy(armyNames.get(value - Settings.ArmyTipology.size()));
+            game.getContext().getCurrentPlayer().setArmy(customArmy);
+            game.getBoard().setupRandomArmyPlacement(customArmy);
+        }
+
     }
 
-   
-    public void selectCustomArmy() {
-        
-    }
-
-    
-
-
- }
+}

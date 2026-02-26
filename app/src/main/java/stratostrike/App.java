@@ -3,15 +3,7 @@
  */
 package stratostrike;
 
-import stratostrike.Controller.LoopingTurn;
-import stratostrike.Controller.MakeTurn;
-import stratostrike.Domain.Model.Player;
-import stratostrike.Domain.Model.StratoCraftGame;
-import stratostrike.Domain.Model.Army.Army;
-import stratostrike.Domain.Model.Army.Factory.ArmyFactory;
-import stratostrike.Domain.Model.Army.Factory.ArmyManager;
-import stratostrike.View.*;
-import stratostrike.Controller.SetupArmy;
+import stratostrike.Controller.GameLauncher;
 
 
 public class App {
@@ -20,6 +12,11 @@ public class App {
     }
 
     public static void main(String[] args) {
+
+        GameLauncher launcher = new GameLauncher();
+        launcher.launchGame();
+
+        /* 
         
         //insitnziazione giocatori e navi e attacchi
         Player player1 = new Player("Player1",0);
@@ -33,7 +30,7 @@ public class App {
                 + " Stratostrike Game!");
 
                 
-        /*     CODICE PER TESTARE IL TURNO
+           CODICE PER TESTARE IL TURNO
         //aggiunta navi all'armata
         Fighter fighter = new Fighter();
         
@@ -89,12 +86,12 @@ public class App {
         turn.executeAction();
         
 
-        */
+        
 
 
         //CODICE PER TESTARE LA VIEW
-         LoopingTurn turn = new LoopingTurn(game);
-         SetupArmy setupArmy = new SetupArmy(game);
+        LoopingTurn turn = new LoopingTurn(game);
+        SetupArmy setupArmy = new SetupArmy(game);
         SelectionView selection = new SelectionView(turn.getMakeTurn(),setupArmy);
         
         SetupView setupView = new SetupView(setupArmy,selection);
@@ -106,5 +103,7 @@ public class App {
         OutputView outputView = new OutputView(turn.getMakeTurn(),setupArmy ); //porcata
         
         turn.startMatch();
+
+        */
     }
 }

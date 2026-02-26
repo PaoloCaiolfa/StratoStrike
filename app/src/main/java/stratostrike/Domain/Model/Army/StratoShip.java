@@ -22,6 +22,7 @@ public abstract class StratoShip {
     public ArrayList<Action> actions;
     public int idArmy;
     
+    
     public StratoShip() {
         this.actions = new ArrayList<>();
     }

@@ -98,14 +98,8 @@ public class InputView {
     // CODICE PER TESTARE LE FACTORY
 
     // Metodo per scegliere l'armata
-    public static int selectArmy() {
-        System.out.println("=== SELEZIONE ARMATA ===");
-        System.out.println("Scegli la fazione desiderata:");
-        for (String el : Settings.ArmyTipology) {
-            System.out.println((Settings.ArmyTipology.indexOf(el)) + ": " + el);
-        }
-
-       int x=readValidInt(0, Settings.ArmyTipology.size() - 1); 
+    public static int selectArmy(int max) {
+       int x=readValidInt(0, max); 
        return x;    
     }
 

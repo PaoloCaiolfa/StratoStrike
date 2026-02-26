@@ -14,7 +14,7 @@ public class Settings {
     // Selection of the types of armies available in the game
     public static final List<String> ArmyTipology = List.of(new String[] {
         "HUMAN",
-        "CYBER"
+        "CYBER",
     });
 
     // Settings for the color of the ships on the board

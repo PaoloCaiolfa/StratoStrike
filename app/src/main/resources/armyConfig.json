@@ -1,11 +1,11 @@
 {
     "armies": [
-        {
-            "name": "HUMEN",
-            "ships": ["fighter", "satellite"]
-        },
     {
-        "name": "ALIEN",
+        "name": "ARMATA DI GIOVANNI",
+        "ships": ["fighter", "satellite"]
+    },
+    {
+        "name": "GIOVANNI DI ARMATA",
         "ships": ["fighter", "satellite"]
     },
     {
