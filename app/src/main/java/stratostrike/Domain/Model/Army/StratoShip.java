@@ -2,6 +2,7 @@ package stratostrike.Domain.Model.Army;
 
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -19,7 +20,11 @@ import stratostrike.Domain.Model.Action.Action;
 public abstract class StratoShip {
     public String name;
     public int hp;
-    public ArrayList<Action> actions;
+    public ArrayList<String> actionsNames; // For deserialization only
+
+    @JsonIgnore
+    public ArrayList<Action> actions; // This will be populated after deserialization using the action names and the ActionRegistry
+
     public int idArmy;
     
     
@@ -31,6 +36,7 @@ public abstract class StratoShip {
         this.name = name;
         this.hp = hp;
         this.actions = new ArrayList<>();
+        this.actionsNames = new ArrayList<>();
         this.idArmy = -1;
     }
 
@@ -84,6 +90,21 @@ public abstract class StratoShip {
     }
     public int getIdArmy() {
         return idArmy;
+    }
+
+    public ArrayList<String> getActionsNames() {
+        return actionsNames;
+    }
+
+    public void addActionName(String actionName) {
+        if (this.actionsNames == null) {
+            this.actionsNames = new ArrayList<>();
+        }
+        this.actionsNames.add(actionName);
+    }
+
+    public void setActionsNames(ArrayList<String> actionsNames) {
+        this.actionsNames = actionsNames;
     }
 
     public String toString() {

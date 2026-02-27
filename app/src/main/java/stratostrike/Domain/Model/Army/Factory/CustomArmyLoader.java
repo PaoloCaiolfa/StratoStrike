@@ -1,4 +1,4 @@
-package stratostrike.Domain.Model.Army.Registry;
+package stratostrike.Domain.Model.Army.Factory;
 
 import java.io.InputStream;
 import java.util.ArrayList;

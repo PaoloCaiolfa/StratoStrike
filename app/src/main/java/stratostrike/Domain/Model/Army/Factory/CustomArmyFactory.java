@@ -5,7 +5,6 @@ import java.util.List;
 
 import stratostrike.Domain.Model.Army.Army;
 import stratostrike.Domain.Model.Army.StratoShip;
-import stratostrike.Domain.Model.Army.Registry.CustomArmyLoader;
 import stratostrike.Domain.Model.Army.Registry.ShipRegistry;
 
 public class CustomArmyFactory implements ArmyFactory {

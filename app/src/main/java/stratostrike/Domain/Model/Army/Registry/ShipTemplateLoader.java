@@ -27,7 +27,7 @@ public class ShipTemplateLoader {
     public Map<String, StratoShip> loadTemplates() {
         try (InputStream is = getClass()
                 .getClassLoader()
-                .getResourceAsStream("shipStats.json")) {
+                .getResourceAsStream("shipsConfig.json")) {
 
             ObjectMapper mapper = new ObjectMapper();
 

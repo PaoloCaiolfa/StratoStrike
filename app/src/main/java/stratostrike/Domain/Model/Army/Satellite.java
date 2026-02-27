@@ -1,22 +1,30 @@
 package stratostrike.Domain.Model.Army;
 
-import stratostrike.Domain.Model.Action.Action;
+import java.util.ArrayList;
 
 public class Satellite extends SpaceShip {
 
     public Satellite() {}
 
+    public Satellite(String name, int hp, int idArmy) {
+        this.name = name;
+        this.hp = hp;
+        this.idArmy = idArmy;
+    }
+
     @Override
     public StratoShip cloneShip() {
-        Satellite clone = new Satellite();
-        clone.setName(this.name);
-        clone.setHp(this.hp);
-        clone.setIdArmy(this.idArmy);
-        
-        // Clone actions
-        for (Action action : this.actions) {
-            clone.addAction(action.cloneAction());
-        }
+        Satellite clone = new Satellite(
+            this.name,
+            this.hp,
+            this.idArmy
+        );
+
+        clone.setActionsNames(
+            this.actionsNames != null 
+                ? new ArrayList<>(this.actionsNames) 
+                : new ArrayList<>()
+        );
         
         return clone;
     }

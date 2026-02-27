@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import stratostrike.Domain.Model.Army.Army;
+import stratostrike.Domain.Model.Army.SkyShip;
+import stratostrike.Domain.Model.Army.SpaceShip;
 import stratostrike.Domain.Model.Army.StratoShip;
 
 public class Board {
@@ -64,11 +66,21 @@ public class Board {
     public void setupRandomArmyPlacement(Army army) {
         for (StratoShip ship : army.getShips()) {
             int x, y, z;
+
+            // Posizionamento strategico in base al tipo di nave
+            if(ship instanceof SpaceShip) {
+                z = 1; // Posizioniamo le navi spaziali al livello 1
+            } else if (ship instanceof SkyShip) {
+                z = 0; // Posizioniamo le navi terrestri al livello 0
+            } else { 
+                z = (int) (Math.random() * levels); // Per altre navi, posizionamento casuale su qualsiasi livello
+            }
+
             do {
                 x = (int) (Math.random() * width);
                 y = (int) (Math.random() * length);
-                z = (int) (Math.random() * levels);
             } while (positions[x][y][z].getShip() != null); // Assicuriamoci che la posizione non sia già occupata
+            
             placeShip(ship, x, y, z);
         }
     }
