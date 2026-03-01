@@ -6,9 +6,10 @@ public class Satellite extends SpaceShip {
 
     public Satellite() {}
 
-    public Satellite(String name, int hp, int idArmy) {
+    public Satellite(String name, int hp, int weight, int idArmy) {
         this.name = name;
         this.hp = hp;
+        this.weight = weight;
         this.idArmy = idArmy;
     }
 
@@ -17,6 +18,7 @@ public class Satellite extends SpaceShip {
         Satellite clone = new Satellite(
             this.name,
             this.hp,
+            this.weight,
             this.idArmy
         );
 

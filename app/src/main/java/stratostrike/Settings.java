@@ -16,6 +16,8 @@ public class Settings {
         "HUMAN",
         "CYBER",
     });
+    public static final int MaxShipsWeightPerPlayer = 20;
+    public static final int MaxShipsNumberPerPlayer = 8;
 
     // Settings for the color of the ships on the board
     public static final String OPPONENT = "\u001B[31m"; // Rosso

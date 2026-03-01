@@ -6,9 +6,10 @@ public class Fighter extends SkyShip {
 
     public Fighter() {}
 
-    public Fighter(String name, int hp, int idArmy) {
+    public Fighter(String name, int hp, int weight, int idArmy) {
         this.name = name;
         this.hp = hp;
+        this.weight = weight;
         this.idArmy = idArmy;
     }
 
@@ -17,6 +18,7 @@ public class Fighter extends SkyShip {
         Fighter clone = new Fighter(
             this.name,
             this.hp,
+            this.weight,
             this.idArmy
         );
 

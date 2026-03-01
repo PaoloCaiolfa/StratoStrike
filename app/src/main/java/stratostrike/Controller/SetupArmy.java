@@ -10,6 +10,7 @@ import stratostrike.Domain.Model.Army.Factory.CustomArmyLoader;
 import java.util.ArrayList;
 import java.util.List;
 
+import stratostrike.GameEvent;
 import stratostrike.Settings;
 
 
@@ -18,8 +19,12 @@ import stratostrike.Settings;
 public class SetupArmy  {
 
      private StratoCraftGame game;
-     private ArrayList<String> armyNames = new ArrayList<>();
      private ArrayList<Observer> observers = new ArrayList<>();
+     
+     private ArrayList<String> armyNames = new ArrayList<>();
+     private ArrayList<String> selectedShipsForComposition = new ArrayList<>();
+     private int compositionShipWeight = 0;
+     
 
     public SetupArmy(StratoCraftGame game) {
         this.game = game;
@@ -48,7 +53,7 @@ public class SetupArmy  {
         return game;
     }
 
-    public List<String> getArmyNames() {
+    public ArrayList<String> getArmyNames() {
         return armyNames;
     }
 
@@ -57,19 +62,46 @@ public class SetupArmy  {
     }
    
     public void selectArmy(int value) {
-        if (value < Settings.ArmyTipology.size()) {
+        if (value == Settings.ArmyTipology.size() + armyNames.size()) {
+            game.setCurrentEvent(GameEvent.COMPOSE_ARMY);
+            notifyObservers();
+
+        } else if (value < Settings.ArmyTipology.size()) {
             String factoryName = Settings.ArmyTipology.get(value);
             ArmyFactory factory = ArmyManager.getFactory(factoryName);
             Army army1 = factory.createArmy(factoryName);
             game.getContext().getCurrentPlayer().setArmy(army1);
             game.getBoard().setupRandomArmyPlacement(army1);
-        } else {
+
+            game.setCurrentEvent(GameEvent.SELECT_SHIP);
+        }
+        else {
             ArmyFactory factory = ArmyManager.getFactory("CUSTOM");
             Army customArmy = factory.createArmy(armyNames.get(value - Settings.ArmyTipology.size()));
             game.getContext().getCurrentPlayer().setArmy(customArmy);
             game.getBoard().setupRandomArmyPlacement(customArmy);
-        }
 
+            game.setCurrentEvent(GameEvent.SELECT_SHIP);
+        }
+    }
+
+    public ArrayList<String> getAvailableStratoShips() {
+        return ArmyManager.getAvailableShipsToString();
+    }
+
+    public int getCompositionShipWeight() {
+        return compositionShipWeight;
+    }
+
+    public ArrayList<String> getSelectedShipsForComposition() {
+        return selectedShipsForComposition;
+    }
+
+    public void addShipToComposition(int selectedShip) {
+        selectedShipsForComposition.add(ArmyManager.getAvailableShipsNames().get(selectedShip));
+        compositionShipWeight = ArmyManager.calculateCompositionWeight(selectedShipsForComposition);
+
+        notifyObservers();
     }
 
 }

@@ -95,12 +95,6 @@ public class InputView {
 
     // CODICE PER TESTARE LE FACTORY
 
-    // Metodo per scegliere l'armata
-    public static int selectArmy(int max) {
-       int x=readValidInt(0, max); 
-       return x;    
-    }
-
     // Metodo per visualizzare i veicoli dell'armata creata
     public void stampaStatoArmata(Army armata) {
         System.out.println("\n--- COMPOSIZIONE ARMATA " + armata.getName() + " ---");

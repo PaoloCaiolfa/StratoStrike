@@ -1,5 +1,6 @@
 package stratostrike.Controller;
 
+import stratostrike.GameEvent;
 import stratostrike.Domain.Model.Player;
 import stratostrike.Domain.Model.StratoCraftGame;
 import stratostrike.View.OutputView;
@@ -21,6 +22,7 @@ public class GameLauncher {
 
         //creazione partita
         StratoCraftGame game = new StratoCraftGame(players);
+        game.setCurrentEvent(GameEvent.SELECT_ARMY);
         System.out.println("Welcome to " + game.getPlayer(0).getUsername() + " vs " + game.getPlayer(1).getUsername()
                 + " Stratostrike Game!");
 
@@ -35,7 +37,7 @@ public class GameLauncher {
         // Creo un'armata nemica e la metto sulla board per test
        
         setupArmy.selectionForAllPlayer();
-        turn.startMatch();
+        //turn.startMatch();
     }
     
 }

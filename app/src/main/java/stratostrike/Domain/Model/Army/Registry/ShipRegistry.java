@@ -42,5 +42,13 @@ public class ShipRegistry {
         }
         throw new IllegalArgumentException("Unknown ship type: " + shipType);
     }
+
+    public ArrayList<StratoShip> getAllShips() {
+        ArrayList<StratoShip> ships = new ArrayList<>();
+        for (String shipType : shipTemplates.keySet()) {
+            ships.add(get(shipType));
+        }
+        return ships;
+    }
     
 }

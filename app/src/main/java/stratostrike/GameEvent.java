@@ -1,6 +1,8 @@
 package stratostrike;
 
 public enum GameEvent {
+    SELECT_ARMY,
+    COMPOSE_ARMY,
     TURN_STARTED,
     SELECT_SHIP,
     SELECT_ACTION,

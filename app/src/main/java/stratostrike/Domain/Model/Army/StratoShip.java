@@ -20,6 +20,7 @@ import stratostrike.Domain.Model.Action.Action;
 public abstract class StratoShip {
     public String name;
     public int hp;
+    public int weight;
     public ArrayList<String> actionsNames; // For deserialization only
 
     @JsonIgnore
@@ -32,9 +33,10 @@ public abstract class StratoShip {
         this.actions = new ArrayList<>();
     }
 
-    public StratoShip(String name, int hp) {
+    public StratoShip(String name, int hp, int weight) {
         this.name = name;
         this.hp = hp;
+        this.weight = weight;
         this.actions = new ArrayList<>();
         this.actionsNames = new ArrayList<>();
         this.idArmy = -1;
@@ -48,6 +50,14 @@ public abstract class StratoShip {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 
     public boolean isDestroyed() {
@@ -108,6 +118,6 @@ public abstract class StratoShip {
     }
 
     public String toString() {
-        return name + " (HP: " + hp + ", Azioni: " + actions.size() + ")";
+        return name + " (Peso: " + weight + ", HP: " + hp + ", Azioni: " + actions.size() + ")";
     }
 }

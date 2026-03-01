@@ -68,8 +68,12 @@ private SetupArmy setupArmy;
     }
 
     public void askForArmy() {
-        int selectedArmy = InputView.selectArmy(Settings.ArmyTipology.size() + setupArmy.getArmyNames().size() - 1);
+        int selectedArmy = InputView.readValidInt(0, Settings.ArmyTipology.size() + setupArmy.getArmyNames().size());
         setupArmy.selectArmy(selectedArmy);
-        
+    }
+
+    public void askForArmyComposition() {
+        int selectedShip = InputView.readValidInt(0, setupArmy.getAvailableStratoShips().size());
+        setupArmy.addShipToComposition(selectedShip);
     }
 }
