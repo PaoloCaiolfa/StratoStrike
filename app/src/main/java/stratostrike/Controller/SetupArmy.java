@@ -62,9 +62,9 @@ public class SetupArmy  {
     }
    
     public void selectArmy(int value) {
-        if (value == Settings.ArmyTipology.size() + armyNames.size()) {
+        if (value == Settings.ArmyTipology.size() + armyNames.size()) { // utlima opzione: composizione armata personalizzata
             game.setCurrentEvent(GameEvent.COMPOSE_ARMY);
-            notifyObservers();
+            notifyObservers();  // per aggiornare la view con le opzioni di composizione armata, senza mostrare nuovamente la view della selezione arma non c'è aggiprnamento del view data 
 
         } else if (value < Settings.ArmyTipology.size()) {
             String factoryName = Settings.ArmyTipology.get(value);
@@ -98,10 +98,18 @@ public class SetupArmy  {
     }
 
     public void addShipToComposition(int selectedShip) {
+
+        if (selectedShip==ArmyManager.getAvailableShipsNames().size()) {
+            
+            game.setCurrentEvent(GameEvent.SELECT_ARMY);
+            return;
+        }
         selectedShipsForComposition.add(ArmyManager.getAvailableShipsNames().get(selectedShip));
         compositionShipWeight = ArmyManager.calculateCompositionWeight(selectedShipsForComposition);
 
         notifyObservers();
     }
+
+    
 
 }

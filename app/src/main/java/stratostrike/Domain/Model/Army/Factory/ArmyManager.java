@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import stratostrike.Domain.Model.Army.StratoShip;
 import stratostrike.Domain.Model.Army.Registry.ShipRegistry;
 
+//Facade per Factory, con il controller
+
 public class ArmyManager {
 
+    //Reflection-based factory retrieval
     public static ArmyFactory getFactory(String fazione) {
         try {
             String fazioneNormalizzata = fazione.substring(0, 1).toUpperCase() + fazione.substring(1).toLowerCase();

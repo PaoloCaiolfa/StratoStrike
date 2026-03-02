@@ -28,6 +28,7 @@ public class SetupView implements Observer {
                 break;
             case COMPOSE_ARMY:
                 askForCustomArmy();
+                selectionView.askForArmyComposition();
                 break;
             default:
                 break;

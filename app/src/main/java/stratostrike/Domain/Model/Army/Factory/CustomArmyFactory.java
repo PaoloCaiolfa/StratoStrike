@@ -22,16 +22,18 @@ public class CustomArmyFactory implements ArmyFactory {
         return new CustomArmyFactory(ShipRegistry.getInstance(), CustomArmyLoader.getInstance());
     }
 
+    // creazione di aramte custom
     @Override
     public Army createArmy(String armyName) {
        ArrayList<StratoShip> ships = new ArrayList<>();
        ArrayList<String> shipNames = loader.loadTemplates(armyName);
 
        for (String shipName : shipNames) {
-           ships.add(registry.get(shipName));
+           ships.add(registry.get(shipName));  // REGISTRY richiamato
        }
        return new Army(armyName, ships);
     }
+
 
     public List<StratoShip> cloneShips(List<Class<? extends StratoShip>> shipClasses) {
         List<StratoShip> cloned = new ArrayList<>();

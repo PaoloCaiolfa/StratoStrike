@@ -9,7 +9,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import stratostrike.Domain.Model.Action.Action;
-import stratostrike.Domain.Model.Army.StratoShip;
 
 public class ActionTemplateLoader {
 

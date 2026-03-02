@@ -37,7 +37,7 @@ public class GameLauncher {
         // Creo un'armata nemica e la metto sulla board per test
        
         setupArmy.selectionForAllPlayer();
-        //turn.startMatch();
+        turn.startMatch();
     }
     
 }
