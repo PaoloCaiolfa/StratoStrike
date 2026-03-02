@@ -1,0 +1,25 @@
+{
+  "ships": [
+    {
+        "type": "Fighter",
+        "name": "F-35",
+        "hp": 100,
+        "weight": 1,
+        "actionsNames": [
+            "PointAttack",
+            "OneZoneMove",
+            "DoubleAttack"
+        ]
+    },
+    {
+        "type": "Satellite",
+        "name": "SAT-22",
+        "hp": 10,
+        "weight": 2,
+        "actionsNames": [
+            "AreaShield",
+            "OneZoneMove"
+        ]
+    }
+]
+}

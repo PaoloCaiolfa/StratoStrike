@@ -54,6 +54,10 @@ public class ArmyManager {
         }
         return totalWeight;
     }
+
+    public static void saveNewArmy(String armyName, ArrayList<String> shipNames) {
+        CustomArmyLoader.getInstance().saveNewArmy(armyName, shipNames);
+    }   
 }
        
 
