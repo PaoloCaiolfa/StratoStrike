@@ -83,6 +83,7 @@ public class InputView {
         while (true) {
             if (scanner.hasNextInt()) {
                 int val = scanner.nextInt();
+                scanner.nextLine(); // Consuma il newline rimasto
                 if (val >= min && val <= max) {
                     return val; 
                 }
@@ -128,5 +129,12 @@ public class InputView {
             throw new IllegalStateException("Scanner terminato o input non disponibile");
         }
     }
+    }
+
+
+    public static String readArmyName() {
+        System.out.print("Inserisci il nome della nuova armata: ");
+        String armyName = scanner.nextLine().trim().toUpperCase();
+        return armyName;
     }
 }

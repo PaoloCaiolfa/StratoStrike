@@ -73,7 +73,7 @@ public class SetupArmy  {
             game.getContext().getCurrentPlayer().setArmy(army1);
             game.getBoard().setupRandomArmyPlacement(army1);
 
-            game.setCurrentEvent(GameEvent.SELECT_SHIP);
+            game.setCurrentEvent(GameEvent.SELECT_ARMY);
         }
         else {
             ArmyFactory factory = ArmyManager.getFactory("CUSTOM");
@@ -81,7 +81,7 @@ public class SetupArmy  {
             game.getContext().getCurrentPlayer().setArmy(customArmy);
             game.getBoard().setupRandomArmyPlacement(customArmy);
 
-            game.setCurrentEvent(GameEvent.SELECT_SHIP);
+            game.setCurrentEvent(GameEvent.SELECT_ARMY);
         }
     }
 
@@ -99,15 +99,22 @@ public class SetupArmy  {
 
     public void addShipToComposition(int selectedShip) {
 
-        if (selectedShip==ArmyManager.getAvailableShipsNames().size()) {
-            
-            game.setCurrentEvent(GameEvent.SELECT_ARMY);
-            return;
-        }
         selectedShipsForComposition.add(ArmyManager.getAvailableShipsNames().get(selectedShip));
         compositionShipWeight = ArmyManager.calculateCompositionWeight(selectedShipsForComposition);
 
         notifyObservers();
+    }
+
+    public void finalizeComposition(String armyName){
+        CustomArmyLoader.getInstance().saveNewArmy(armyName, selectedShipsForComposition);
+
+        armyNames= CustomArmyLoader.getInstance().getArmyName();
+        selectedShipsForComposition.clear();
+        compositionShipWeight = 0;
+
+        int newArmyIndex = Settings.ArmyTipology.size() + armyNames.indexOf(armyName);
+        selectArmy(newArmyIndex);
+        
     }
 
     

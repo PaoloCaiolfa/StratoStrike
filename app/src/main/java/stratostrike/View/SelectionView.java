@@ -75,7 +75,12 @@ private SetupArmy setupArmy;
     public void askForArmyComposition() {
         
         int selectedShip = InputView.readValidInt(0, setupArmy.getAvailableStratoShips().size());
-        setupArmy.addShipToComposition(selectedShip);
+        if (selectedShip == setupArmy.getAvailableStratoShips().size()) {
+           String armyName = InputView.readArmyName();
+         setupArmy.finalizeComposition(armyName);
+        }
+        else {setupArmy.addShipToComposition(selectedShip);
+        }
         
     }
 }

@@ -1,17 +1,18 @@
 {
-    "armies": [
-    {
-        "name": "ARMATA DI GIOVANNI",
-        "ships": ["SAT-22", "F-35", "F-35", "F-35", "F-35"]
-    },
-    {
-        "name": "GIOVANNI DI ARMATA",
-        "ships": ["SAT-22", "F-35", "SAT-22", "SAT-22", "F-35"]
-    },
-    {
-        "name": "ARMATA DI FEDERICO",
-        "ships": ["SAT-22", "F-35", "F-35", "F-35", "F-35"]
-    }
-
-    ]
+  "armies" : [ {
+    "name" : "ARMATA DI GIOVANNI",
+    "ships" : [ "SAT-22", "F-35", "F-35", "F-35", "F-35" ]
+  }, {
+    "name" : "GIOVANNI DI ARMATA",
+    "ships" : [ "SAT-22", "F-35", "SAT-22", "SAT-22", "F-35" ]
+  }, {
+    "name" : "ARMATA DI FEDERICO",
+    "ships" : [ "SAT-22", "F-35", "F-35", "F-35", "F-35" ]
+  }, {
+    "name" : "ARMATA DI PAOLO",
+    "ships" : [ "F-35", "SAT-22" ]
+  }, {
+    "name" : "ARMATA DI SAMUELE",
+    "ships" : [ "F-35", "SAT-22" ]
+  } ]
 }

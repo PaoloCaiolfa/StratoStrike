@@ -2,6 +2,9 @@ package stratostrike.Domain.Model.Army.Factory;
 
 import java.io.File;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,17 +27,29 @@ public class CustomArmyLoader {
 
     private CustomArmyLoader() {}
 
+    // Metodo helper per ottenere il percorso del file sorgente
+    private File getSourceConfigFile() {
+        // Trova il file compilato usando il classloader
+        java.net.URL resourceUrl = getClass().getClassLoader().getResource("armyConfig.json");
+        if (resourceUrl != null) {
+            // Converti il percorso compilato in percorso sorgente
+            String resourcePath = resourceUrl.getPath();
+            String sourceFilePath = resourcePath.replace("/build/resources/main/", "/src/main/resources/");
+            return new File(sourceFilePath);
+        }
+        // Fallback: usa il percorso relativo
+        return new File(System.getProperty("user.dir") + "/app/src/main/resources/armyConfig.json");
+    }
+
 
     // prende tutti le chiave per il regsitry (il nome) per creare le navi di un armata 
     public ArrayList<String> loadTemplates(String armyName) {
 
-        try (InputStream is = getClass()
-                .getClassLoader()
-                .getResourceAsStream("armyConfig.json")) {
-
+        try {
             ObjectMapper mapper = new ObjectMapper();
-
-            JsonNode root = mapper.readTree(is);
+            File configFile = getSourceConfigFile();
+            
+            JsonNode root = mapper.readTree(configFile);
             JsonNode armiesNode = root.get("armies");
 
             // Deserializziamo la lista di navi
@@ -59,13 +74,11 @@ public class CustomArmyLoader {
 
     // prende tutti i nomi delle armate custom definite in armyConfig.json, per mostrarle nella view di selezione armata
     public ArrayList<String> getArmyName() {
-        try (InputStream is = getClass()
-                .getClassLoader()
-                .getResourceAsStream("armyConfig.json")) {
-
+        try {
             ObjectMapper mapper = new ObjectMapper();
-
-            JsonNode root = mapper.readTree(is);
+            File configFile = getSourceConfigFile();
+            
+            JsonNode root = mapper.readTree(configFile);
             JsonNode armiesNode = root.get("armies");
 
             // Deserializziamo la lista di navi
@@ -86,13 +99,11 @@ public class CustomArmyLoader {
     public void saveNewArmy(String armyName, List<String> ships) {
             try {
                 ObjectMapper mapper = new ObjectMapper();
-
-                // Percorso del file (scrivibile)
-                File file = new File("app/src/main/resources/armyConfig.json");
-
+                File configFile = getSourceConfigFile();
+                
                 JsonNode root;
-                if (file.exists()) {
-                    root = mapper.readTree(file);
+                if (configFile.exists()) {
+                    root = mapper.readTree(configFile);
                 } else {
                     root = mapper.createObjectNode();
                 }
@@ -120,8 +131,8 @@ public class CustomArmyLoader {
 
                 armiesNode.add(newArmy);
 
-                // Scrittura formattata nel file
-                mapper.writerWithDefaultPrettyPrinter().writeValue(file, rootObject);
+                // Scrittura formattata nel file sorgente
+                mapper.writerWithDefaultPrettyPrinter().writeValue(configFile, rootObject);
 
             } catch (Exception e) {
                 throw new RuntimeException("Errore durante il salvataggio della nuova armata", e);
