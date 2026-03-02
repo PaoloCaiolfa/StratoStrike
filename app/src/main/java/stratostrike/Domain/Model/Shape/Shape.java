@@ -1,9 +1,11 @@
-package stratostrike.Domain.Model;
+package stratostrike.Domain.Model.Shape;
 
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+import stratostrike.Domain.Model.Position;
 
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,

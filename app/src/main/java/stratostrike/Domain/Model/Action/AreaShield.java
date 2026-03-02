@@ -1,10 +1,11 @@
 package stratostrike.Domain.Model.Action;
 
 import java.util.ArrayList;
-import stratostrike.Domain.Model.Circle;
+
 import stratostrike.Domain.Model.Context;
-import stratostrike.Domain.Model.Shape;
 import stratostrike.Domain.Model.Army.StratoShip;
+import stratostrike.Domain.Model.Shape.Shape;
+import stratostrike.Domain.Model.Shape.Circle;
 import stratostrike.Domain.Model.validate.Validate;
 import stratostrike.Domain.Model.Position;
 

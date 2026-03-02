@@ -3,7 +3,7 @@ package stratostrike.Domain.Model.Action;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import stratostrike.Domain.Model.Context;
-import stratostrike.Domain.Model.Shape;
+import stratostrike.Domain.Model.Shape.Shape;
 import stratostrike.Domain.Model.validate.*;
 
 import java.util.ArrayList;

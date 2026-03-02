@@ -77,9 +77,10 @@ private SetupArmy setupArmy;
         int selectedShip = InputView.readValidInt(0, setupArmy.getAvailableStratoShips().size());
         if (selectedShip == setupArmy.getAvailableStratoShips().size()) {
            String armyName = InputView.readArmyName();
-         setupArmy.finalizeComposition(armyName);
+           setupArmy.finalizeComposition(armyName);
         }
-        else {setupArmy.addShipToComposition(selectedShip);
+        else {
+            setupArmy.addShipToComposition(selectedShip);
         }
         
     }

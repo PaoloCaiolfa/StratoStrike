@@ -1,5 +1,7 @@
-package stratostrike.Domain.Model;
+package stratostrike.Domain.Model.Shape;
 import java.util.ArrayList;
+
+import stratostrike.Domain.Model.Position;
 public class Circle implements Shape{
     
     private int radius;

@@ -6,9 +6,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import stratostrike.Domain.Model.Circle;
 import stratostrike.Domain.Model.Context;
-import stratostrike.Domain.Model.Shape;
+import stratostrike.Domain.Model.Shape.Shape;
+import stratostrike.Domain.Model.Shape.Circle;
 import stratostrike.Domain.Model.validate.Validate;
 import stratostrike.Domain.Model.validate.ValidationResult;
 

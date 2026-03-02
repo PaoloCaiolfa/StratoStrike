@@ -37,20 +37,21 @@ public class SetupView implements Observer {
     }
 
     private void askForCustomArmy() {
+        System.out.println("\n");
         System.out.println("=== CREAZIONE ARMATA PERSONALIZZATA ===");
+
+        System.out.println("\nLe tue navi selezionate finora:");
+        for (int i = 0; i < setupArmy.getSelectedShipsForComposition().size(); i++) {
+            System.out.println((i+1) + ": " + setupArmy.getSelectedShipsForComposition().get(i));
+        }
+        System.out.println("\nPuoi scegliere ancora " + (Settings.MaxShipsNumberPerPlayer - setupArmy.getSelectedShipsForComposition().size()) + " navi. Attento a non superare il limite di peso della composizione dell'armata!");
+        System.out.println("Peso attuale della composizione: " + setupArmy.getCompositionShipWeight() + "/" + Settings.MaxShipsWeightPerPlayer);
+
+        System.out.println("\nSeleziona le navi da aggiungere alla tua armata, una alla volta. Quando hai finito, seleziona l'opzione per terminare la composizione dell'armata.");
         for (String el : setupArmy.getAvailableStratoShips()) {
             System.out.println(setupArmy.getAvailableStratoShips().indexOf(el) + ": " + el);
         }
-        System.out.println(setupArmy.getAvailableStratoShips().size() + ": termina composizione armata");
-
-        System.out.println("Seleziona le navi da aggiungere alla tua armata, una alla volta. Quando hai finito, seleziona l'opzione per terminare la composizione dell'armata.");
-
-        System.out.println("Le tue navi selezionate finora:");
-        for (int i = 0; i < setupArmy.getSelectedShipsForComposition().size(); i++) {
-            System.out.println("Nave " + (i+1) + ": " + setupArmy.getSelectedShipsForComposition().get(i));
-        }
-        System.out.println("Puoi scegliere ancora " + (Settings.MaxShipsWeightPerPlayer - setupArmy.getCompositionShipWeight()) + " navi. Attento a non superare il limite di peso della composizione dell'armata!");
-        System.out.println("Peso attuale della composizione: " + setupArmy.getCompositionShipWeight() + "/" + Settings.MaxShipsWeightPerPlayer);
+        System.out.println(setupArmy.getAvailableStratoShips().size() + ": termina composizione armata");        
     }
 
     private void chooseArmy() {

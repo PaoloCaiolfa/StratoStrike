@@ -4,7 +4,7 @@ package stratostrike.Domain.Model.Action;
 import java.util.ArrayList;
 
 import stratostrike.Domain.Model.Context;
-import stratostrike.Domain.Model.Shape;
+import stratostrike.Domain.Model.Shape.Shape;
 import stratostrike.Domain.Model.validate.Validate;
 
 

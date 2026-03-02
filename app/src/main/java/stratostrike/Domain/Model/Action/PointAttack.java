@@ -1,6 +1,9 @@
 package stratostrike.Domain.Model.Action;
 
 import stratostrike.Domain.Model.*;
+import stratostrike.Domain.Model.Shape.Shape;
+import stratostrike.Domain.Model.Shape.Circle;
+
 import java.util.ArrayList;
 import stratostrike.Domain.Model.validate.*;
 
