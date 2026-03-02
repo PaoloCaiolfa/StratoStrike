@@ -20,4 +20,4 @@ Thumbs.db
 *.ser
 
 # Other
-src/main/java/stratostrike/Test/test.java
+src/main/java/stratostrike/tests/tests.java
