@@ -19,5 +19,6 @@ Thumbs.db
 .gradle/nb-cache/
 *.ser
 
-# Other
-src/main/java/stratostrike/tests/tests.java
+# Local Java files
+*.local.json
+*Local.java
