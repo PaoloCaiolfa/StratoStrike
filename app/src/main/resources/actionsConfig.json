@@ -23,7 +23,7 @@
             "description": "move one zone",
             "range": {
                 "type": "Circle",
-                "radius": 1
+                "radius": 4
             },
             "validators":[{"type":"validateHigh"},{"type":"validatePosition"},{"type":"validateRange"}]
         },

@@ -14,5 +14,8 @@
   }, {
     "name" : "ARMATA DI SAMUELE",
     "ships" : [ "F-35", "SAT-22" ]
+  }, {
+    "name" : "ARMATA DI ANDREA",
+    "ships" : [ "SAT-22", "SAT-22", "SAT-22", "Destroyer-1" ]
   } ]
 }
