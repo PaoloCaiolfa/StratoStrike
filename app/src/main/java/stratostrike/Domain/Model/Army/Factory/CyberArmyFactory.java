@@ -2,10 +2,9 @@ package stratostrike.Domain.Model.Army.Factory;
 
 import java.util.ArrayList;
 
-
 import stratostrike.Domain.Model.Army.Army;
-import stratostrike.Domain.Model.Army.StratoShip;
 import stratostrike.Domain.Model.Army.Registry.ShipRegistry;
+import stratostrike.Domain.Model.Army.StratoShip;
 
 public class CyberArmyFactory implements ArmyFactory {
     
@@ -26,17 +25,17 @@ public class CyberArmyFactory implements ArmyFactory {
     @Override
     public Army createArmy(String armyName) {
         prototipi.clear();
-        prototipi.add(shipRegistry.get("Fighter"));
-        prototipi.add(shipRegistry.get("Satellite"));
-        prototipi.add(shipRegistry.get("Satellite"));
+        prototipi.add(shipRegistry.get("F-35"));
+        prototipi.add(shipRegistry.get("F-35"));
+        prototipi.add(shipRegistry.get("SAT-22"));
         // qui non ci vanno prototipi hardcoded, ma metteremo dentro in base ad una logica specifica
 
 
-        Army humanArmy = new Army(armyName,0);
+        Army cyberArmy = new Army(armyName,0);
         for (StratoShip p : prototipi) {
-            humanArmy.addShip(p.cloneShip());
+            cyberArmy.addShip(p);
         }
-        return humanArmy;
+        return cyberArmy;
     }
 
 }
