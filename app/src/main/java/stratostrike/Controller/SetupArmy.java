@@ -1,15 +1,13 @@
 package stratostrike.Controller;
-import stratostrike.Domain.Model.Observer;
-import stratostrike.Domain.Model.Player;
-import stratostrike.Domain.Model.Army.*;
+import java.util.ArrayList;
+
+import stratostrike.Domain.Model.Army.Army;
 import stratostrike.Domain.Model.Army.Factory.ArmyFactory;
-import stratostrike.Domain.Model.StratoCraftGame;
 import stratostrike.Domain.Model.Army.Factory.ArmyManager;
 import stratostrike.Domain.Model.Army.Factory.CustomArmyLoader;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import stratostrike.Domain.Model.Observer;
+import stratostrike.Domain.Model.Player;
+import stratostrike.Domain.Model.StratoCraftGame;
 import stratostrike.GameEvent;
 import stratostrike.Settings;
 

@@ -1,11 +1,11 @@
 package stratostrike.Controller;
 
-import stratostrike.GameEvent;
 import stratostrike.Domain.Model.Player;
 import stratostrike.Domain.Model.StratoCraftGame;
+import stratostrike.GameEvent;
 import stratostrike.View.OutputView;
 import stratostrike.View.SelectionView;
-import stratostrike.View.SetupView;
+import stratostrike.View.SetupView;    
 
 public class GameLauncher {
 

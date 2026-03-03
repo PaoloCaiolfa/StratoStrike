@@ -3,8 +3,8 @@ package stratostrike.Domain.Model.Army.Factory;
 import java.util.ArrayList;
 
 import stratostrike.Domain.Model.Army.Army;
-import stratostrike.Domain.Model.Army.StratoShip;
 import stratostrike.Domain.Model.Army.Registry.ShipRegistry;
+import stratostrike.Domain.Model.Army.StratoShip;
 
 public class HumanArmyFactory implements ArmyFactory{
     
@@ -33,7 +33,7 @@ public class HumanArmyFactory implements ArmyFactory{
 
         Army humanArmy = new Army(armyName,0);
         for (StratoShip p : prototipi) {
-            humanArmy.addShip(p.cloneShip());
+            humanArmy.addShip(p);
         }
         return humanArmy;
     }

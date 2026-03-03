@@ -11,7 +11,7 @@ public class MyStrings {
         ,
         Map.entry(GameEvent.SELECT_ACTION, "Seleziona un'azione da eseguire."),
         Map.entry(GameEvent.SELECT_POSITION, "Seleziona una posizione bersaglio."),
-        Map.entry(GameEvent.EXECUTE_ACTION, "Confermi le scelte effettuate nel turno?"),
+        Map.entry(GameEvent.EXECUTE_ACTION, "Confermi le scelte effettuate nel turno? (y or n)"),
         Map.entry(GameEvent.SHIP_HIT, "Hai colpito una nave nemica!"),
         Map.entry(GameEvent.SHIP_MISSED, "Hai mancato il bersaglio!"),
         Map.entry(GameEvent.SHIP_DESTROYED, "La tua nave è stata distrutta!"),
