@@ -98,5 +98,10 @@ public class Context{
 
         return false;
     }
+
+    public void resetForNewTurn() {
+        this.actionControl.clear();
+        
+    }
     
 }

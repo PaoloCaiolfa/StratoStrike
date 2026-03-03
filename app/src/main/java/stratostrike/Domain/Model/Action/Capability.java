@@ -13,7 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "subType" )
 @JsonSubTypes({
         @JsonSubTypes.Type(value = PointAttack.class, name = "PointAttack"),
-        @JsonSubTypes.Type(value = AreaShield.class, name = "AreaShield")
+        @JsonSubTypes.Type(value = AreaShield.class, name = "AreaShield"),     
+        @JsonSubTypes.Type(value = LaserAttack.class, name = "LaserAttack")
 })
 
 public abstract class Capability implements Action {

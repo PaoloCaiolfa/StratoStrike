@@ -53,6 +53,8 @@ public class MakeTurn {
     }
 
     public void playTurn() {
+        game.getContext().
+        resetForNewTurn();
         refresh();
         game.setCurrentEvent(GameEvent.SELECT_SHIP);
         refresh();
@@ -137,6 +139,8 @@ public class MakeTurn {
      * Esegue l'azione selezionata
      */
     public void executeAction(boolean confirmation) {
+
+
       
         Action action = game.getContext().getSelectedAction();
         if (confirmation) {

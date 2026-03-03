@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
         @JsonSubTypes.Type(value = PointAttack.class, name = "PointAttack"),
         @JsonSubTypes.Type(value = AreaShield.class, name = "AreaShield"),
         @JsonSubTypes.Type(value = OneZoneMove.class, name = "OneZoneMove"),
-        @JsonSubTypes.Type(value = DoubleAttack.class, name = "DoubleAttack")
+        @JsonSubTypes.Type(value = LaserAttack.class, name = "LaserAttack")
 })
 
 public interface Action {

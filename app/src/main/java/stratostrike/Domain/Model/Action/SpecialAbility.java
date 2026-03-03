@@ -20,7 +20,6 @@ import stratostrike.Domain.Model.validate.ValidationResult;
     visible = true
 )
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = DoubleAttack.class, name = "DoubleAttack")
 })
 
 public abstract class SpecialAbility implements Action {

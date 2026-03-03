@@ -44,19 +44,21 @@
             "validators":[{"type":"validateRange"},{"type":"validateLevel"},{"type":"validateMyShip"},{"type":"validateShipAlive"}]
         },
         {
-            "type": "SpecialAbility",
-            "subType": "DoubleAttack",
-            "name": "DoubleAttack",
-            "description": "attack two zones",
+            "type": "Capability",
+            "subType": "LaserAttack",
+            "name": "LaserAttack",
+            "description": "terrible attack that hit one zone",
+            "damage": 500,
             "shape": {
-                "type": "Circle",
-                "radius": 5
+                "type": "Point"
+                
             },
             "range": {
-                "type": "Circle",
-                "radius": 5
+                "type": "Sphere",
+                "radius": 8
             },
             "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
         }
+
     ]
 }
