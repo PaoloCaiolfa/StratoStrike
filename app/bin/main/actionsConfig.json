@@ -7,11 +7,11 @@
             "description": "attack one zone",
             "damage": 25,
             "shape": {
-                "type": "Circle",
+                "type": "Sphere",
                 "radius": 1
             },
             "range": {
-                "type": "Circle",
+                "type": "Sphere",
                 "radius": 5
             },
             "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
@@ -34,11 +34,11 @@
             "description": "shield one zone",
             "protection": 80,
             "shape": {
-                "type": "Circle",
-                "radius": 2
+                "type": "Sphere",
+                "radius": 3
             },
             "range": {
-                "type": "Circle",
+                "type": "Sphere",
                 "radius": 3
             },
             "validators":[{"type":"validateRange"},{"type":"validateLevel"},{"type":"validateMyShip"},{"type":"validateShipAlive"}]
@@ -50,7 +50,7 @@
             "description": "attack two zones",
             "shape": {
                 "type": "Circle",
-                "radius": 1
+                "radius": 5
             },
             "range": {
                 "type": "Circle",
