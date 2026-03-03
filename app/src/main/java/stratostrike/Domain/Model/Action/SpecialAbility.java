@@ -20,6 +20,7 @@ import stratostrike.Domain.Model.validate.ValidationResult;
     visible = true
 )
 @JsonSubTypes({
+    @JsonSubTypes.Type(value = ImproveMovement.class, name = "ImproveMovement")
 })
 
 public abstract class SpecialAbility implements Action {
@@ -32,11 +33,11 @@ public abstract class SpecialAbility implements Action {
         this.validators = new ArrayList<>();
     }
 
-    public SpecialAbility(String name, String description) {
+    public SpecialAbility(String name, String description, Shape shape, ArrayList<Validate> validators) {
         this.name = name;
         this.description = description;
-        this.shape = null;
-        this.validators = new ArrayList<>();
+        this.shape = shape;
+        this.validators = validators;
     }
 
     @Override

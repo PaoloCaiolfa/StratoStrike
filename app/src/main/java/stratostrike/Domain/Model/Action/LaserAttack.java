@@ -16,7 +16,6 @@ public class LaserAttack extends Capability {
     public LaserAttack(String name, String description,  int damage, Shape shape, Shape range, ArrayList<Validate> valids) {
         super(name, description, shape, range, valids);
         this.damage = damage;
-        System.out.println("LaserAttack creato con danno: " + damage); 
     }
 
     public int getDamage() {
