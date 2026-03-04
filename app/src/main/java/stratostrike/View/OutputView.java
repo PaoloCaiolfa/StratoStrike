@@ -5,6 +5,10 @@ import stratostrike.Controller.MakeTurn;
 import stratostrike.Controller.SetupArmy;
 import stratostrike.Domain.Model.Observer;
 import stratostrike.GameEvent;
+import stratostrike.View.EventHandlers.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class OutputView implements Observer {
@@ -14,6 +18,9 @@ public class OutputView implements Observer {
     
     BoardView boardView;
     SelectionView selectionView;
+    
+    // Mappa che associa ogni evento al suo handler specifico
+    private final Map<GameEvent, EventHandler> eventHandlers;
   
 
     public OutputView(MakeTurn makeTurn, SetupArmy setupArmy) {
@@ -22,17 +29,55 @@ public class OutputView implements Observer {
         makeTurn.addObserver(this);
         this.boardView = new BoardView();
         this.selectionView = new SelectionView(makeTurn, setupArmy);
+        
+        // Inizializza la mappa degli handler
+        this.eventHandlers = initializeEventHandlers();
+    }
+    
+    /**
+     * Inizializza la mappa che associa ogni GameEvent al suo handler specifico.
+     
+     * @return la mappa degli event handler
+     */
+    private Map<GameEvent, EventHandler> initializeEventHandlers() {
+        Map<GameEvent, EventHandler> handlers = new HashMap<>();
+        EventHandler defaultHandler = new DefaultEventHandler();
+        
+        // Registra gli handler per ogni evento
+        handlers.put(GameEvent.SELECT_SHIP, new SelectShipEventHandler());
+        handlers.put(GameEvent.SELECT_ACTION, new SelectActionEventHandler());
+        handlers.put(GameEvent.SELECT_POSITION, new SelectPositionEventHandler());
+        handlers.put(GameEvent.EXECUTE_ACTION, new ExecuteActionEventHandler());
+        handlers.put(GameEvent.SPECIAL_ACTION_SELECTED, new SpecialActionSelectedEventHandler());
+        
+        // Per gli altri eventi, usa l'handler di default
+        handlers.put(GameEvent.SELECT_ARMY, defaultHandler);
+        handlers.put(GameEvent.COMPOSE_ARMY, defaultHandler);
+        handlers.put(GameEvent.TURN_STARTED, defaultHandler);
+        handlers.put(GameEvent.SHIP_DESTROYED, defaultHandler);
+        handlers.put(GameEvent.SHIP_HIT, defaultHandler);
+        handlers.put(GameEvent.SHIP_MISSED, defaultHandler);
+        handlers.put(GameEvent.TURN_ENDED, defaultHandler);
+        handlers.put(GameEvent.GAME_WON, defaultHandler);
+        handlers.put(GameEvent.GAME_LOST, defaultHandler);
+        handlers.put(GameEvent.PLAYER1_TURN_STARTED, defaultHandler);
+        handlers.put(GameEvent.PLAYER2_TURN_STARTED, defaultHandler);
+        
+        return handlers;
     }
 
     @Override
     public void update() {
+        GameEvent currentEvent = makeTurn.getCurrentEvent();
 
-        if (makeTurn.getCurrentEvent() == GameEvent.PLAYER1_TURN_STARTED || makeTurn.getCurrentEvent() == GameEvent.PLAYER2_TURN_STARTED) {
+        // Gestione speciale per l'inizio del turno
+        if (currentEvent == GameEvent.PLAYER1_TURN_STARTED || currentEvent == GameEvent.PLAYER2_TURN_STARTED) {
             System.out.println("=".repeat(25));
             System.out.println(makeTurn.getViewData().getTitle());
-            return; // Se è l'inizio del turno, non stampare nient'altro per ora
+            return;
         }
-        // Implementazione del metodo update per aggiornare la visualizzazione
+        
+        // Visualizzazione standard
         System.out.println("=".repeat(25));
         System.out.println(makeTurn.getViewData().getTitle());
         System.out.println("=".repeat(25));
@@ -40,30 +85,11 @@ public class OutputView implements Observer {
         boardView.printBoard(makeTurn.getViewData().getBoard(), makeTurn.getViewData().getAreaEffect());
 
         System.out.println(makeTurn.getViewData().getMessage());
-
         System.out.println(makeTurn.getViewData().getErrorMessage());
 
-        // NOTA: questo switch è un po' brutto, ma per ora va bene così. In futuro potremmo voler creare dei metodi specifici per ogni evento e chiamarli qui
-        // In questo modo evitiamo di avere tutta la logica di visualizzazione sparsa nei vari metodi del controller e la centralizziamo in un unico punto, rendendo più facile la manutenzione e l'estensione del codice in futuro
-        switch (makeTurn.getCurrentEvent()) {
-            case GameEvent.SELECT_SHIP:
-                selectionView.askForShip(makeTurn.getViewData().getAlivePlayerArmy());
-                break;
-            case GameEvent.SELECT_ACTION:
-                selectionView.askForAction(makeTurn.getViewData().getAvailableActions());
-                break;
-            case GameEvent.SELECT_POSITION:
-                selectionView.askForTarget();
-                break;
-            case GameEvent.EXECUTE_ACTION:
-                selectionView.askForContinue();
-            default:
-                // Non fare nulla per altri eventi
-                break;
-            case GameEvent.SPECIAL_ACTION_SELECTED:
-                selectionView.askForSpecialActionDetails();
-                break;
-        }
+        // Delega la gestione dell'evento all'handler appropriato
+        EventHandler handler = eventHandlers.getOrDefault(currentEvent, new DefaultEventHandler());
+        handler.handle(makeTurn, selectionView);
     }
     
 }
