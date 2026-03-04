@@ -3,16 +3,16 @@ package stratostrike.Controller;
 import stratostrike.Domain.Model.Player;
 import stratostrike.Domain.Model.StratoCraftGame;
 import stratostrike.GameEvent;
-import stratostrike.View.OutputView;
 import stratostrike.View.SelectionView;
-import stratostrike.View.SetupView;    
+import stratostrike.View.GameOutputView;
+import stratostrike.View.SetupOutputView;
+import stratostrike.View.EventHandlers.EventDispatcher;
 
 public class GameLauncher {
 
     public void launchGame() {
 
-        // per ora è tutto hardcodadto, ma almeno iniziamo a definire il main controller e dove inizia il flusso del gioco
-
+        // per ora è tutto hardcodato, ma almeno iniziamo a definire il main controller e dove inizia il flusso del gioco
 
         Player player1 = new Player("Player1",0);
         Player player2 = new Player("Player2",1);
@@ -30,9 +30,19 @@ public class GameLauncher {
         LoopingTurn turn = new LoopingTurn(game);
         SetupArmy setupArmy = new SetupArmy(game);
 
-        SelectionView selection = new SelectionView(turn.getMakeTurn(),setupArmy);
-        SetupView setupView = new SetupView(setupArmy,selection);
-        OutputView outputView = new OutputView(turn.getMakeTurn(),setupArmy ); //porcata
+        // Crea le viste
+        SelectionView selectionView = new SelectionView(turn.getMakeTurn(), setupArmy);
+        GameOutputView gameOutputView = new GameOutputView();
+        SetupOutputView setupOutputView = new SetupOutputView();
+        
+        // Crea il dispatcher che osserva i controller
+        EventDispatcher eventDispatcher = new EventDispatcher(
+            turn.getMakeTurn(), 
+            setupArmy, 
+            selectionView, 
+            gameOutputView, 
+            setupOutputView
+        );
         
         // Creo un'armata nemica e la metto sulla board per test
        

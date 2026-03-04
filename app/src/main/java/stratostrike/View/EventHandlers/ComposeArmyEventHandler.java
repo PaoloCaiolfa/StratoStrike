@@ -7,14 +7,15 @@ import stratostrike.View.GameOutputView;
 import stratostrike.View.SetupOutputView;
 
 /**
- * Handler per l'evento SELECT_ACTION.
- * Gestisce la selezione dell'azione per la nave.
+ * Handler per l'evento COMPOSE_ARMY.
+ * Gestisce la composizione personalizzata dell'armata.
  */
-public class SelectActionEventHandler implements EventHandler {
+public class ComposeArmyEventHandler implements EventHandler {
     
     @Override
     public void handle(MakeTurn makeTurn, SetupArmy setupArmy, SelectionView selectionView,
                        GameOutputView gameOutputView, SetupOutputView setupOutputView) {
-        selectionView.askForAction(makeTurn.getViewData().getAvailableActions());
+        setupOutputView.displayArmyComposition(setupArmy);
+        selectionView.askForArmyComposition();
     }
 }

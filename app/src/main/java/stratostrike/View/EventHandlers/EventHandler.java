@@ -1,19 +1,21 @@
 package stratostrike.View.EventHandlers;
 
 import stratostrike.Controller.MakeTurn;
+import stratostrike.Controller.SetupArmy;
 import stratostrike.View.SelectionView;
+import stratostrike.View.GameOutputView;
+import stratostrike.View.SetupOutputView;
 
 /**
  * Interfaccia per gestire gli eventi di gioco.
- * Ogni implementazione definisce come visualizzare e gestire un evento specifico.
+ * Tutti gli handler ricevono tutte le dipendenze disponibili.
  */
 public interface EventHandler {
     
     /**
      * Gestisce l'evento corrente.
-     * 
-     * @param makeTurn il controller del turno corrente
-     * @param selectionView la view per le selezioni
+     * Ogni handler usa solo le dipendenze di cui ha bisogno.
      */
-    void handle(MakeTurn makeTurn, SelectionView selectionView);
+    void handle(MakeTurn makeTurn, SetupArmy setupArmy, SelectionView selectionView, 
+                GameOutputView gameOutputView, SetupOutputView setupOutputView);
 }
