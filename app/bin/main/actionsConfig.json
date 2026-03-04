@@ -58,6 +58,14 @@
                 "radius": 8
             },
             "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
+        },
+        {
+            "type": "SpecialAbility",
+            "subType": "ImproveMovement",
+            "name": "ImproveMovement",
+            "description": "attack that hit one zone and disable it for one turn",
+            "validators":[{"type":"validateRange"},{"type":"validateLevel"}],
+            "activators":[{"type":"countTurnActivation"}]
         }
 
     ]

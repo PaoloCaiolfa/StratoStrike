@@ -27,17 +27,22 @@ public abstract class SpecialAbility implements Action {
     protected String name;
     protected String description;
     protected Shape shape;
+    protected Shape range;
     protected ArrayList<Validate> validators;
+    protected ArrayList<Validate> activators;
 
     protected SpecialAbility() {
         this.validators = new ArrayList<>();
+        this.activators = new ArrayList<>();
     }
 
-    public SpecialAbility(String name, String description, Shape shape, ArrayList<Validate> validators) {
+    public SpecialAbility(String name, String description,Shape range, Shape shape, ArrayList<Validate> validators, ArrayList<Validate> activators) {
         this.name = name;
         this.description = description;
         this.shape = shape;
+        this.range = range;
         this.validators = validators;
+        this.activators= activators;
     }
 
     @Override
@@ -73,6 +78,14 @@ public abstract class SpecialAbility implements Action {
         this.validators = validators;
     }
 
+    public ArrayList<Validate> getActivators() {
+        return activators;
+    }
+
+    public void setActivators(ArrayList<Validate> activators) {
+        this.activators = activators;
+    }
+
     @Override
     public ValidationResult isValidTarget(Context context) {
         for (Validate v : validators) {
@@ -91,19 +104,19 @@ public abstract class SpecialAbility implements Action {
 
     @Override
     public Shape getRange() {
-        return shape;
+        return range;
     }
 
     public void setRange(Shape range) {
-        this.shape = range;
+        this.range = range;
     }
 
     @Override
     public String getDetails() {
         StringBuilder details = new StringBuilder();
         details.append("         Descrizione: ").append(description).append("\n");
-        if (shape != null && shape instanceof Circle) {
-            Circle circle = (Circle) shape;
+        if (range != null && range instanceof Circle) {
+            Circle circle = (Circle) range;
             details.append("         Raggio: ").append(circle.getRadius());
         }
         return details.toString();
@@ -113,4 +126,24 @@ public abstract class SpecialAbility implements Action {
     public String toString() {
         return name + ": " + description;
     }
+
+    public ValidationResult allActivatorsVerified(Context context) {
+        for (Validate activator : activators) {
+            ValidationResult result = activator.validate(context);
+            if (!result.isValid()) {
+                return result;
+            }
+        }
+        return new ValidationResult(true, "All activators are valid.");
+    }
+
+    public String printActivators() {
+        StringBuilder sb = new StringBuilder();
+        for (Validate validate : activators) {
+            sb.append(validate.getClass().getSimpleName()).append(", ");
+        }
+        return sb.toString();
+    }
+
 }
+

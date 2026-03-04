@@ -39,5 +39,15 @@ public class Cross implements Shape {
     public void setLength(int length) {
         this.length = length;
     }
-    
+
+    @Override
+    public void setRadius(int radius) {
+        this.length = radius; // Assuming length is equivalent to radius for the cross shape
+    }
+
+    public int getRadius() {
+        return length; // Assuming length is equivalent to radius for the cross shape   
+    };
+
+  
 }

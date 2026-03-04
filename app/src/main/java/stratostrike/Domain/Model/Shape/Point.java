@@ -17,5 +17,15 @@ public class Point implements Shape {
         coveredPositions.add(pos);
         return coveredPositions;
     }
+
+    @Override
+    public void setRadius(int radius) {
+        // Point shape doesn't have a radius, so this method can be left empty or throw an exception
+    }
     
+    @Override
+    public int getRadius() {
+        return 0; // Point shape doesn't have a radius, so we can return 0
+    }
+
 }

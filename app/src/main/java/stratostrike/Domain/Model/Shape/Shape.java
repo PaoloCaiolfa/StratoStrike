@@ -22,4 +22,7 @@ import stratostrike.Domain.Model.Position;
 public interface Shape {
     ArrayList<Position> getCoveredCordinates(Position pos);
 
+    
+    public void setRadius(int radius); 
+    public int getRadius();
 }

@@ -121,4 +121,24 @@ public abstract class StratoShip {
     public String toString() {
         return name + " (Peso: " + weight + ", HP: " + hp + ", Azioni: " + actions.size() + ")";
     }
+
+    public ArrayList<Action> getMovementActions() {
+        ArrayList<Action> movementActions = new ArrayList<>();
+        for (Action action : actions) {
+            if (action instanceof stratostrike.Domain.Model.Action.Movement) {
+                movementActions.add(action);
+            }
+        }
+        return movementActions;
+    }
+
+    public ArrayList<Action> getSpecialAbilities() {
+        ArrayList<Action> specialAbilities = new ArrayList<>();
+        for (Action action : actions) {
+            if (action instanceof stratostrike.Domain.Model.Action.SpecialAbility) {
+                specialAbilities.add(action);
+            }
+        }
+        return specialAbilities;
+    }
 }

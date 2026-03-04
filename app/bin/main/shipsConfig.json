@@ -7,7 +7,8 @@
         "weight": 1,
         "actionsNames": [
             "PointAttack",
-            "OneZoneMove"
+            "OneZoneMove",
+            "ImproveMovement"
             
         ]
     },
@@ -18,7 +19,8 @@
         "weight": 2,
         "actionsNames": [
             "AreaShield",
-            "OneZoneMove"
+            "OneZoneMove",
+            "ImproveMovement"
         ]
     
     },
@@ -30,7 +32,9 @@
         "actionsNames": [
             
             "OneZoneMove",
-            "LaserAttack"
+            "LaserAttack",
+            "ImproveMovement"
+            
                 
         ]
     }

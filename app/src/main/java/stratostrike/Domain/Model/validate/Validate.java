@@ -10,7 +10,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
     @JsonSubTypes.Type(value = ValidatePosition.class, name = "validatePosition"),
     @JsonSubTypes.Type(value = ValidateHigh.class, name = "validateHigh"),
     @JsonSubTypes.Type(value = ValidateMyShip.class, name = "validateMyShip"),
-    @JsonSubTypes.Type(value = ValidateShipAlive.class, name = "validateShipAlive")
+    @JsonSubTypes.Type(value = ValidateShipAlive.class, name = "validateShipAlive"),
+    @JsonSubTypes.Type(value = CountTurnActivation.class, name = "countTurnActivation"),
     
 })
 

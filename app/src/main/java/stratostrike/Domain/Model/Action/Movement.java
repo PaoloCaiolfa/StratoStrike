@@ -65,12 +65,12 @@ public abstract class Movement implements Action {
 
     // It doesn't use shape in movement
     @Override
-    public Shape getShape() {
+    public Shape getShape() { // forma dell'azione
         return null;
     }
     
     @Override
-    public Shape getRange() {
+    public Shape getRange() { // area in cui scelgo il taret 
         return range;
     }
 

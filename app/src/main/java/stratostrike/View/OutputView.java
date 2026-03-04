@@ -60,6 +60,9 @@ public class OutputView implements Observer {
             default:
                 // Non fare nulla per altri eventi
                 break;
+            case GameEvent.SPECIAL_ACTION_SELECTED:
+                selectionView.askForSpecialActionDetails();
+                break;
         }
     }
     
