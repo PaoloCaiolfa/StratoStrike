@@ -28,6 +28,7 @@ public class HumanArmyFactory implements ArmyFactory{
         prototipi.clear();
         prototipi.add(shipRegistry.get("F-35"));
         prototipi.add(shipRegistry.get("F-35"));
+        prototipi.add(shipRegistry.get("DR-5"));
         // qui non ci vanno prototipi hardcoded, ma metteremo dentro in base ad una logica specifica
 
 

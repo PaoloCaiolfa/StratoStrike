@@ -15,7 +15,8 @@ import stratostrike.Domain.Model.Action.Action;
 @JsonSubTypes({
     @JsonSubTypes.Type(value = Fighter.class, name = "Fighter"),
     @JsonSubTypes.Type(value = Satellite.class, name = "Satellite"),
-    @JsonSubTypes.Type( value = Voyager.class, name = "Voyager")
+    @JsonSubTypes.Type( value = Voyager.class, name = "Voyager"),
+    @JsonSubTypes.Type( value = Drone.class, name = "Drone")
 })
 
 public abstract class StratoShip {

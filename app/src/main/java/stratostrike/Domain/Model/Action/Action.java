@@ -1,12 +1,12 @@
 package stratostrike.Domain.Model.Action;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import stratostrike.Domain.Model.Context;
 import stratostrike.Domain.Model.Shape.Shape;
 import stratostrike.Domain.Model.validate.ValidationResult;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonTypeInfo(
@@ -20,7 +20,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
         @JsonSubTypes.Type(value = AreaShield.class, name = "AreaShield"),
         @JsonSubTypes.Type(value = OneZoneMove.class, name = "OneZoneMove"),
         @JsonSubTypes.Type(value = LaserAttack.class, name = "LaserAttack"),
-        @JsonSubTypes.Type(value = ImproveMovement.class, name = "ImproveMovement")
+        @JsonSubTypes.Type(value = ImproveMovement.class, name = "ImproveMovement"),
+        @JsonSubTypes.Type(value = DroneAttack.class, name = "DroneAttack")
 })
 
 public interface Action {

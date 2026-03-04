@@ -1,7 +1,8 @@
 package stratostrike.Domain.Model.validate;
-import stratostrike.Domain.Model.*;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+import stratostrike.Domain.Model.Context;
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
@@ -12,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
     @JsonSubTypes.Type(value = ValidateMyShip.class, name = "validateMyShip"),
     @JsonSubTypes.Type(value = ValidateShipAlive.class, name = "validateShipAlive"),
     @JsonSubTypes.Type(value = CountTurnActivation.class, name = "countTurnActivation"),
+    @JsonSubTypes.Type(value = ValidateEnemyShip.class, name = "ValidateEnemyShip")
     
 })
 

@@ -1,20 +1,21 @@
 package stratostrike.Domain.Model.Action;
 
+import java.util.ArrayList;
+
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import stratostrike.Domain.Model.Context;
 import stratostrike.Domain.Model.Shape.Shape;
-import stratostrike.Domain.Model.validate.*;
-
-import java.util.ArrayList;
-
-import com.fasterxml.jackson.annotation.JsonSubTypes;
+import stratostrike.Domain.Model.validate.Validate;
+import stratostrike.Domain.Model.validate.ValidationResult;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "subType" )
 @JsonSubTypes({
         @JsonSubTypes.Type(value = PointAttack.class, name = "PointAttack"),
         @JsonSubTypes.Type(value = AreaShield.class, name = "AreaShield"),     
-        @JsonSubTypes.Type(value = LaserAttack.class, name = "LaserAttack")
+        @JsonSubTypes.Type(value = LaserAttack.class, name = "LaserAttack"),
+        @JsonSubTypes.Type(value = DroneAttack.class, name = "DroneAttack")
 })
 
 public abstract class Capability implements Action {
