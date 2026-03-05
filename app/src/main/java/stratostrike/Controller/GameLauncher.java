@@ -13,6 +13,7 @@ import stratostrike.local.GameScreenLocal;
 import stratostrike.local.MainFrameLocal;
 import stratostrike.local.NavigationControllerLocal;
 import stratostrike.local.SelectionScreenLocal;
+import stratostrike.local.EventHandlers.GuiEventDispatcher;
 import stratostrike.View.EventHandlers.EventDispatcher;
 
 public class GameLauncher {
@@ -37,23 +38,28 @@ public class GameLauncher {
         LoopingTurn turn = new LoopingTurn(game);
         SetupArmy setupArmy = new SetupArmy(game);
 
-        // Crea le viste
-
-        
-        // Creo un'armata nemica e la metto sulla board per test
-
-        // Da commentare
 
         if (Settings.USE_GUI) {
             SwingUtilities.invokeLater(() -> {
                 MainFrameLocal frame = new MainFrameLocal();
                 NavigationControllerLocal navigator = new NavigationControllerLocal(frame);
 
-                SelectionScreenLocal selection = new SelectionScreenLocal(setupArmy, turn, navigator);
+                SelectionScreenLocal selection = new SelectionScreenLocal(setupArmy);
                 GameScreenLocal gameScreen = new GameScreenLocal(turn, turn.getMakeTurn(), navigator);
 
                 frame.addScreen("SELECTION", selection);
                 frame.addScreen("GAME", gameScreen);
+
+                // Il dispatcher si registra come observer e instrada ogni evento
+                // all'handler GUI appropriato
+                new GuiEventDispatcher(
+                    turn.getMakeTurn(),
+                    setupArmy,
+                    turn,
+                    selection,
+                    gameScreen,
+                    navigator
+                );
 
                 navigator.navigateToSelection();
 

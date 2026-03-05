@@ -3,10 +3,7 @@
  */
 package stratostrike;
 
-import javax.swing.SwingUtilities;
-
 import stratostrike.Controller.GameLauncher;
-import stratostrike.local.MainFrameLocal;
 
 
 public class App {
@@ -18,95 +15,5 @@ public class App {
 
         GameLauncher launcher = new GameLauncher();
         launcher.launchGame();
-
-        /* 
-        
-        //insitnziazione giocatori e navi e attacchi
-        Player player1 = new Player("Player1",0);
-        Player player2 = new Player("Player2",1);
-        java.util.ArrayList<Player> players = new java.util.ArrayList<>();
-        players.add(player1);
-        players.add(player2);
-        //creazione partita
-        StratoCraftGame game = new StratoCraftGame(players);
-        System.out.println("Welcome to " + game.getPlayer(0).getUsername() + " vs " + game.getPlayer(1).getUsername()
-                + " Stratostrike Game!");
-
-                
-           CODICE PER TESTARE IL TURNO
-        //aggiunta navi all'armata
-        Fighter fighter = new Fighter();
-        
-        Fighter fighter2 = new Fighter();
-        
-        fighter.addAction(pointAttack);
-        fighter2.addAction(pointAttack);
-        player1.getArmy().addShip(fighter2);
-        player1.getArmy().addShip(fighter);
-       //settaggio navi sulla board      
-        game.getBoard().placeShip(fighter2,2,2,0);   
-        game.getBoard().placeShip(fighter,4,4,0);
-        //inzio del turno
-        MakeTurn turn = new MakeTurn(game);
-        
-        turn.playTurn();
-        turn.selectShip();
-        turn.showActions();
-        turn.selectAction();
-        turn.showAreaEffect();
-        */
-
-        // CODICE PER TESTARE LE FACTORY
-        /*
-        MakeTurn turn = new MakeTurn(game);
-        InputView view = new InputView();
-
-        ArmyFactory factory = view.scegliArmata();
-        Army miaArmata = factory.createArmy();
-
-        view.stampaStatoArmata(miaArmata);
-        game.getCurrentPlayer().setArmy(miaArmata);
-        game.getBoard().setupRandomArmyPlacement(miaArmata);
-
-        // Creo un'armata nemica e la metto sulla board per test
-        Army enemyArmy = ArmyManager.getFactory("Cyber").createArmy();
-        game.getBoard().setupRandomArmyPlacement(enemyArmy);
-
-        // turno
-        turn.playTurn();
-        
-        turn.selectShip();
-        turn.selectAction();
-        turn.showAreaEffect();
-        turn.executeAction();
-
-        //turno
-        turn.playTurn();
-        
-        turn.selectShip();
-        turn.selectAction();
-        turn.showAreaEffect();
-        turn.executeAction();
-        
-
-        
-
-
-        //CODICE PER TESTARE LA VIEW
-        LoopingTurn turn = new LoopingTurn(game);
-        SetupArmy setupArmy = new SetupArmy(game);
-        SelectionView selection = new SelectionView(turn.getMakeTurn(),setupArmy);
-        
-        SetupView setupView = new SetupView(setupArmy,selection);
-        
-        // Creo un'armata nemica e la metto sulla board per test
-       
-        setupArmy.selectionForAllPlayer();
-       
-        OutputView outputView = new OutputView(turn.getMakeTurn(),setupArmy ); //porcata
-        
-        turn.startMatch();
-
-        */
     }
 }

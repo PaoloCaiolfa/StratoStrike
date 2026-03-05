@@ -38,6 +38,14 @@ public class StratoCraftGame {
     public ArrayList<Player> getPlayers() {
         return players;
     }
+
+    public ArrayList<String> getPlayersName() {
+        ArrayList<String> names = new ArrayList<>();
+        for (Player player : players) {
+            names.add(player.getUsername());
+        }
+        return names;
+    }   
     
 
     public Context getContext() {

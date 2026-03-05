@@ -1,0 +1,28 @@
+package stratostrike.local.EventHandlers;
+
+import stratostrike.Controller.LoopingTurn;
+import stratostrike.Controller.MakeTurn;
+import stratostrike.Controller.SetupArmy;
+import stratostrike.local.GameScreenLocal;
+import stratostrike.local.NavigationControllerLocal;
+import stratostrike.local.SelectionScreenLocal;
+
+/**
+ * Handler per SELECT_ACTION.
+ * Aggiorna la vista e mostra le azioni disponibili nella sidebar.
+ */
+public class SelectActionGuiHandler implements GuiEventHandler {
+
+    @Override
+    public void handle(
+        MakeTurn makeTurn,
+        SetupArmy setupArmy,
+        LoopingTurn loopingTurn,
+        SelectionScreenLocal selectionScreen,
+        GameScreenLocal gameScreen,
+        NavigationControllerLocal navigator
+    ) {
+        gameScreen.refreshView();
+        gameScreen.showActionOptions();
+    }
+}

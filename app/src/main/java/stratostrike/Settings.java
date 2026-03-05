@@ -1,4 +1,5 @@
 package stratostrike;
+import java.awt.Color;
 import java.util.List;
 public class Settings {
     public static final String VERSION = "0.1.0";
@@ -26,6 +27,11 @@ public class Settings {
     public static final String OPPONENT = "\u001B[31m"; // Rosso
     public static final String MINE = "\u001B[34m";     // Blu
     public static final String RESET = "\u001B[0m";    // Bianco
+
+    public static final Color PRIMARY = new Color(13, 27, 42);
+    public static final Color SECONDARY = new Color(90, 104, 114);
+    public static final Color TERTIARY = new Color(157, 126, 255);
+    public static final Color CONTRAST = new Color(0, 255, 198);
 
 
     public static final String MAIN_FONT = "Comic Sans MS";

@@ -20,5 +20,5 @@ Thumbs.db
 *.ser
 
 # Local Java files
-*.local.json
-*Local.java
+#*.local.json
+#*Local.java
