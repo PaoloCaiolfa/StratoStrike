@@ -7,14 +7,14 @@
             "description": "attack one zone",
             "damage": 25,
             "shape": {
-                "type": "Circle",
+                "type": "Sphere",
                 "radius": 1
             },
             "range": {
-                "type": "Circle",
+                "type": "Sphere",
                 "radius": 5
             },
-            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
+            "validators":[{"type":"validateRange"},{"type":"validateLevel"},{"type":"ValidateEnemyShip"}]
         },
         {
             "type": "Movement",
@@ -23,7 +23,7 @@
             "description": "move one zone",
             "range": {
                 "type": "Circle",
-                "radius": 1
+                "radius": 4
             },
             "validators":[{"type":"validateHigh"},{"type":"validatePosition"},{"type":"validateRange"}]
         },
@@ -34,29 +34,70 @@
             "description": "shield one zone",
             "protection": 80,
             "shape": {
-                "type": "Circle",
-                "radius": 2
+                "type": "Sphere",
+                "radius": 3
             },
             "range": {
-                "type": "Circle",
+                "type": "Sphere",
                 "radius": 3
             },
             "validators":[{"type":"validateRange"},{"type":"validateLevel"},{"type":"validateMyShip"},{"type":"validateShipAlive"}]
         },
         {
-            "type": "SpecialAbility",
-            "subType": "DoubleAttack",
-            "name": "DoubleAttack",
-            "description": "attack two zones",
+            "type": "Capability",
+            "subType": "LaserAttack",
+            "name": "LaserAttack",
+            "description": "terrible attack that hit one zone",
+            "damage": 500,
             "shape": {
-                "type": "Circle",
+                "type": "Point"
+                
+            },
+            "range": {
+                "type": "Sphere",
+                "radius": 8
+            },
+            "validators":[{"type":"validateRange"},{"type":"validateLevel"},{"type":"ValidateEnemyShip"}]
+        },
+        {
+            "type": "SpecialAbility",
+            "subType": "ImproveMovement",
+            "name": "ImproveMovement",
+            "description": "attack that hit one zone and disable it for one turn",
+            "validators":[{"type":"validateRange"},{"type":"validateLevel"}],
+            "activators":[{"type":"countTurnActivation"}]
+        },
+        {
+            "type": "Capability",
+            "subType": "PointAttack",
+            "name": "PointAttack22",
+            "description": "attack one zone",
+            "damage": 200,
+            "shape": {
+                "type": "Sphere",
                 "radius": 1
             },
             "range": {
-                "type": "Circle",
+                "type": "Sphere",
                 "radius": 5
             },
-            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
+            "validators":[{"type":"validateRange"},{"type":"validateLevel"},{"type":"ValidateEnemyShip"}]
+        },
+        {
+            "type": "Capability",
+            "subType": "DroneAttack",
+            "name": "DroneAttack",
+            "description": "attack one zone with a drone",
+            "damage": 100,
+            "shape": {
+                "type": "Point"
+            },
+            "range": {
+                "type": "Circle",
+                "radius": 6
+            },
+            "validators":[{"type":"validateRange"},{"type":"validateLevel"},{"type":"ValidateEnemyShip"}]
         }
+
     ]
 }

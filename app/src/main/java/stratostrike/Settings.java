@@ -5,6 +5,7 @@ public class Settings {
     // Settings for the Stratostrike game: board dimensions
     public static final int BoardLengthStandard = 20;
     public static final int BoardWidthStandard = 20;
+    public static final int SPECIAL_ABILITY_ACTIVATION = 3;
     public static final List<String> BoardLevelsStandard = List.of(new String[] {
         "CIELO",
         "SPAZIO"

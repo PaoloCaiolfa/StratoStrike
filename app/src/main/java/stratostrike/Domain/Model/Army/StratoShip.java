@@ -14,7 +14,9 @@ import stratostrike.Domain.Model.Action.Action;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
 @JsonSubTypes({
     @JsonSubTypes.Type(value = Fighter.class, name = "Fighter"),
-    @JsonSubTypes.Type(value = Satellite.class, name = "Satellite")
+    @JsonSubTypes.Type(value = Satellite.class, name = "Satellite"),
+    @JsonSubTypes.Type( value = Voyager.class, name = "Voyager"),
+    @JsonSubTypes.Type( value = Drone.class, name = "Drone")
 })
 
 public abstract class StratoShip {
@@ -119,5 +121,25 @@ public abstract class StratoShip {
 
     public String toString() {
         return name + " (Peso: " + weight + ", HP: " + hp + ", Azioni: " + actions.size() + ")";
+    }
+
+    public ArrayList<Action> getMovementActions() {
+        ArrayList<Action> movementActions = new ArrayList<>();
+        for (Action action : actions) {
+            if (action instanceof stratostrike.Domain.Model.Action.Movement) {
+                movementActions.add(action);
+            }
+        }
+        return movementActions;
+    }
+
+    public ArrayList<Action> getSpecialAbilities() {
+        ArrayList<Action> specialAbilities = new ArrayList<>();
+        for (Action action : actions) {
+            if (action instanceof stratostrike.Domain.Model.Action.SpecialAbility) {
+                specialAbilities.add(action);
+            }
+        }
+        return specialAbilities;
     }
 }

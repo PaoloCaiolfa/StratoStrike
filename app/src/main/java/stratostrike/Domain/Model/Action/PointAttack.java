@@ -47,6 +47,7 @@ public class PointAttack extends Capability {
     public void setDamage(int damage) {
         this.damage = damage;
     }
+    
 
     @Override
     public String getDetails() {

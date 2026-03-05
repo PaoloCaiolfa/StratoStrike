@@ -14,7 +14,7 @@ public class Context{
     private Position targetPosition;
     private ArrayList<Position> areaEffect;
     private ArrayList<Action> actionControl; // Lista delle azioni eseguite durante il turno, per tenere traccia di quante azioni sono state fatte e quali sono ancora disponibili
-    
+    private int turnNumber;
 
     
     public Context() {
@@ -25,6 +25,7 @@ public class Context{
         this.targetPosition = null;
         this.areaEffect = new ArrayList<>();
         this.actionControl = new ArrayList<>();
+        this.turnNumber = 0;
     }
 
     public Board getBoard() {
@@ -85,11 +86,19 @@ public class Context{
     }
 
     public boolean allActionsDone() {
+
+        if (!currentPlayer.allActivatorsVerified(this)) {
+            if (actionControl.size() ==2) return true;  /// RICORDA SONO 3 AZIONI PER TURNOO, cambia quando avrai deciso quante azioni per turno vuoi mettere
+            return false;
+        }
+        else{
         if (actionControl.size() ==2) return true;  /// RICORDA SONO 3 AZIONI PER TURNOO, cambia quando avrai deciso quante azioni per turno vuoi mettere
         return false;
+        }
     }
 
     public boolean actionAlreadyDone(Action action) {
+    
         for (Action a : actionControl) {
             if (a.getClass().getSuperclass().equals(action.getClass().getSuperclass())) {
                 return true;
@@ -97,6 +106,18 @@ public class Context{
         }
 
         return false;
+    }
+
+    public void resetForNewTurn() {
+        this.actionControl.clear();
+        
+    }
+
+    public int getTurnNumber() {
+        return turnNumber;
+    }
+    public void incrementTurnNumber() {
+        this.turnNumber++;
     }
     
 }

@@ -14,10 +14,15 @@ import stratostrike.Domain.Model.Position;
 )
 @JsonSubTypes({
     @JsonSubTypes.Type(value = Circle.class, name = "Circle"),
-    @JsonSubTypes.Type(value = Cross.class, name = "Cross")
+    @JsonSubTypes.Type(value = Cross.class, name = "Cross"),
+    @JsonSubTypes.Type(value = Sphere.class, name = "Sphere"),
+    @JsonSubTypes.Type(value = Point.class, name = "Point")
 })
 
 public interface Shape {
     ArrayList<Position> getCoveredCordinates(Position pos);
 
+    
+    public void setRadius(int radius); 
+    public int getRadius();
 }

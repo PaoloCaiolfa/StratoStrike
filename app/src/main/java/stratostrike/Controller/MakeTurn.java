@@ -3,6 +3,7 @@ package stratostrike.Controller;
 import java.util.ArrayList;
 import java.util.List;
 import stratostrike.Domain.Model.Army.*;
+import stratostrike.Domain.Model.Shape.Point;
 import stratostrike.Domain.Model.Action.*;
 import stratostrike.GameEvent;
 import stratostrike.Domain.Model.*;
@@ -53,6 +54,8 @@ public class MakeTurn {
     }
 
     public void playTurn() {
+        game.getContext().resetForNewTurn();
+        game.getContext().incrementTurnNumber();
         refresh();
         game.setCurrentEvent(GameEvent.SELECT_SHIP);
         refresh();
@@ -107,15 +110,22 @@ public class MakeTurn {
         }
         else{
             StratoShip selectedShip = game.getContext().getSelectedShip();  
-            game.getContext().setSelectedAction(selectedShip.getActions().get(selectedIndex));
-            game.setCurrentEvent(GameEvent.SELECT_POSITION);
-
-            //show range for the selection of target 
+            Action selectedAction = selectedShip.getActions().get(selectedIndex);
+            game.getContext().setSelectedAction(selectedAction);
+            if (selectedAction instanceof SpecialAbility) {
+             game.setCurrentEvent(GameEvent.SPECIAL_ACTION_SELECTED);
+            }
+            else{
+             game.setCurrentEvent(GameEvent.SELECT_POSITION);
             Position shipPosition = game.getBoard().getShipPosition(selectedShip);
             ArrayList<Position> affectedPositions = game.getContext().getSelectedAction().getRange().getCoveredCordinates(shipPosition);
             game.getContext().setAreaEffect(affectedPositions);
-        }
 
+            //show range for the selection of target 
+            
+            }
+
+        }
         refresh();
     }
 
@@ -141,9 +151,12 @@ public class MakeTurn {
      * Esegue l'azione selezionata
      */
     public void executeAction(boolean confirmation) {
+
+
       
         Action action = game.getContext().getSelectedAction();
         if (confirmation) {
+
             ValidationResult result = action.isValidTarget(game.getContext());
             if (result.isValid()) {
 
@@ -173,4 +186,37 @@ public class MakeTurn {
 
         refresh();
     }
+
+    public void detailsForSpecialActionSelected() {
+
+        SpecialAbility action = (SpecialAbility) game.getContext().getSelectedAction();
+        if (action.getRange() == null) {
+            ValidationResult result = action.allActivatorsVerified(game.getContext());
+            if (result.isValid()) {
+                action.doAction(game.getContext());
+                viewData.setErrorMessage(result.errorMessage());
+                
+            }
+            else {
+                viewData.setErrorMessage(result.errorMessage());
+            }
+             game.setCurrentEvent(GameEvent.SELECT_SHIP);
+             if (game.getContext().allActionsDone()) {
+                game.setCurrentEvent(GameEvent.TURN_ENDED);
+            }
+            if (game.getContext().allActionsDone()) {
+                game.setCurrentEvent(GameEvent.TURN_ENDED);
+            }
+            else{
+                game.setCurrentEvent(GameEvent.SELECT_SHIP);
+            }
+  
+
+        }
+        else{
+            game.setCurrentEvent(GameEvent.SELECT_POSITION);}
+    
+        refresh();
+    }
+
 }

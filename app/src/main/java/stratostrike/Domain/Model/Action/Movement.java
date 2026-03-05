@@ -7,8 +7,8 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import stratostrike.Domain.Model.Context;
-import stratostrike.Domain.Model.Shape.Shape;
 import stratostrike.Domain.Model.Shape.Circle;
+import stratostrike.Domain.Model.Shape.Shape;
 import stratostrike.Domain.Model.validate.Validate;
 import stratostrike.Domain.Model.validate.ValidationResult;
 
@@ -65,12 +65,12 @@ public abstract class Movement implements Action {
 
     // It doesn't use shape in movement
     @Override
-    public Shape getShape() {
+    public Shape getShape() { // forma dell'azione
         return null;
     }
     
     @Override
-    public Shape getRange() {
+    public Shape getRange() { // area in cui scelgo il taret 
         return range;
     }
 

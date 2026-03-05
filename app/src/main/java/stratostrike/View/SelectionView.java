@@ -84,4 +84,9 @@ private SetupArmy setupArmy;
         }
         
     }
+
+    public void askForSpecialActionDetails() {
+        System.out.println("\nHai selezionato un'abilità speciale!");
+        makeTurn.detailsForSpecialActionSelected();
+    }
 }

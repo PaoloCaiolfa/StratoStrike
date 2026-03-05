@@ -8,7 +8,8 @@
         "actionsNames": [
             "PointAttack",
             "OneZoneMove",
-            "DoubleAttack"
+            "ImproveMovement"
+            
         ]
     },
     {
@@ -18,8 +19,24 @@
         "weight": 2,
         "actionsNames": [
             "AreaShield",
-            "OneZoneMove"
+            "OneZoneMove",
+            "ImproveMovement"
+        ]
+    
+    },
+    {
+        "type": "Voyager",
+        "name": "Destroyer-1",
+        "hp": 200,
+        "weight": 3,
+        "actionsNames": [
+            
+            "OneZoneMove",
+            "LaserAttack",
+            "ImproveMovement"
+            
+                
         ]
     }
-]
+  ]
 }
