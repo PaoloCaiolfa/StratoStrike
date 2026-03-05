@@ -1,6 +1,8 @@
 package stratostrike;
 import java.util.List;
 public class Settings {
+    public static final String VERSION = "0.1.0";
+    public static final boolean USE_GUI = true;
 
     // Settings for the Stratostrike game: board dimensions
     public static final int BoardLengthStandard = 20;

@@ -3,9 +3,9 @@ package stratostrike.Controller;
 import javax.swing.SwingUtilities;
 
 import stratostrike.GameEvent;
+import stratostrike.Settings;
 import stratostrike.Domain.Model.Player;
 import stratostrike.Domain.Model.StratoCraftGame;
-import stratostrike.GameEvent;
 import stratostrike.View.SelectionView;
 import stratostrike.View.GameOutputView;
 import stratostrike.View.SetupOutputView;
@@ -38,37 +38,48 @@ public class GameLauncher {
         SetupArmy setupArmy = new SetupArmy(game);
 
         // Crea le viste
-        SelectionView selectionView = new SelectionView(turn.getMakeTurn(), setupArmy);
-        GameOutputView gameOutputView = new GameOutputView();
-        SetupOutputView setupOutputView = new SetupOutputView();
-        
-        // Crea il dispatcher che osserva i controller
-        EventDispatcher eventDispatcher = new EventDispatcher(
-            turn.getMakeTurn(), 
-            setupArmy, 
-            selectionView, 
-            gameOutputView, 
-            setupOutputView
-        );
+
         
         // Creo un'armata nemica e la metto sulla board per test
 
         // Da commentare
 
-        SwingUtilities.invokeLater(() -> {
-            MainFrameLocal frame = new MainFrameLocal();
-            NavigationControllerLocal navigator = new NavigationControllerLocal(frame);
-            
-            SelectionScreenLocal selection = new SelectionScreenLocal(setupArmy, turn, navigator);
-            GameScreenLocal gameScreen = new GameScreenLocal(turn, turn.getMakeTurn(), navigator);
+        if (Settings.USE_GUI) {
+            SwingUtilities.invokeLater(() -> {
+                MainFrameLocal frame = new MainFrameLocal();
+                NavigationControllerLocal navigator = new NavigationControllerLocal(frame);
 
-            frame.addScreen("SELECTION", selection);
-            frame.addScreen("GAME", gameScreen);
+                SelectionScreenLocal selection = new SelectionScreenLocal(setupArmy, turn, navigator);
+                GameScreenLocal gameScreen = new GameScreenLocal(turn, turn.getMakeTurn(), navigator);
 
-            navigator.navigateToSelection();
+                frame.addScreen("SELECTION", selection);
+                frame.addScreen("GAME", gameScreen);
 
-            frame.setVisible(true);
-        });
+                navigator.navigateToSelection();
+
+                frame.setVisible(true);
+            });
+        } else {
+
+
+            SelectionView selectionView = new SelectionView(turn.getMakeTurn(), setupArmy);
+            GameOutputView gameOutputView = new GameOutputView();
+            SetupOutputView setupOutputView = new SetupOutputView();
+        
+            // Crea il dispatcher che osserva i controller
+            EventDispatcher eventDispatcher = new EventDispatcher(
+                turn.getMakeTurn(), 
+                setupArmy, 
+                selectionView, 
+                gameOutputView, 
+                setupOutputView
+            );
+            // Avvia il flusso del gioco in console
+            setupArmy.selectionForAllPlayer();
+            turn.startMatch();
+        }
+
+
         
 
         //setupArmy.notifyObservers();
