@@ -111,5 +111,19 @@ public class Board {
         return null;
     }
 
+    public List<Position> getAllPositionsWithShip(){
+        List<Position> occupiedPositions = new ArrayList<>();
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < length; y++) {
+                for (int z = 0; z < levels; z++) {
+                    if (positions[x][y][z].getShip() != null) {
+                        occupiedPositions.add(positions[x][y][z]);
+                    }
+                }
+            }
+        }
+        return occupiedPositions;
+    }
+
     
 }

@@ -23,4 +23,7 @@ public class Settings {
     public static final String OPPONENT = "\u001B[31m"; // Rosso
     public static final String MINE = "\u001B[34m";     // Blu
     public static final String RESET = "\u001B[0m";    // Bianco
+
+
+    public static final String MAIN_FONT = "Comic Sans MS";
 }

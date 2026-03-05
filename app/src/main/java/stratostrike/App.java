@@ -3,7 +3,10 @@
  */
 package stratostrike;
 
+import javax.swing.SwingUtilities;
+
 import stratostrike.Controller.GameLauncher;
+import stratostrike.local.MainFrameLocal;
 
 
 public class App {

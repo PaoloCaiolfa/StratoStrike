@@ -45,8 +45,24 @@ public class SetupArmy  {
         for (Player player : game.getPlayers()) {
             System.out.println("\nGiocatore " + player.getUsername() + ", seleziona la tua armata:");
             game.getContext().setCurrentPlayer(player);
+
             notifyObservers();
         }
+    }
+
+    public void nextPlayerSelection() {
+        List<Player> players = game.getPlayers();
+        Player current = game.getContext().getCurrentPlayer();
+        int currentIndex = players.indexOf(current);
+
+        if (currentIndex == players.size() - 1) {
+            game.setCurrentEvent(GameEvent.SELECT_SHIP);
+            notifyObservers();
+            return;
+        }
+
+        game.getContext().setCurrentPlayer(players.get(currentIndex + 1));
+        notifyObservers();
     }
 
     public StratoCraftGame getGame() {
@@ -83,6 +99,8 @@ public class SetupArmy  {
 
             game.setCurrentEvent(GameEvent.SELECT_ARMY);
         }
+
+        nextPlayerSelection();
     }
 
     public ArrayList<String> getAvailableStratoShips() {

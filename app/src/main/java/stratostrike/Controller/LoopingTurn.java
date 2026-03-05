@@ -40,6 +40,19 @@ public class LoopingTurn {
 
     }
 
+    public void startUIMatch() {
+        int extracted = (int) (Math.random() * game.getPlayers().size());
+
+        if (extracted == 0) {
+            game.getContext().setCurrentPlayer(game.getPlayer(0));
+            game.setCurrentEvent(GameEvent.PLAYER1_TURN_STARTED);
+        } else {
+            game.getContext().setCurrentPlayer(game.getPlayer(1));
+            game.setCurrentEvent(GameEvent.PLAYER2_TURN_STARTED);
+        }
+        makeTurn.playTurn();
+    }
+
 
 
     public boolean isGameOver() {
@@ -62,9 +75,14 @@ public class LoopingTurn {
         }
     }
 
-
-
-
-
+    public void nextUITurn() {
+        if (game.getContext().getCurrentPlayer() == game.getPlayer(0)) {
+            game.getContext().setCurrentPlayer(game.getPlayer(1));
+            game.setCurrentEvent(GameEvent.PLAYER2_TURN_STARTED);
+        } else {
+            game.getContext().setCurrentPlayer(game.getPlayer(0));
+            game.setCurrentEvent(GameEvent.PLAYER1_TURN_STARTED);
+        }
+    }
 
 }

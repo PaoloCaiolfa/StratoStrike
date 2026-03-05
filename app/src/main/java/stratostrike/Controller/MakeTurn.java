@@ -68,6 +68,10 @@ public class MakeTurn {
         return game.getCurrentEvent();
     }
 
+    public StratoCraftGame getGame() {
+        return game;
+    }
+
     public ViewData getViewData() {
         return viewData;
     }
