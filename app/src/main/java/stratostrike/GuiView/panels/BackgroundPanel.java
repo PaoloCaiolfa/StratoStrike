@@ -1,4 +1,4 @@
-package stratostrike.GuiView;
+package stratostrike.GuiView.panels;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -26,12 +26,19 @@ public class BackgroundPanel extends JPanel {
         loadBackground(BG_PATH);
     }
 
-    /** Costruttore che accetta un percorso custom (es. per schermate diverse). */
+    /**
+     * Costruttore che accetta un percorso custom (es. per schermate diverse).
+      * Il percorso è relativo alla cartella resources, e deve essere assoluto (iniziare con /).
+      * Esempio: "/sprite/selection_bg.png"
+     */
     public BackgroundPanel(String resourcePath) {
         setOpaque(true);
         loadBackground(resourcePath);
     }
 
+    /**
+     * Carica l'immagine di background dal percorso specificato.
+     */
     private void loadBackground(String path) {
         URL url = getClass().getResource(path);
         if (url != null) {
@@ -47,6 +54,9 @@ public class BackgroundPanel extends JPanel {
         }
     }
 
+    /**
+     * Metodo che disegna l'immagine di background sul pannello.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

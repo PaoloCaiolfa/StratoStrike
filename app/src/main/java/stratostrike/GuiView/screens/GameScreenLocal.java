@@ -1,4 +1,4 @@
-package stratostrike.GuiView;
+package stratostrike.GuiView.screens;
 
 import java.awt.BorderLayout;
 import java.util.ArrayList;
@@ -8,6 +8,11 @@ import javax.swing.JPanel;
 
 import stratostrike.Controller.*;
 import stratostrike.Domain.Model.Position;
+import stratostrike.GuiView.NavigationControllerLocal;
+import stratostrike.GuiView.panels.*;
+import stratostrike.GuiView.support.SpriteLocal;
+import stratostrike.GuiView.screens.*;
+
 
 public class GameScreenLocal 
     extends BackgroundPanel {
@@ -29,17 +34,17 @@ public class GameScreenLocal
         this.makeTurn = makeTurn;
         this.navigator = navigator;
 
+        // Inizializza i componenti del pannello di gioco
         setLayout(new BorderLayout());
 
+        // Inizializza board, sidebar e pannello messaggi
         boardPanel = new BoardPanelLocal(this::handleCellClick, makeTurn.getBoard());
         messagePanel = new MessagePanelLocal(
             makeTurn.getViewData().getMessage(),
             makeTurn.getViewData().getErrorMessage(),
             makeTurn.getGame().getPlayersName()
         );
-        messagePanel.endTurnButton.addActionListener(e -> {
-            makeTurn.endTurn();
-        });
+        messagePanel.setEndTurnAction(e -> makeTurn.endTurn());
 
     
         sidebar = new SidebarPanelLocal(
@@ -47,6 +52,7 @@ public class GameScreenLocal
             this::handleActionSelected
         );
 
+        // costruisce un containeer centrale per board e messaggi, in modo da poter applicare un padding intorno alla board
         JPanel mainBoardContainer = new JPanel(new BorderLayout());
         mainBoardContainer.setOpaque(false);
         mainBoardContainer.setBorder(
@@ -56,30 +62,34 @@ public class GameScreenLocal
         mainBoardContainer.add(boardPanel, BorderLayout.CENTER);
         mainBoardContainer.add(messagePanel, BorderLayout.SOUTH);
 
+        // Aggiunge i pannelli al GameScreen
         add(mainBoardContainer, BorderLayout.CENTER);
         add(sidebar, BorderLayout.EAST);
         revalidate();
         repaint();
     }
 
-    // -----------------------------------------------------------------------
-    // Metodi pubblici usati da GuiEventDispatcher e dagli handler
-    // -----------------------------------------------------------------------
+    //  ==================== Metodi pubblici usati da GuiEventDispatcher e dagli handler ====================
 
     /**
      * Aggiorna board, pannello messaggi e sidebar con lo stato corrente del gioco.
      */
     public void refreshView() {
+        // Aggiornamento della board
         boardPanel.updateBoard(
             makeTurn.getBoard(),
             makeTurn.getViewData().getAreaEffect(),
             makeTurn.getGame().getContext().getSelectedShip(),
             makeTurn.getGame().getPlayers()
         );
+
+        // Aggiornamento del pannello messaggi
         messagePanel.updateMessage(
             makeTurn.getViewData().getMessage(),
             makeTurn.getViewData().getErrorMessage()
         );
+
+        // Aggiornamento della sidebar
         int activePlayerIndex = makeTurn.getGame().getPlayers()
             .indexOf(makeTurn.getGame().getContext().getCurrentPlayer());
         messagePanel.setActivePlayer(activePlayerIndex);
@@ -115,9 +125,7 @@ public class GameScreenLocal
         messagePanel.hideConfirmation();
     }
 
-    // -----------------------------------------------------------------------
-    // Callback UI (click handlers)
-    // -----------------------------------------------------------------------
+    // ==================== Callback UI (click handlers) ====================
 
     private void handleCellClick(Position pos) {
         ArrayList<Integer> coords = new ArrayList<>();

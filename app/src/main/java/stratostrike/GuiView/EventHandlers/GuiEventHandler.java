@@ -3,9 +3,9 @@ package stratostrike.GuiView.EventHandlers;
 import stratostrike.Controller.LoopingTurn;
 import stratostrike.Controller.MakeTurn;
 import stratostrike.Controller.SetupArmy;
-import stratostrike.GuiView.GameScreenLocal;
 import stratostrike.GuiView.NavigationControllerLocal;
-import stratostrike.GuiView.SelectionScreenLocal;
+import stratostrike.GuiView.screens.GameScreenLocal;
+import stratostrike.GuiView.screens.SelectionScreenLocal;
 
 /**
  * Interfaccia per gli handler degli eventi di gioco nella GUI locale.

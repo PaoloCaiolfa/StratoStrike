@@ -1,4 +1,4 @@
-package stratostrike.GuiView;
+package stratostrike.GuiView.panels;
 
 import java.awt.Color;
 import java.util.List;
@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import stratostrike.Domain.Model.Army.StratoShip;
 import stratostrike.Settings;
 import stratostrike.Domain.Model.Action.Action;
+import stratostrike.GuiView.support.GenericCardLocal;
 
 import javax.swing.BoxLayout;
 import javax.swing.JScrollPane;

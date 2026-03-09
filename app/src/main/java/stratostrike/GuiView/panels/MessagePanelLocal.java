@@ -1,4 +1,4 @@
-package stratostrike.GuiView;
+package stratostrike.GuiView.panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -198,5 +198,12 @@ public class MessagePanelLocal extends JPanel {
         for (ActionListener al : confirmButton.getActionListeners()) {
             confirmButton.removeActionListener(al);
         }
+    }
+
+    public void setEndTurnAction(ActionListener onEndTurn) {
+        for (ActionListener al : endTurnButton.getActionListeners()) {
+            endTurnButton.removeActionListener(al);
+        }
+        endTurnButton.addActionListener(onEndTurn);
     }
 }

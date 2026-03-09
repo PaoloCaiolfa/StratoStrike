@@ -7,9 +7,9 @@ import stratostrike.Controller.LoopingTurn;
 import stratostrike.Controller.MakeTurn;
 import stratostrike.Controller.SetupArmy;
 import stratostrike.Domain.Model.Observer;
-import stratostrike.GuiView.GameScreenLocal;
 import stratostrike.GuiView.NavigationControllerLocal;
-import stratostrike.GuiView.SelectionScreenLocal;
+import stratostrike.GuiView.screens.GameScreenLocal;
+import stratostrike.GuiView.screens.SelectionScreenLocal;
 import stratostrike.GameEvent;
 
 /**
