@@ -37,6 +37,11 @@ public class GameScreenLocal
             makeTurn.getViewData().getErrorMessage(),
             makeTurn.getGame().getPlayersName()
         );
+        messagePanel.endTurnButton.addActionListener(e -> {
+            makeTurn.endTurn();
+        });
+
+    
         sidebar = new SidebarPanelLocal(
             this::handleShipSelected,
             this::handleActionSelected

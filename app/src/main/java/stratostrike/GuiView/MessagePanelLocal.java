@@ -20,6 +20,7 @@ public class MessagePanelLocal extends JPanel {
     JLabel messageLabel;
     JLabel errorMessage;
     JButton confirmButton;
+    JButton endTurnButton;
     JPanel dialogBox;
     JPanel textPanel;
     ArrayList<JPanel> playerBoxes;
@@ -94,9 +95,29 @@ public class MessagePanelLocal extends JPanel {
         dialogBox.add(textPanel, BorderLayout.CENTER);
         dialogBox.add(confirmButton, BorderLayout.EAST);
 
+        // Fine turno button
+        endTurnButton = new JButton("Fine Turno");
+        endTurnButton.setFont(new Font(Settings.MAIN_FONT, Font.BOLD, 18));
+
+        JPanel endTurnPanel = new JPanel(new BorderLayout());
+        endTurnPanel.setOpaque(false);
+        endTurnPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 6, 0));
+        endTurnPanel.add(endTurnButton, BorderLayout.EAST);
+
+        JPanel northWrapper = new JPanel();
+        northWrapper.setLayout(new BoxLayout(northWrapper, BoxLayout.Y_AXIS));
+        northWrapper.setOpaque(false);
+        northWrapper.add(endTurnPanel);
+        northWrapper.add(playersPanel);
+
+        JPanel centerWrapper = new JPanel();
+        centerWrapper.setLayout(new BoxLayout(centerWrapper, BoxLayout.Y_AXIS));
+        centerWrapper.setOpaque(false);
+        centerWrapper.add(dialogBox);
+
         // Add dialog box to main panel
-        add(playersPanel, BorderLayout.NORTH);
-        add(dialogBox, BorderLayout.CENTER);
+        add(northWrapper, BorderLayout.NORTH);
+        add(centerWrapper, BorderLayout.CENTER);
     }
 
     public void setMessage(String message) {

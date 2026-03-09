@@ -22,10 +22,9 @@ import stratostrike.Domain.Model.Army.StratoShip;
 
 public class BoardPanelLocal extends JPanel {
 
-    private static final int CELL_SIZE = 32;
-    private static final int BOARD_HEIGHT = CELL_SIZE * Settings.BoardWidthStandard;
-    private static final int BOARD_WIDTH = CELL_SIZE * Settings.BoardLengthStandard;
-    private static final int BOARD_OFFSET_Z = 20; 
+    private static final int MIN_CELL_SIZE = 16;
+    private static final int BOARD_OFFSET_Z = 20;
+
 
     private List<SpriteLocal> sprites; // Lista di sprite da disegnare sulla griglia
     private Consumer<Position> onCellClick;
@@ -38,15 +37,15 @@ public class BoardPanelLocal extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
-                int totalBoardWidth = BOARD_WIDTH + BOARD_OFFSET_Z;
+                int cs = getCurrentCellSize();
+                int totalBoardWidth = Settings.BoardLengthStandard * cs + BOARD_OFFSET_Z;
 
                 int z = e.getX() / totalBoardWidth;
 
                 int localX = e.getX() - (z * totalBoardWidth);
 
-                int cellX = localX / CELL_SIZE;
-                int cellY = e.getY() / CELL_SIZE;
+                int cellX = localX / cs;
+                int cellY = e.getY() / cs;
 
                 if (z < 0 || z > 1) return;
                 if (cellX < 0 || cellX >= Settings.BoardLengthStandard) return;
@@ -55,85 +54,88 @@ public class BoardPanelLocal extends JPanel {
                 onCellClick.accept(new Position(cellX, cellY, z));
             }
         });
-        // Inizializza il pannello di gioco
-        setPreferredSize(new Dimension(
-            (BOARD_WIDTH * 2) + BOARD_OFFSET_Z,
-            BOARD_HEIGHT)
-        );
+        // Inizializza il pannello di gioco — la preferred size è il minimo
+        int minW = (MIN_CELL_SIZE * Settings.BoardLengthStandard * 2) + BOARD_OFFSET_Z;
+        int minH = MIN_CELL_SIZE * Settings.BoardWidthStandard;
+        setMinimumSize(new Dimension(minW, minH));
+        setPreferredSize(new Dimension(minW * 2, minH * 2));
         setOpaque(false);
 
         sprites = new ArrayList<>();
     }
 
 
-    private void drawBoardBackground(Graphics g, int z) {
-        Graphics2D g2d = (Graphics2D) g;
-        int offsetX = z * (BOARD_WIDTH + BOARD_OFFSET_Z);
+    private int getCurrentCellSize() {
+        int cols = Settings.BoardLengthStandard * 2;
+        int rows = Settings.BoardWidthStandard;
+        int availableW = getWidth() - BOARD_OFFSET_Z;
+        int availableH = getHeight();
+        if (availableW <= 0 || availableH <= 0) return MIN_CELL_SIZE;
+        int fromW = availableW / cols;
+        int fromH = availableH / rows;
+        return Math.max(MIN_CELL_SIZE, Math.min(fromW, fromH));
+    }
 
-        // Il quarto parametro è l'alpha: 0 = trasparente, 255 = opaco
+    private void drawBoardBackground(Graphics g, int z, int cs) {
+        Graphics2D g2d = (Graphics2D) g;
+        int boardWidth = Settings.BoardLengthStandard * cs;
+        int boardHeight = Settings.BoardWidthStandard * cs;
+        int offsetX = z * (boardWidth + BOARD_OFFSET_Z);
+
         if (z == 0) {
             g2d.setColor(new Color(135, 206, 230)); // cielo
         } else {
             g2d.setColor(new Color(15, 15, 40)); // spazio
         }
 
-        g2d.fillRect(
-            offsetX,
-            0,
-            BOARD_WIDTH,
-            BOARD_HEIGHT
-        );
+        g2d.fillRect(offsetX, 0, boardWidth, boardHeight);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        int cs = getCurrentCellSize();
 
-        // Logica per disegnare lo sfondo del pannello di gioco
-        drawBoardBackground(g, 0);
-        drawBoardBackground(g, 1);
+        drawBoardBackground(g, 0, cs);
+        drawBoardBackground(g, 1, cs);
 
-        // Logica per disegnare la griglia di gioco e le navi
-        drawGrid(g, 0);
-        drawGrid(g, 1);
+        drawGrid(g, 0, cs);
+        drawGrid(g, 1, cs);
 
-        drawSprites(g);
-        drawTitles(g);
+        drawSprites(g, cs);
+        drawTitles(g, cs);
     }
 
-    private void drawTitles(Graphics g) {
+    private void drawTitles(Graphics g, int cs) {
+        int boardWidth = Settings.BoardLengthStandard * cs;
+        int boardHeight = Settings.BoardWidthStandard * cs;
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 16));
 
-        g.drawString("CIELO", 20, BOARD_HEIGHT + 20);
-        g.drawString("SPAZIO", BOARD_WIDTH + BOARD_OFFSET_Z + 20, BOARD_HEIGHT + 20);
+        g.drawString("CIELO", 20, boardHeight + 20);
+        g.drawString("SPAZIO", boardWidth + BOARD_OFFSET_Z + 20, boardHeight + 20);
     }
 
-    private void drawSprites(Graphics g) {
+    private void drawSprites(Graphics g, int cs) {
         for (SpriteLocal sprite : sprites) {
-            sprite.draw(g, CELL_SIZE);
+            sprite.draw(g, cs, BOARD_OFFSET_Z);
         }
     }
 
-    private void drawGrid(Graphics g, int zOffset) {
+    private void drawGrid(Graphics g, int zOffset, int cs) {
         g.setColor(Color.GRAY);
 
-        int offsetX = zOffset * (BOARD_WIDTH + BOARD_OFFSET_Z);
+        int boardWidth = Settings.BoardLengthStandard * cs;
+        int offsetX = zOffset * (boardWidth + BOARD_OFFSET_Z);
 
         for (int i = 0; i <= Settings.BoardLengthStandard; i++) {
-
             g.drawLine(
-                offsetX + i * CELL_SIZE,
-                0,
-                offsetX + i * CELL_SIZE,
-                Settings.BoardWidthStandard * CELL_SIZE
+                offsetX + i * cs, 0,
+                offsetX + i * cs, Settings.BoardWidthStandard * cs
             );
-
             g.drawLine(
-                offsetX,
-                i * CELL_SIZE,
-                offsetX + Settings.BoardLengthStandard * CELL_SIZE,
-                i * CELL_SIZE
+                offsetX, i * cs,
+                offsetX + boardWidth, i * cs
             );
         }
     }
@@ -154,11 +156,9 @@ public class BoardPanelLocal extends JPanel {
         highlightedPositions.forEach(pos -> {
                 if (inBoard(pos)) {
                     sprites.add(new SpriteLocal(
-                        "/sprite/highlight.png", 
-                        pos.getX() * CELL_SIZE + pos.getZ() * (BOARD_WIDTH + BOARD_OFFSET_Z),
-                        pos.getY() * CELL_SIZE)
-                    );
-                } 
+                        "/sprite/highlight.png",
+                        pos.getX(), pos.getY(), pos.getZ()));
+                }
             }
         );
 
@@ -166,16 +166,14 @@ public class BoardPanelLocal extends JPanel {
             int playerIndex = getPlayerIndex(pos.getShip(), players);
             if (selectedShip != null && pos.getShip() == selectedShip) {
                 sprites.add(new SpriteLocal(
-                    "/sprite/highlight.png", 
-                    pos.getX() * CELL_SIZE + pos.getZ() * (BOARD_WIDTH + BOARD_OFFSET_Z),
-                    pos.getY() * CELL_SIZE));
-            } 
+                    "/sprite/highlight.png",
+                    pos.getX(), pos.getY(), pos.getZ()));
+            }
             sprites.add(new SpriteLocal(
-                pos.getShip().isDestroyed() 
+                pos.getShip().isDestroyed()
                     ? "/sprite/DEAD_" + pos.getShip().getName() + ".png"
-                    : "/sprite/" + pos.getShip().getName() + ".png", 
-                pos.getX() * CELL_SIZE + pos.getZ() * (BOARD_WIDTH + BOARD_OFFSET_Z),
-                pos.getY() * CELL_SIZE,
+                    : "/sprite/" + pos.getShip().getName() + ".png",
+                pos.getX(), pos.getY(), pos.getZ(),
                 playerIndex));
         }
 

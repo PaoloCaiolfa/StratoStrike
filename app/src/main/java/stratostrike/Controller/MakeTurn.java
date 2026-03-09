@@ -81,6 +81,11 @@ public class MakeTurn {
 
     /** ========== EVENT HANDLING ========== */
 
+    public void endTurn() {
+        game.setCurrentEvent(GameEvent.TURN_ENDED);
+        refresh();
+    }
+
     /**
      * The logic for selecting a ship is handled in the game context, this method just updates the selected ship based on the index of the alive ships of the current player's army and then changes the current event to SELECT_ACTION
      * @param selectedIndex

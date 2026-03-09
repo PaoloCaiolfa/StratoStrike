@@ -85,11 +85,6 @@ public class GameLauncher {
             turn.startMatch();
         }
 
-
-        
-
-        //setupArmy.notifyObservers();
-        //turn.startMatch();
     }
     
 }
