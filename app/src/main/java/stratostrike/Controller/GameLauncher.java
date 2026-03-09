@@ -6,14 +6,14 @@ import stratostrike.GameEvent;
 import stratostrike.Settings;
 import stratostrike.Domain.Model.Player;
 import stratostrike.Domain.Model.StratoCraftGame;
+import stratostrike.GuiView.GameScreenLocal;
+import stratostrike.GuiView.MainFrameLocal;
+import stratostrike.GuiView.NavigationControllerLocal;
+import stratostrike.GuiView.SelectionScreenLocal;
+import stratostrike.GuiView.EventHandlers.GuiEventDispatcher;
 import stratostrike.View.SelectionView;
 import stratostrike.View.GameOutputView;
 import stratostrike.View.SetupOutputView;
-import stratostrike.local.GameScreenLocal;
-import stratostrike.local.MainFrameLocal;
-import stratostrike.local.NavigationControllerLocal;
-import stratostrike.local.SelectionScreenLocal;
-import stratostrike.local.EventHandlers.GuiEventDispatcher;
 import stratostrike.View.EventHandlers.EventDispatcher;
 
 public class GameLauncher {

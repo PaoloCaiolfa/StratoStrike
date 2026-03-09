@@ -1,4 +1,4 @@
-package stratostrike.local;
+package stratostrike.GuiView;
 
 import java.util.function.Consumer;
 

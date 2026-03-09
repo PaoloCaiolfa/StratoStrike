@@ -1,4 +1,4 @@
-package stratostrike.local;
+package stratostrike.GuiView;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -10,13 +10,12 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
+import stratostrike.Settings;
+
 public class SpriteLocal {
 
     // Colori team: player 0 → blu, player 1 → verde acqua
-    private static final Color[] TEAM_COLORS = {
-        new Color(80, 140, 255),   // player 0
-        new Color(0, 220, 160),    // player 1
-    };
+
     private static final float TEAM_ALPHA = 0.35f; // trasparenza del filtro (0=invisibile, 1=opaco)
     private static final int   BORDER     = 2;      // spessore bordo in pixel
 
@@ -42,7 +41,7 @@ public class SpriteLocal {
     }
 
     public void draw(Graphics g, int cellSize) {
-        if (playerIndex >= 0 && playerIndex < TEAM_COLORS.length) {
+        if (playerIndex >= 0 && playerIndex < Settings.TEAM_COLORS.length) {
             drawTeamFilter(g, cellSize);
         }
         if (image != null) {
@@ -54,7 +53,7 @@ public class SpriteLocal {
     /** Disegna un bordo colorato + sfondo semi-trasparente attorno alla cella. */
     private void drawTeamFilter(Graphics g, int cellSize) {
         Graphics2D g2 = (Graphics2D) g;
-        Color teamColor = TEAM_COLORS[playerIndex];
+        Color teamColor = Settings.TEAM_COLORS[playerIndex];
 
         // Bordo pieno
         g2.setColor(teamColor);

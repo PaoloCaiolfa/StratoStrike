@@ -1,4 +1,4 @@
-package stratostrike.local;
+package stratostrike.GuiView;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -123,14 +123,14 @@ public class MessagePanelLocal extends JPanel {
             if (i == activeIndex) {
                 box.setBackground(COLOR_ACTIVE_BG);
                 box.setBorder(BorderFactory.createCompoundBorder(
-                    BorderFactory.createLineBorder(COLOR_ACTIVE_BORDER, 2),
+                    BorderFactory.createLineBorder(Settings.TEAM_COLORS[activeIndex], 2),
                     BorderFactory.createEmptyBorder(6, 14, 6, 14)
                 ));
                 label.setForeground(COLOR_ACTIVE_FG);
             } else {
                 box.setBackground(COLOR_INACTIVE_BG);
                 box.setBorder(BorderFactory.createCompoundBorder(
-                    BorderFactory.createLineBorder(COLOR_INACTIVE_BORDER, 1),
+                    BorderFactory.createLineBorder(Settings.TEAM_COLORS[i], 1),
                     BorderFactory.createEmptyBorder(6, 14, 6, 14)
                 ));
                 label.setForeground(COLOR_INACTIVE_FG);

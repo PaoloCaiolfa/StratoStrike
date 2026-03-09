@@ -1,11 +1,11 @@
-package stratostrike.local.EventHandlers;
+package stratostrike.GuiView.EventHandlers;
 
 import stratostrike.Controller.LoopingTurn;
 import stratostrike.Controller.MakeTurn;
 import stratostrike.Controller.SetupArmy;
-import stratostrike.local.GameScreenLocal;
-import stratostrike.local.NavigationControllerLocal;
-import stratostrike.local.SelectionScreenLocal;
+import stratostrike.GuiView.GameScreenLocal;
+import stratostrike.GuiView.NavigationControllerLocal;
+import stratostrike.GuiView.SelectionScreenLocal;
 
 /**
  * Handler per gli eventi SELECT_ARMY e COMPOSE_ARMY.

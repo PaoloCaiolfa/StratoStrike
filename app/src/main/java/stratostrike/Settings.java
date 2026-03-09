@@ -20,6 +20,7 @@ public class Settings {
         "HUMAN",
         "CYBER",
     });
+
     public static final int MaxShipsWeightPerPlayer = 20;
     public static final int MaxShipsNumberPerPlayer = 8;
 
@@ -32,6 +33,11 @@ public class Settings {
     public static final Color SECONDARY = new Color(90, 104, 114);
     public static final Color TERTIARY = new Color(157, 126, 255);
     public static final Color CONTRAST = new Color(0, 255, 198);
+
+    public static final Color[] TEAM_COLORS = {
+        new Color(80, 140, 255),   // player 0
+        new Color(255, 102, 102),    // player 1
+    };
 
 
     public static final String MAIN_FONT = "Comic Sans MS";

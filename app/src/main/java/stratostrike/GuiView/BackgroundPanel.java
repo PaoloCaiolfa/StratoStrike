@@ -1,4 +1,4 @@
-package stratostrike.local;
+package stratostrike.GuiView;
 
 import java.awt.Graphics;
 import java.awt.Image;

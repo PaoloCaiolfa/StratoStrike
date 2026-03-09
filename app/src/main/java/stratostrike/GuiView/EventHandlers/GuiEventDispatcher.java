@@ -1,4 +1,4 @@
-package stratostrike.local.EventHandlers;
+package stratostrike.GuiView.EventHandlers;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,10 +7,10 @@ import stratostrike.Controller.LoopingTurn;
 import stratostrike.Controller.MakeTurn;
 import stratostrike.Controller.SetupArmy;
 import stratostrike.Domain.Model.Observer;
+import stratostrike.GuiView.GameScreenLocal;
+import stratostrike.GuiView.NavigationControllerLocal;
+import stratostrike.GuiView.SelectionScreenLocal;
 import stratostrike.GameEvent;
-import stratostrike.local.GameScreenLocal;
-import stratostrike.local.NavigationControllerLocal;
-import stratostrike.local.SelectionScreenLocal;
 
 /**
  * Dispatcher centralizzato per la gestione degli eventi di gioco nella GUI locale.
