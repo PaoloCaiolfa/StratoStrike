@@ -4,7 +4,12 @@ import stratostrike.Domain.Model.*;
 import stratostrike.Settings;
 import java.util.ArrayList;
 
+
+/**
+ * Classe che si occupa del calcolo e della visualizzazione del tabellone di gioco, contiene un metodo printBoard che stampa il tabellone di gioco con le navi posizionate
+ */
 public class BoardView {
+
     /**
      * Metodo per stampare il tabellone di gioco con le navi posizionate
      */
@@ -46,41 +51,6 @@ public class BoardView {
             System.out.println("    " + "-".repeat(board.getWidth()*3));
         }
     }
-
- 
-
-/** 
-
-
-    public void printArmy() {
-        PlayerInfo currentInfo = makeTurn.getPlayerInfo();
-        ArrayList<StratoShip> armyList = currentInfo.army();
-        Board board = makeTurn.getViewData().getBoard();
-        
-        System.out.println("Navi nell'armata:");
-        System.out.println("le tue navi sono blu, quelle avversarie rosse.");
-        for (int i = 0; i < armyList.size(); i++) {
-            StratoShip ship = armyList.get(i);
-
-            System.out.println(i + ": " + ship.getName() + " (HP: " + ship.getHp() + ")"+ board.getShipPosition(ship).toString() );
-           
-        }
-    }
-
-
-
-
-    public void printActualPlayer() {
-        PlayerInfo currentInfo = makeTurn.getPlayerInfo();
-        Player player = currentInfo.player();
-        System.out.println("-----------------------------------");
-        System.out.println("Turno di: " + player.getUsername());
-        System.out.println();
-        System.out.println("Seleziona una nave dalla tua armata:");
-        System.out.println("-----------------------------------");
-    }
-
-*/
 }
 
 

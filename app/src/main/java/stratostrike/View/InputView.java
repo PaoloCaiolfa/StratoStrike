@@ -4,14 +4,20 @@ package stratostrike.View;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import stratostrike.Domain.Model.Army.Army;
-import stratostrike.Domain.Model.Army.StratoShip;
 import stratostrike.Settings;
 
+/**
+ * Vista di supporto che gestisce gli input da console e le validazioni di correttezza
+ */
 public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Metodo per ottenere la selezione di una nave da parte del giocatore, mostra la lista delle navi disponibili e chiede al giocatore di inserire l'ID della nave da selezionare, valida l'input e restituisce l'ID selezionato
+     * @param size il numero di navi disponibili per la selezione, usato per validare l'input del giocatore
+     * @return l'ID della nave selezionata dal giocatore, restituisce un intero compreso tra 0 e size-1
+     */
     public static int getShipSelection(int size) {
         int selection = -1;
         int maxIndex = size - 1;
@@ -32,6 +38,11 @@ public class InputView {
         return selection;
     }
 
+    /**
+     * Metodo per ottenere la selezione di un'azione da parte del giocatore, mostra la lista delle azioni disponibili e chiede al giocatore di inserire l'ID dell'azione da selezionare, valida l'input e restituisce l'ID selezionato
+     * @param size il numero di azioni disponibili per la selezione, usato per validare l'input del giocatore
+     * @return l'ID dell'azione selezionata dal giocatore, restituisce un intero compreso tra 0 e size-1
+     */
     public static int getActionSelection(int size) {
         int selection = -1;
         int maxIndex = size - 1;
@@ -53,6 +64,11 @@ public class InputView {
         return selection;
     }
 
+
+    /**
+     * Metodo per ottenere la selezione di una posizione bersaglio da parte del giocatore, mostra le coordinate disponibili e chiede al giocatore di inserire le coordinate X, Y e Z del bersaglio, valida l'input e restituisce le coordinate selezionate in una lista di interi
+     * @return una lista contenente le coordinate X, Y e Z del bersaglio selezionato
+     */
     public static ArrayList<Integer> getPositionTarget() {
         ArrayList<Integer> coordinates = new ArrayList<>();
         int x = -1, y = -1, z = -1;
@@ -78,7 +94,12 @@ public class InputView {
         return coordinates;
     }
 
-    // Metodo di supporto per evitare di ripetere la logica del controllo
+    /**
+     * Metodo di supporto per leggere un intero da console e validarlo in un range specificato, continua a chiedere l'input finché non viene inserito un numero valido compreso tra min e max
+     * @param min
+     * @param max
+     * @return
+     */
     public static int readValidInt(int min, int max) {
         while (true) {
             if (scanner.hasNextInt()) {
@@ -94,20 +115,10 @@ public class InputView {
         }
     }
 
-    // CODICE PER TESTARE LE FACTORY
-
-    // Metodo per visualizzare i veicoli dell'armata creata
-    public void stampaStatoArmata(Army armata) {
-        System.out.println("\n--- COMPOSIZIONE ARMATA " + armata.getName() + " ---");
-        for (int i = 0; i < armata.getShips().size(); i++) {
-            StratoShip nave = armata.getShips().get(i);
-            System.out.println("ID " + i + " -> " + nave.getName() + " [" + nave.getClass().getSimpleName() + "]");
-            System.out.println("   HP: " + nave.getHp());
-            System.out.println("   Azioni: " + nave.getActions().size() + " disponibili.");
-            System.out.println("---------------------------");
-        }
-    }
-
+    /**
+     * Metodo per leggere un input da console e validarlo come risposta sì o no, continua a chiedere l'input finché non viene inserito 'y' o 'n', restituisce true se l'input è 'y' e false se l'input è 'n'
+     * @return
+     */
     public static boolean readYesOrNo() {
         while (true) {
         if (scanner.hasNextLine()) {
@@ -131,7 +142,9 @@ public class InputView {
     }
     }
 
-
+    /**
+     * Metodo per leggere il nome dell'armata che vuole attribuire al momento della creazione della sua armata personalizzata
+     */
     public static String readArmyName() {
         System.out.print("Inserisci il nome della nuova armata: ");
         String armyName = scanner.nextLine().trim().toUpperCase();

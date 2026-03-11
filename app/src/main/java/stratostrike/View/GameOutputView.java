@@ -31,7 +31,7 @@ public class GameOutputView {
             return;
         }
         
-        // Visualizzazione standard
+        // Visualizzazione standard (titolo, board, messaggi, errori)
         System.out.println("=".repeat(25));
         System.out.println(makeTurn.getViewData().getTitle());
         System.out.println("=".repeat(25));

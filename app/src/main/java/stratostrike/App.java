@@ -13,6 +13,7 @@ public class App {
 
     public static void main(String[] args) {
 
+        // Avvia il gioco, creando un'istanza di GameLauncher e chiamando il metodo launchGame, che si occupa di inizializzare il gioco e avviare la partita
         GameLauncher launcher = new GameLauncher();
         launcher.launchGame();
     }

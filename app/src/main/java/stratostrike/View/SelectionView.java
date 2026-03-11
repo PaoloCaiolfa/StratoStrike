@@ -9,11 +9,13 @@ import stratostrike.Controller.SetupArmy;
 import java.util.ArrayList;
 
 
-
+/**
+ * Classe che si occupa di gestire gli input presi da InputView e smistarli al controllore che si occupa di interpretarli e aggiornare lo stato
+ */
 public class SelectionView {
 
-private MakeTurn makeTurn;
-private SetupArmy setupArmy;
+    private MakeTurn makeTurn;
+    private SetupArmy setupArmy;
 
 
     public SelectionView(MakeTurn makeTurn, SetupArmy setupArmy) {
@@ -57,21 +59,34 @@ private SetupArmy setupArmy;
     }
 
 
+    /**
+     * Metodo per chiedere al giocatore di inserire le coordinate del bersaglio per l'azione selezionata, mostra le coordinate disponibili e chiede al giocatore di inserire le coordinate X, Y e Z del bersaglio, valida l'input e restituisce le coordinate selezionate in una lista di interi
+     */
     public void askForTarget() {
         ArrayList<Integer> targetValue = InputView.getPositionTarget();
         makeTurn.selectTarget(targetValue);
     }
 
+    /**
+     * Metodo per chiedere al giocatore se vuole continuare a giocare dopo la fine del turno, chiede al giocatore di inserire Y/N, valida l'input e restituisce un booleano che indica se il giocatore vuole continuare o meno
+     */
     public void askForContinue() {
         boolean validInput = InputView.readYesOrNo();
         makeTurn.executeAction(validInput);
     }
 
+    /**
+     * Metodo per chiedere al giocatore di selezionare un'armata tra quelle mostrate
+     */
     public void askForArmy() {
         int selectedArmy = InputView.readValidInt(0, Settings.ArmyTipology.size() + setupArmy.getArmyNames().size());
         setupArmy.selectArmy(selectedArmy);
     }
 
+
+    /**
+     * Metodo per chiedere al giocatore di selezionare le navi da aggiungere alla composizione personalizzata della sua armata, mostra le navi disponibili e chiede al giocatore di inserire l'ID della nave da aggiungere, valida l'input e aggiorna la composizione dell'armata con la nave selezionata, continua a chiedere finché il giocatore non seleziona l'opzione per terminare la composizione dell'armata
+     */
     public void askForArmyComposition() {
         
         int selectedShip = InputView.readValidInt(0, setupArmy.getAvailableStratoShips().size());
@@ -85,6 +100,9 @@ private SetupArmy setupArmy;
         
     }
 
+    /**
+     * Metodo che informa il giocatore di aver selezionato un'abilità speciale
+     */
     public void askForSpecialActionDetails() {
         System.out.println("\nHai selezionato un'abilità speciale!");
         makeTurn.detailsForSpecialActionSelected();

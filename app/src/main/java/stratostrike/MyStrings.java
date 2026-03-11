@@ -4,6 +4,9 @@ import java.util.Map;
 
 public class MyStrings {
     
+    /**
+     * Stringhe per la visualizzazione dei messaggi relativi agli eventi di gioco
+     */
     public static final Map<GameEvent, String> eventMessages = Map.ofEntries(
 
         Map.entry(GameEvent.TURN_STARTED, "Il turno è iniziato!"),
@@ -23,6 +26,9 @@ public class MyStrings {
     );
 
 
+    /**
+     * Stringhe per la visualizzazione di titoli per contestualizzare l'input richiesto al giocatore in base all'evento di gioco corrente
+     */
     public static final Map<GameEvent, String> eventTitles = Map.ofEntries(
         Map.entry(GameEvent.TURN_STARTED, "Inizio del turno"),
         Map.entry(GameEvent.PLAYER1_TURN_STARTED, "Inizio del turno del giocatore 1"),

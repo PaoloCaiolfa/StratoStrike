@@ -19,7 +19,9 @@ public class LoopingTurn {
         return makeTurn;
     }
 
-
+    /**
+     * Avvia il ciclo di gioco, alternando i turni dei giocatori finché la partita non termina.
+     */
     public void startMatch(){
         int extracted= (int) (Math.random() * game.getPlayers().size()); // Estrae un numero casuale tra 0 e 1
         if (extracted == 0) {
@@ -40,6 +42,11 @@ public class LoopingTurn {
 
     }
 
+    /**
+     * Avvia il ciclo di gioco in modalità GUI, alternando i turni dei giocatori finché la partita non termina.
+     * Il metodo è diverso da start match perché abbiamo aggiornato la logica degli eventi tramite event handler
+     * di consequenza non c'è più bisogno di governare i turni tramite loop nel while
+     */
     public void startUIMatch() {
         int extracted = (int) (Math.random() * game.getPlayers().size());
 
@@ -55,6 +62,10 @@ public class LoopingTurn {
 
 
 
+    /**
+     * Verifica se la partita è terminata.
+     * @return true se la partita è terminata, false altrimenti.
+     */
     public boolean isGameOver() {
         if (game.getPlayer(0).isFleetDestroyed()) {
             System.out.println("Player 2 wins!");
@@ -67,6 +78,10 @@ public class LoopingTurn {
     }
     
 
+    /**
+     * Passa al turno del giocatore successivo. Se il giocatore corrente è il player 1, passa al player 2, e viceversa.
+      * Il metodo viene chiamato alla fine di ogni turno per alternare i giocatori. In modalità GUI, invece, l'alternanza dei turni è gestita dagli eventi, quindi questo metodo non viene più utilizzato direttamente, ma la logica di cambio giocatore è comunque incapsulata qui per mantenere la coerenza del controller.
+     */
     public void nextTurn() {
         if (game.getContext().getCurrentPlayer() == game.getPlayer(0)) {
             game.getContext().setCurrentPlayer(game.getPlayer(1));
@@ -75,6 +90,9 @@ public class LoopingTurn {
         }
     }
 
+    /**
+     * Passa al turno del giocatore successivo in modalità GUI.
+     */
     public void nextUITurn() {
         if (game.getContext().getCurrentPlayer() == game.getPlayer(0)) {
             game.getContext().setCurrentPlayer(game.getPlayer(1));

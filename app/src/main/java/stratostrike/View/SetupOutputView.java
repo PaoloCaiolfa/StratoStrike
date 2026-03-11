@@ -10,7 +10,8 @@ import stratostrike.Settings;
 public class SetupOutputView {
     
     /**
-     * Visualizza le opzioni per la selezione dell'armata.
+     * Visualizza le opzioni per la selezione dell'armata, mostra le armate predefinite, le armate personalizzate salvate e l'opzione per creare una nuova armata personalizzata, chiede al giocatore di inserire l'ID dell'armata da selezionare o l'opzione per creare una nuova armata personalizzata
+     * @param setupArmy il controller con i dati da visualizzare
      */
     public void displayArmySelection(SetupArmy setupArmy) {
         System.out.println("\n");
@@ -31,6 +32,7 @@ public class SetupOutputView {
     
     /**
      * Visualizza le opzioni per la composizione personalizzata dell'armata.
+     * @param setupArmy il controller con i dati da visualizzare
      */
     public void displayArmyComposition(SetupArmy setupArmy) {
         System.out.println("\n");

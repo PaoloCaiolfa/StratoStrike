@@ -1,5 +1,8 @@
 package stratostrike;
 
+/**
+ * Enum che rappresenta i vari eventi di gioco, utilizzato per gestire lo stato del gioco e aggiornare la view di conseguenza, ogni volta che lo stato del gioco cambia, viene impostato un nuovo evento corrente, e tutti gli observer registrati vengono notificati per aggiornare la view in base al nuovo stato del gioco
+ */
 public enum GameEvent {
     SELECT_ARMY,
     COMPOSE_ARMY,

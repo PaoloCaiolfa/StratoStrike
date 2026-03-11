@@ -21,6 +21,7 @@ public class MessagePanelLocal extends JPanel {
     JLabel errorMessage;
     JButton confirmButton;
     JButton endTurnButton;
+    JButton returnToHomeButton;
     JPanel dialogBox;
     JPanel textPanel;
     ArrayList<JPanel> playerBoxes;
@@ -99,10 +100,15 @@ public class MessagePanelLocal extends JPanel {
         endTurnButton = new JButton("Fine Turno");
         endTurnButton.setFont(new Font(Settings.MAIN_FONT, Font.BOLD, 18));
 
+        returnToHomeButton = new JButton("Quit to the home");
+        returnToHomeButton.setFont(new Font(Settings.MAIN_FONT, Font.BOLD, 18));
+        returnToHomeButton.setVisible(false);
+
         JPanel endTurnPanel = new JPanel(new BorderLayout());
         endTurnPanel.setOpaque(false);
         endTurnPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 6, 0));
         endTurnPanel.add(endTurnButton, BorderLayout.EAST);
+        endTurnPanel.add(returnToHomeButton, BorderLayout.WEST);
 
         JPanel northWrapper = new JPanel();
         northWrapper.setLayout(new BoxLayout(northWrapper, BoxLayout.Y_AXIS));
@@ -205,5 +211,19 @@ public class MessagePanelLocal extends JPanel {
             endTurnButton.removeActionListener(al);
         }
         endTurnButton.addActionListener(onEndTurn);
+    }
+
+    public void showEndGameOverlay(String winnerName, Runnable onRestart) {
+        returnToHomeButton.setText("Quit to the home");
+        setMessage(winnerName + " ha vinto la partita!");
+        setErrorMessage("");
+        endTurnButton.setVisible(false);
+        returnToHomeButton.setVisible(true);
+
+        for (ActionListener al : returnToHomeButton.getActionListeners()) {
+            returnToHomeButton.removeActionListener(al);
+        }
+
+        returnToHomeButton.addActionListener(e -> onRestart.run());
     }
 }

@@ -75,6 +75,11 @@ public class GameScreenLocal
      * Aggiorna board, pannello messaggi e sidebar con lo stato corrente del gioco.
      */
     public void refreshView() {
+        if (loopingTurn.isGameOver()) {
+            String winnerName = makeTurn.getGame().getContext().getCurrentPlayer().getUsername();
+            showEndGameOverlay(winnerName);
+            return;
+        }
         // Aggiornamento della board
         boardPanel.updateBoard(
             makeTurn.getBoard(),
@@ -123,6 +128,12 @@ public class GameScreenLocal
      */
     public void hideConfirmation() {
         messagePanel.hideConfirmation();
+    }
+
+    public void showEndGameOverlay(String winnerName) {
+        messagePanel.showEndGameOverlay(winnerName, () -> {
+            navigator.navigateTo("SELECTION");
+        });
     }
 
     // ==================== Callback UI (click handlers) ====================
