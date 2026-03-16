@@ -14,7 +14,7 @@
                 "type": "Sphere",
                 "radius": 5
             },
-            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
+            "validators":[{"type":"validateRange"},{"type":"validateLevel"},{"type":"ValidateEnemyShip"}]
         },
         {
             "type": "Movement",
@@ -57,7 +57,7 @@
                 "type": "Sphere",
                 "radius": 8
             },
-            "validators":[{"type":"validateRange"},{"type":"validateLevel"}]
+            "validators":[{"type":"validateRange"},{"type":"validateLevel"},{"type":"ValidateEnemyShip"}]
         },
         {
             "type": "SpecialAbility",
@@ -66,6 +66,37 @@
             "description": "attack that hit one zone and disable it for one turn",
             "validators":[{"type":"validateRange"},{"type":"validateLevel"}],
             "activators":[{"type":"countTurnActivation"}]
+        },
+        {
+            "type": "Capability",
+            "subType": "PointAttack",
+            "name": "PointAttack22",
+            "description": "attack one zone",
+            "damage": 200,
+            "shape": {
+                "type": "Sphere",
+                "radius": 1
+            },
+            "range": {
+                "type": "Sphere",
+                "radius": 5
+            },
+            "validators":[{"type":"validateRange"},{"type":"validateLevel"},{"type":"ValidateEnemyShip"}]
+        },
+        {
+            "type": "Capability",
+            "subType": "DroneAttack",
+            "name": "DroneAttack",
+            "description": "attack one zone with a drone",
+            "damage": 100,
+            "shape": {
+                "type": "Point"
+            },
+            "range": {
+                "type": "Circle",
+                "radius": 6
+            },
+            "validators":[{"type":"validateRange"},{"type":"validateLevel"},{"type":"ValidateEnemyShip"}]
         }
 
     ]
