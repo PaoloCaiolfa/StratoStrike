@@ -1,5 +1,5 @@
 Questo è il file per il discorso;
-
+Ciao sono paolo e aono un ravo ragazzo mi piace il calcio e sono u bel uaglione 
 Problematiche incontrate:
 Doppio livello di ereditariteà per le azioni; 
 Resa necessaria dalla necessita di distinguere i tipi diazioni e imporre dei controlli sull'esclusività della tipologia d'azione
