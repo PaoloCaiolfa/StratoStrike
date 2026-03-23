@@ -8,7 +8,7 @@ import stratostrike.GameEvent;
 import stratostrike.Domain.Model.*;
 import stratostrike.Domain.Model.validate.ValidationResult;
 
-public class MakeTurn {
+public class MakeTurn implements EventSource {
 
     private StratoCraftGame game;
     private ViewData viewData;
@@ -35,7 +35,7 @@ public class MakeTurn {
      */
     public void notifyObservers() {
         for (Observer observer : observers) {
-            observer.update();
+            observer.update(this);
         }
     }
 

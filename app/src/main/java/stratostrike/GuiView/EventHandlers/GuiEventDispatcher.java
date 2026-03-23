@@ -6,6 +6,7 @@ import java.util.Map;
 import stratostrike.Controller.LoopingTurn;
 import stratostrike.Controller.MakeTurn;
 import stratostrike.Controller.SetupArmy;
+import stratostrike.Controller.EventSource;
 import stratostrike.Domain.Model.Observer;
 import stratostrike.GuiView.NavigationControllerLocal;
 import stratostrike.GuiView.screens.GameScreenLocal;
@@ -60,8 +61,9 @@ public class GuiEventDispatcher implements Observer {
     }
 
     @Override
-    public void update() {
-        GameEvent event = makeTurn.getGame().getCurrentEvent();
+    public void update(EventSource source) {
+        // Ricava direttamente l'evento dal source
+        GameEvent event = source.getCurrentEvent();
 
         if (setupPhase) {
             // SELECT_SHIP in fase di setup significa che tutti i giocatori

@@ -2,6 +2,7 @@ package stratostrike.View.EventHandlers;
 
 import stratostrike.Controller.MakeTurn;
 import stratostrike.Controller.SetupArmy;
+import stratostrike.Controller.EventSource;
 import stratostrike.Domain.Model.Observer;
 import stratostrike.GameEvent;
 import stratostrike.View.SelectionView;
@@ -40,11 +41,12 @@ public class EventDispatcher implements Observer {
     
     /**
      * Metodo chiamato quando lo stato del gioco cambia.
-     * Determina quale controller ha notificato e dispatcha di conseguenza.
+     * Riceve il source (EventSource) che ha notificato il cambio di stato.
+     * @param source il controller che ha notificato (implementa EventSource)
      */
     @Override
-    public void update() {
-        GameEvent currentEvent = getCurrentEvent();
+    public void update(EventSource source) {
+        GameEvent currentEvent = source.getCurrentEvent();
         
         // Per eventi di gioco normale, visualizza prima lo stato
         if (!isSetupEvent(currentEvent)) {
@@ -61,18 +63,6 @@ public class EventDispatcher implements Observer {
     private void dispatch(GameEvent event) {
         EventHandler handler = eventHandlers.getOrDefault(event, new DefaultEventHandler());
         handler.handle(makeTurn, setupArmy, selectionView, gameOutputView, setupOutputView);
-    }
-    
-    /**
-     * Determina l'evento corrente dal controller appropriato.
-     */
-    private GameEvent getCurrentEvent() {
-        // Verifica prima setupArmy, poi makeTurn
-        GameEvent setupEvent = setupArmy.getGame().getCurrentEvent();
-        if (isSetupEvent(setupEvent)) {
-            return setupEvent;
-        }
-        return makeTurn.getCurrentEvent();
     }
     
     /**
@@ -114,10 +104,5 @@ public class EventDispatcher implements Observer {
         return handlers;
     }
     
-    /**
-     * Verifica se esiste un handler registrato per l'evento specificato.
-     */
-    public boolean hasHandler(GameEvent event) {
-        return eventHandlers.containsKey(event);
-    }
+
 }

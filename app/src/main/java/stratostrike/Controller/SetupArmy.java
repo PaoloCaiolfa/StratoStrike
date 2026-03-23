@@ -15,7 +15,7 @@ import stratostrike.Settings;
 
 
 
-public class SetupArmy  {
+public class SetupArmy implements EventSource {
 
      private StratoCraftGame game;
      private ArrayList<Observer> observers = new ArrayList<>();
@@ -45,7 +45,7 @@ public class SetupArmy  {
      */
     public void notifyObservers() {
         for (Observer observer : observers) {
-            observer.update();
+            observer.update(this);
         }
     }   
 
@@ -53,6 +53,14 @@ public class SetupArmy  {
 
     public StratoCraftGame getGame() {
         return game;
+    }
+
+    /**
+     * Implementazione di EventSource: ritorna l'evento corrente del gioco.
+     */
+    @Override
+    public GameEvent getCurrentEvent() {
+        return game.getCurrentEvent();
     }
 
     public ArrayList<String> getArmyNames() {
