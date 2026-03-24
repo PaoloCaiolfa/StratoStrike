@@ -26,11 +26,10 @@ public class MessagePanelLocal extends JPanel {
     JPanel textPanel;
     ArrayList<JPanel> playerBoxes;
 
-    private static final Color COLOR_ACTIVE_BG   = Settings.PRIMARY;
     private static final Color COLOR_ACTIVE_FG   = Color.WHITE;
     private static final Color COLOR_ACTIVE_BORDER = Settings.PRIMARY.brighter();
     private static final Color COLOR_INACTIVE_BG   = Settings.PRIMARY.darker();
-    private static final Color COLOR_INACTIVE_FG   = Settings.TERTIARY;
+    private static final Color COLOR_INACTIVE_FG   = Settings.SECONDARY.darker();
     private static final Color COLOR_INACTIVE_BORDER = Settings.CONTRAST;
 
     public MessagePanelLocal(String initialMessage, String initialErrorMessage, ArrayList<String> playersName) {
@@ -148,9 +147,9 @@ public class MessagePanelLocal extends JPanel {
             JPanel box = playerBoxes.get(i);
             JLabel label = (JLabel) box.getComponent(0);
             if (i == activeIndex) {
-                box.setBackground(COLOR_ACTIVE_BG);
+                box.setBackground(Settings.TEAM_COLORS[activeIndex]);
                 box.setBorder(BorderFactory.createCompoundBorder(
-                    BorderFactory.createLineBorder(Settings.TEAM_COLORS[activeIndex], 2),
+                    BorderFactory.createLineBorder(Settings.TEAM_COLORS[activeIndex].darker(), 2),
                     BorderFactory.createEmptyBorder(6, 14, 6, 14)
                 ));
                 label.setForeground(COLOR_ACTIVE_FG);
