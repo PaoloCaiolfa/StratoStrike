@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+//lettura delle composizioni delle armate dal file json, collabora con CustomArmyFactory
 
 public class CustomArmyLoader {
 
@@ -23,7 +24,9 @@ public class CustomArmyLoader {
 
     private CustomArmyLoader() {}
 
-    // Metodo helper per ottenere il percorso del file sorgente
+    /**  
+     * Metodo helper per ottenere il percorso del file sorgente
+     */
     private File getSourceConfigFile() {
         // Trova il file compilato usando il classloader
         java.net.URL resourceUrl = getClass().getClassLoader().getResource("armyConfig.json");
@@ -38,7 +41,9 @@ public class CustomArmyLoader {
     }
 
 
-    // prende tutti le chiave per il regsitry (il nome) per creare le navi di un armata 
+    /** 
+     * prende tutti le chiave per il regsitry (il nome) per creare le navi di un armata 
+     */
     public ArrayList<String> loadTemplates(String armyName) {
 
         try {
@@ -68,7 +73,9 @@ public class CustomArmyLoader {
     }
 
 
-    // prende tutti i nomi delle armate custom definite in armyConfig.json, per mostrarle nella view di selezione armata
+    /** 
+     * prende tutti i nomi delle armate custom definite in armyConfig.json, per mostrarle nella view di selezione armata
+     */
     public ArrayList<String> getArmyName() {
         try {
             ObjectMapper mapper = new ObjectMapper();
