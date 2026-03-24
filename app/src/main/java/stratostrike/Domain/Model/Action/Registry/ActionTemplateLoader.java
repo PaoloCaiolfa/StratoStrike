@@ -10,6 +10,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import stratostrike.Domain.Model.Action.Action;
 
+//lettura del json e collabora con ActionRegistry per fornire il modello delle azioni al resto del gioco
+
 public class ActionTemplateLoader {
 
     private static ActionTemplateLoader instance;

@@ -22,6 +22,10 @@ public class CyberArmyFactory implements ArmyFactory {
         return instance;
     }
 
+
+     /** 
+      * differente implementazione della logica di creazione, in questo caso è un set prefissato di navi 
+     */
     @Override
     public Army createArmy(String armyName) {
         prototipi.clear();

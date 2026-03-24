@@ -1,7 +1,6 @@
 package stratostrike.Domain.Model.Army.Factory;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import stratostrike.Domain.Model.Army.Army;
 import stratostrike.Domain.Model.Army.StratoShip;
@@ -22,7 +21,10 @@ public class CustomArmyFactory implements ArmyFactory {
         return new CustomArmyFactory(ShipRegistry.getInstance(), CustomArmyLoader.getInstance());
     }
 
-    // creazione di aramte custom
+    /** creazione di armate custom che vengono lette da file json tramite loader che fornisce una lista di nomi di navi 
+        * e poi vengono create clonando i prototipi presenti nel registry, in questo modo la logica di creazione è completamente dinamica e dipende solo dal contenuto del file json, senza bisogno di modificare il codice per aggiungere nuove composizioni di armate
+        *
+    */
     @Override
     public Army createArmy(String armyName) {
        ArrayList<StratoShip> ships = new ArrayList<>();
@@ -34,16 +36,4 @@ public class CustomArmyFactory implements ArmyFactory {
        return new Army(armyName, ships);
     }
 
-
-    public List<StratoShip> cloneShips(List<Class<? extends StratoShip>> shipClasses) {
-        List<StratoShip> cloned = new ArrayList<>();
-        for (Class<? extends StratoShip> cls : shipClasses) {
-            try {
-                cloned.add(cls.getDeclaredConstructor().newInstance());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return cloned;
-    }
 }

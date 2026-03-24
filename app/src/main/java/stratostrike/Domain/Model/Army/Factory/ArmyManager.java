@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import stratostrike.Domain.Model.Army.StratoShip;
 import stratostrike.Domain.Model.Army.Registry.ShipRegistry;
 
-//Facade per Factory, con il controller
-
+// Service factory per ottenere le factory specifiche in base alla fazione scelta
 public class ArmyManager {
 
-    //Reflection-based factory retrieval
+    /**
+     * Reflection-based factory retrieval
+     */
     public static ArmyFactory getFactory(String fazione) {
         try {
             String fazioneNormalizzata = fazione.substring(0, 1).toUpperCase() + fazione.substring(1).toLowerCase();
@@ -26,6 +27,10 @@ public class ArmyManager {
         }
     }
 
+    /**
+     * Metodo helper per ottenere i nomi di tutte le navi disponibili nel registry, per mostrarle 
+     * nella view di creazione armata custom
+     */
     public static ArrayList<String> getAvailableShipsToString() {
         ArrayList<StratoShip> ships = ShipRegistry.getInstance().getAllShips();
         ArrayList<String> shipNames = new ArrayList<>();
@@ -34,6 +39,11 @@ public class ArmyManager {
         }
         return shipNames;
     }
+
+    /**
+     * 
+     * @return
+     */
 
     public static ArrayList<String> getAvailableShipsNames() {
         ArrayList<StratoShip> ships = ShipRegistry.getInstance().getAllShips();
