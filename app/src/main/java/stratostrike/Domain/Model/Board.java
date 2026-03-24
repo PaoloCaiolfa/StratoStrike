@@ -7,6 +7,10 @@ import stratostrike.Domain.Model.Army.SkyShip;
 import stratostrike.Domain.Model.Army.SpaceShip;
 import stratostrike.Domain.Model.Army.StratoShip;
 
+
+/**
+ * Classe che rappresenta la board di gioco, 
+ */
 public class Board {
     private final int width;
     private final int length;
@@ -30,15 +34,34 @@ public class Board {
         }
     }
 
+    /* =============== GETTERS =============== */
+
+    /**
+     * Metodo per ottenere il nome del livello in base al suo indice, usato principalmente per la visualizzazione del tabellone di gioco, restituisce una stringa che rappresenta il nome del livello corrispondente all'indice z
+     * @param z
+     * @return
+     */
     public String getLevelName(int z) {
         return levelNames.get(z);
     }
 
 
+    /**
+     * Metodo per ottenere la posizione del tabellone in base alle coordinate x, y e z, restituisce un oggetto Position che rappresenta la posizione corrispondente alle coordinate fornite
+     * @param x
+     * @param y
+     * @param z
+     * @return
+     */
     public Position getPosition(int x, int y, int z) {
         return positions[x][y][z];
     }
 
+    /**
+     * Metodo per ottenere la posizione del tabellone in base a una lista di coordinate, restituisce un oggetto Position che rappresenta la posizione corrispondente alle coordinate fornite nella lista, dove la lista contiene le coordinate x, y e z in ordine
+     * @param coordinates
+     * @return
+     */
     public Position getPositionByCoordinates(ArrayList<Integer> coordinates) {
         int x = coordinates.get(0);
         int y = coordinates.get(1);
@@ -51,10 +74,25 @@ public class Board {
     public int getLevels() { return this.levels; }
 
 
+    /* ================ SHIP METHODS =============== */
+
+    /**
+     * Metodo per posizionare una nave sulla board, utilizzato principalmente per il setup iniziale del gioco
+     * @param ship
+     * @param x
+     * @param y
+     * @param z
+     */
     public void placeShip(StratoShip ship,int x, int y, int z) {
         positions[x][y][z].setShip(ship);
     }
 
+
+    /**
+     * Metodo per muovere una nave sulla board
+     * @param ship
+     * @param newPosition
+     */
     public void moveShip(StratoShip ship, Position newPosition) {
         Position currentPosition = getShipPosition(ship);
         if (currentPosition != null) {
@@ -63,6 +101,10 @@ public class Board {
         newPosition.setShip(ship); 
     }
 
+    /**
+     * Metodo per posizionare casualmente le navi di un'armata sulla board, utilizzato principalmente per il setup iniziale del gioco, posiziona le navi in modo strategico in base al loro tipo, ad esempio posizionando le navi spaziali al livello 1 e le navi terrestri al livello 0, mentre per altre navi il posizionamento è casuale su qualsiasi livello
+     * @param army
+     */
     public void setupRandomArmyPlacement(Army army) {
         for (StratoShip ship : army.getShips()) {
             int x, y, z;
@@ -85,6 +127,11 @@ public class Board {
         }
     }
 
+    /**
+     * Metodo per verificare se una nave è presente sulla board
+     * @param ship
+     * @return true se la nave è presente sulla board, false altrimenti
+     */
     public boolean containsShip(StratoShip ship) {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < length; y++) {
@@ -98,6 +145,11 @@ public class Board {
         return false;
     }
 
+    /**
+     * Metodo per ottenere la posizione di una nave sulla board
+     * @param ship
+     * @return la posizione della nave, null se non trovata
+     */
     public Position getShipPosition(StratoShip ship) {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < length; y++) {
@@ -111,6 +163,10 @@ public class Board {
         return null;
     }
 
+    /**
+     * Metodo per ottenere tutte le posizioni che contengono una nave
+     * @return una lista di posizioni che contengono una nave
+     */
     public List<Position> getAllPositionsWithShip(){
         List<Position> occupiedPositions = new ArrayList<>();
         for (int x = 0; x < width; x++) {

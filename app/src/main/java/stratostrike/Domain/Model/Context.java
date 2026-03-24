@@ -13,7 +13,7 @@ public class Context{
     private Action selectedAction;
     private Position targetPosition;
     private ArrayList<Position> areaEffect;
-    private ArrayList<Action> actionControl; // Lista delle azioni eseguite durante il turno, per tenere traccia di quante azioni sono state fatte e quali sono ancora disponibili
+    private ArrayList<Action> actionControl; 
     private int turnNumber;
 
     
