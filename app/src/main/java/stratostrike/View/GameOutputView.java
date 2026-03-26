@@ -36,9 +36,11 @@ public class GameOutputView {
         System.out.println(makeTurn.getViewData().getTitle());
         System.out.println("=".repeat(25));
 
-        boardView.printBoard(makeTurn.getViewData().getBoard(), makeTurn.getViewData().getAreaEffect());
+        
+        boardView.printBoard(makeTurn.getGame().getBoard(), makeTurn.getViewData().getAreaEffect());
+        
 
-        System.out.println(makeTurn.getViewData().getMessage());
+        System.out.println(makeTurn.getViewData().getMessage());//
         System.out.println(makeTurn.getViewData().getErrorMessage());
     }
 }

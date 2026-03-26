@@ -8,7 +8,7 @@ import java.util.List;
 public class Settings {
 
     public static final String VERSION = "0.1.0";
-    public static final boolean USE_GUI = true;
+    public static final boolean USE_GUI = false;
 
     /*
      * Settings for the standard board dimensions

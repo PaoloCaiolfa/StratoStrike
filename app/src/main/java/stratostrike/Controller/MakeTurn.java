@@ -228,7 +228,6 @@ public class MakeTurn implements EventSource {
             ValidationResult result = action.allActivatorsVerified(game.getContext());
             if (result.isValid()) {
                 action.doAction(game.getContext());
-                viewData.setErrorMessage(result.errorMessage());
                 
             }else {
                 viewData.setErrorMessage(result.errorMessage());

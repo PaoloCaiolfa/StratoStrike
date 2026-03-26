@@ -83,7 +83,7 @@ public class GameLauncher {
             SetupOutputView setupOutputView = new SetupOutputView();
         
             // Crea il dispatcher che osserva i controller
-            EventDispatcher eventDispatcher = new EventDispatcher(
+            new EventDispatcher(
                 turn.getMakeTurn(), 
                 setupArmy, 
                 selectionView, 

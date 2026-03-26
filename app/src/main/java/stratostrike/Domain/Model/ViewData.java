@@ -23,6 +23,7 @@ public class ViewData {
         this.board = null;
         this.alivePlayerArmy = new ArrayList<>();
         this.availableActions = new ArrayList<>();
+        this.areaEffect = new ArrayList<>();
         this.message = "message null";
         this.data = new HashMap<>();
         this.errorMessage="";
