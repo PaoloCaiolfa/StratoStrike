@@ -48,8 +48,9 @@ public class EventDispatcher implements Observer {
     public void update(EventSource source) {
         GameEvent currentEvent = source.getCurrentEvent();
         
-        // Per eventi di gioco normale, visualizza prima lo stato
+        // Per eventi di gioco normale, aggiorna il ViewData e visualizza lo stato
         if (!isSetupEvent(currentEvent)) {
+            makeTurn.updateViewData();
             gameOutputView.displayGameState(makeTurn);
         }
         
