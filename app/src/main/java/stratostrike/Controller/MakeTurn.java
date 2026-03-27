@@ -2,11 +2,18 @@ package stratostrike.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import stratostrike.Domain.Model.Army.*;
-import stratostrike.Domain.Model.Action.*;
-import stratostrike.GameEvent;
-import stratostrike.Domain.Model.*;
+
+import stratostrike.Domain.Model.Action.Action;
+import stratostrike.Domain.Model.Action.SpecialAbility;
+import stratostrike.Domain.Model.Army.StratoShip;
+import stratostrike.Domain.Model.Board;
+import stratostrike.Domain.Model.Observer;
+import stratostrike.Domain.Model.Player;
+import stratostrike.Domain.Model.Position;
+import stratostrike.Domain.Model.StratoCraftGame;
+import stratostrike.Domain.Model.ViewData;
 import stratostrike.Domain.Model.validate.ValidationResult;
+import stratostrike.GameEvent;
 
 public class MakeTurn implements EventSource {
 
@@ -80,6 +87,7 @@ public class MakeTurn implements EventSource {
      * Restituisce l'evento corrente del gioco
      * @return l'evento corrente del gioco
      */
+    @Override
     public GameEvent getCurrentEvent() {
         return game.getCurrentEvent();
     }

@@ -1,5 +1,6 @@
 package stratostrike.Domain.Model.Shape;
 import java.util.ArrayList;
+
 import stratostrike.Domain.Model.Position;
 public class Sphere implements Shape{
 
@@ -42,10 +43,12 @@ public class Sphere implements Shape{
         return coveredPositions;
     }
 
+    @Override
     public int getRadius() {
         return radius;
     }
 
+    @Override
     public void setRadius(int radius) {
         this.radius = radius;
     }

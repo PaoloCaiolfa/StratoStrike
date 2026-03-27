@@ -45,6 +45,7 @@ public class Cross implements Shape {
         this.length = radius; // Assuming length is equivalent to radius for the cross shape
     }
 
+    @Override
     public int getRadius() {
         return length; // Assuming length is equivalent to radius for the cross shape   
     };
